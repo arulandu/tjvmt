@@ -1,7 +1,5 @@
 import { User, UserModel } from 'lib/api/db/models/User'
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import { dbConnect } from 'lib/api/db/database'
 import { OAuthConfig } from 'next-auth/providers'
 
