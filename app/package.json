@@ -9,24 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next-auth/mongodb-adapter": "^0.0.2-next.285",
-    "cookie-session": "^1.4.0",
     "mongoose": "^6.0.12",
     "next": "^12.0.1",
     "next-auth": "^3.29.0",
     "next-connect": "^0.11.0",
-    "passport": "^0.5.0",
-    "passport-oauth2": "^1.6.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-tsparticles": "^1.36.0",
     "swr": "^1.0.1"
   },
   "devDependencies": {
-    "@types/cookie-session": "^2.0.43",
     "@types/mongoose": "^5.11.97",
-    "@types/passport": "^1.0.7",
-    "@types/passport-oauth2": "^1.4.11",
     "@types/react": "17.0.33",
     "autoprefixer": "^10.3.7",
     "eslint": "8.1.0",
