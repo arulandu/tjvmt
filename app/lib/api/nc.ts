@@ -8,10 +8,7 @@ const base = (params = {}) => nc<NextApiRequest, NextApiResponse<any>>({
         res.json({ message: err.message });
     },
     ...params
-}).use((req: NextApiRequest, res: NextApiResponse<any>) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-});
+})
 
 
 export default base
