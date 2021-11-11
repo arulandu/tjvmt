@@ -41,7 +41,7 @@ export async function dbConnect() {
       serverSelectionTimeoutMS: 10000,
       socketTimeoutMS: 20000
     }
-
+    console.log('connect to mongoose')
     cached.promise = mongoose.connect(process.env.DB_URI!, opts).then(mongoose => {
       return mongoose
     })
@@ -49,5 +49,6 @@ export async function dbConnect() {
 
   // cache and return
   cached.connection = await cached.promise
+  console.log('connected!')
   return cached.connection
 }

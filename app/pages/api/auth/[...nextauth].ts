@@ -19,6 +19,7 @@ const options = {
                 console.log('profile calc')
                 await dbConnect()
                 let curUser = await UserModel.findOne({ ionUsername: profile.ion_username as string })
+                console.log('found user!')
                 if (!curUser) {
                     // create new user
                     curUser = await UserModel.create({
@@ -30,6 +31,7 @@ const options = {
                         onEmailList: false,
                         isOffier: false,
                     })
+                    console.log('created user')
                 }
 
                 console.log('cur user:', curUser)
