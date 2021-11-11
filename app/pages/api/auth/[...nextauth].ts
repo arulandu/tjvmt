@@ -16,7 +16,7 @@ const options = {
             accessTokenUrl: "https://ion.tjhsst.edu/oauth/token",
             profileUrl: "https://ion.tjhsst.edu/api/profile",
             async profile(profile, tokens) {
-                // console.log('profile calc')
+                console.log('profile calc')
                 await dbConnect()
                 let curUser = await UserModel.findOne({ ionUsername: profile.ion_username as string })
                 if (!curUser) {
@@ -31,6 +31,8 @@ const options = {
                         isOffier: false,
                     })
                 }
+
+                console.log('cur user:', curUser)
 
                 // for user returned in the profile method ik its weird
                 // email, image, name are required fields
@@ -59,14 +61,16 @@ const options = {
         // account: token information
         // profile: profile returned by profile url
         jwt: async (token: any, user: any, account: any, profile: any, isNewUser: boolean) => {
-            // console.log('jwt callback')
+            console.log('jwt callback')
+            console.log(token, user, account, profile, isNewUser)
             if (!user) return token // user will be undefined when session is accessed - next-auth sketchy lol
             token.userId = user.id
             return token
         },
         // called when session is accessed
         session: async (session: any, user: any) => {
-            // console.log('session callback')
+            console.log('session callback')
+            console.log(session, user)
 
             await dbConnect()
             session.user = await UserModel.findOne({ _id: user.userId })
@@ -76,7 +80,7 @@ const options = {
     },
     secret: process.env.COOKIE_KEY,
     events: {},
-    debug: false
+    debug: true
 }
 
 export default (req: any, res: any) => NextAuth(req, res, options)
