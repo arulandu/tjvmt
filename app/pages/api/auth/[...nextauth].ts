@@ -2,6 +2,7 @@ import { User, UserModel } from 'lib/api/db/models/User'
 import NextAuth from 'next-auth'
 import { dbConnect } from 'lib/api/db/database'
 import { OAuthConfig } from 'next-auth/providers'
+import { NextApiRequest } from 'next'
 
 const options = {
     providers: [
@@ -85,4 +86,6 @@ const options = {
     debug: true
 }
 
-export default (req: any, res: any) => NextAuth(req, res, options)
+export default (req: NextApiRequest, res: any) => {
+    NextAuth(req, res, options)
+}

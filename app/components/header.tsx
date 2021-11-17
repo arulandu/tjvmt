@@ -2,6 +2,8 @@ import { useCurrentUser } from "lib/hooks/useUser";
 import { signIn, signOut } from "next-auth/client";
 import { FC, useState } from "react";
 import { useRouter } from 'next/router'
+import Image from 'next/image';
+import logo from 'public/images/logo.png'
 
 const NavLink: FC<any> = ({ route, name, highlight=true }) => {
     const router = useRouter()
@@ -32,7 +34,11 @@ const Header = () => {
             <nav className={`transition-all duration-1000 ease-in-out md:flex ${navToggled ? 'bg-white' : 'bg-transparent'}`}>
                 <div className="flex md:inline-block items-center justify-between px-4 py-3">
                     <div>
-                        <a href="/"><img src="images/logo.png" alt="Varsity Math Team" className="h-12" /></a>
+                        <a href="/">
+                            <div className=" w-20 relative">
+                                <Image src={logo} alt="Varsity Math Team"/>
+                            </div>
+                        </a>
                     </div>
                     <div className="md:hidden">
 

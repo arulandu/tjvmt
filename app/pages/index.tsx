@@ -1,6 +1,9 @@
 import type { NextPage } from 'next'
 import Particles, { RecursivePartial, IOptions } from 'react-tsparticles'
 import { Layout } from 'components/layout'
+import Image from 'next/image'
+import logo from 'public/images/header_image.png'
+import teamPic from 'public/images/team_pic.jpg'
 // TODO: use next/image Image 
 
 const Background = () => {
@@ -127,7 +130,12 @@ const Home: NextPage<any> = ({ officers }) => {
   return (
     <Layout>
       <section className="h-screen relative -top-20 flex items-center justify-center bg-gradient-to-br from-red-400 to-blue-400">
-        <img src="images/header_image.png" alt="TJHSST Varsity Math Team" className="w-4/5 md:w-1/2 absolute left-1/10 md:left-1/4" />
+        <div className="w-4/5 md:w-1/2 left-1/10 md:left-1/4 absolute">
+          <Image
+            src={logo}
+            alt="TJHSST Varsity Math Team"
+          />
+        </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" fill="black" style={{ top: '95%' }} className="absolute top-44 animate-bounce">
           <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
         </svg>
@@ -136,7 +144,12 @@ const Home: NextPage<any> = ({ officers }) => {
       <section className="py-10 text-center">
         <h2 className="font-adam text-4xl gradient-text">Who Are We?</h2>
         <p className="m-auto mt-6 mb-10 text-lg text-justify w-4/5 sm:w-2/3">The TJHSST Varsity Math Team is one of the most successful math teams in the nation. We compete in college math competitions across the east coast, as well as prepare students for AMC Series competitions, catering to students with all kinds of math backgrounds. We also have pie eating contests, plank countdowns, guest lectures, and more, so be sure to sign up for VMT Wednesday A and B block!</p>
-        <img src="images/team_pic.jpg" alt="VMT About" className="m-auto w-4/5 sm:w-2/3" />
+        <div className="m-auto w-4/5 sm:w-2/3">
+          <Image
+            src={teamPic}
+            alt="VMT About"
+          />
+        </div>
       </section>
       <section id="activities" className="text-center px-5 md:px-10 py-10">
         <h2 className="font-adam text-5xl text-center gradient-text m-auto">Activities</h2>
