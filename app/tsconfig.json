@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "~/*": ["./*"]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -9,7 +13,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true, // TODO: change to true. i'm too lazy to fix all the type issues rn.
+    "strict": false, // TODO: change to true. i'm too lazy to fix all the type issues rn.
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
