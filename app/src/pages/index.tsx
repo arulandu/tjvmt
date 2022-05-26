@@ -57,7 +57,7 @@ const ExperienceSection = () => {
           <>VMT is a great place to meet new people who share your passion for math!</>,
           <>Form lifelong connections with fellow mathletes who will help you grow.</>
         ]}/>
-        <ExperienceCard img="/images/experience/L3.png" title='The Community' content={[
+        <ExperienceCard img="/images/experience/L3_v2.png" title='The Community' content={[
           <>Here at VMT we have lots of fun. Join us for pie eating contests, plank countdowns, and more!</>,
           <>Give back to the math community by volunteering at outreach events like Techstravaganza and TJIMO.</>
         ]}/>

@@ -14,9 +14,9 @@ const NavLink = ({ index, href, name }) => {
 const HamburgerButton = ({open, onClick=()=>{}}) => {
   return (
     <button className='md:hidden' onClick={onClick}>
-      <div className={`w-8 h-[2px] bg-white ${open ? 'translate-y-[10px] rotate-45' : ''} transition-all`}></div>
-      <div className={`my-2 w-8 h-[2px] ${open ? 'bg-transparent' : 'bg-white'} transition-all`}></div>
-      <div className={`w-8 h-[2px] bg-white ${open ? ' -translate-y-[10px] -rotate-45' : ''} transition-all`}></div>
+      <div className={`w-8 h-[2px] bg-pink ${open ? 'translate-y-[10px] rotate-45' : ''} transition-all`}></div>
+      <div className={`my-2 w-8 h-[2px] ${open ? 'bg-transparent' : 'bg-pink'} transition-all`}></div>
+      <div className={`w-8 h-[2px] bg-pink ${open ? ' -translate-y-[10px] -rotate-45' : ''} transition-all`}></div>
     </button>
   );
 }
