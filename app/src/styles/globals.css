@@ -31,7 +31,7 @@ a {
   font-weight: 1 999;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 20px;
 }
 
@@ -48,4 +48,4 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #889CB0;
-}
+} */

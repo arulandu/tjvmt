@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 const ArchiveEmbed = ({name, id}) => {
   return (
-    <div className='m-6 p-2 bg-opacity-90'>
+    <div className='mx-6 my-2 bg-opacity-90'>
       <Link href={`https://drive.google.com/drive/folders/${id}`} passHref>
-        <a className='mb-2 text-xl text-white opacity-50 hover:opacity-100 transition-all' target="_blank">{name}</a>
+        <a className='text-xl text-white opacity-50 hover:opacity-100 transition-all' target="_blank">{name}</a>
       </Link>
     </div>
   );
@@ -18,7 +18,7 @@ const Resources: NextPage<any> = () => {
     <Layout>
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-white text-5xl gradient-text text-center">Archive</h1>
+          <h1 className="mb-6 text-white text-5xl gradient-text text-center">Archive</h1>
           <div className="flex justify-center flex-wrap">
             <ArchiveEmbed name="2021-2022" id="19Mt2b4CUkF44IeTVX-2S6Wm5PfXzs7tY#list"/>
             <ArchiveEmbed name="2020-2021" id="13q2j2KyFUE25osA9djcVbnjvUlml2ekC#list"/>
