@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <header className='fixed z-50 w-full h-16 sm:h-24 px-4 sm:px-12 lg:px-24'>
       <nav className='h-full flex items-center justify-between'>
-        <div className='flex relative z-50'>
+        <div className='flex relativ z-50'>
           <HamburgerButton open={isOpen} onClick={() => setOpen(!isOpen)}/>
           <Link href="/#home" passHref>
             <a className="relative ml-4 w-12 md:w-24 aspect-[5/3] opacity-90 hover:opacity-100 transition-all ease-in-out">
@@ -34,8 +34,8 @@ const Header = () => {
             </a>
           </Link>
         </div>
-        <ul className={`h-screen md:h-full z-40 absolute md:relative top-0 ${isOpen ? 'left-0' : 'left-[-100%]'} px-4 sm:px-12 md:px-0 flex flex-col md:flex-row items-start md:items-center justify-center bg-navy bg-opacity-90 md:bg-transparent transition-all`}>
-          <NavLink index={0} href="/home" name="Home" />
+        <ul className={`block w-full md:w-fit h-screen md:h-full z-40 absolute md:relative top-0 ${isOpen ? 'left-0' : 'left-[-100%] md:left-0'} px-4 sm:px-12 md:px-0 flex flex-col md:flex-row items-start md:items-center justify-center bg-navy bg-opacity-90 md:bg-transparent transition-all`}>
+          <NavLink index={0} href="/" name="Home" />
           <NavLink index={1} href="/tjimo" name="TJIMO" />
           <NavLink index={2} href="/resources" name="Resources" />
           <Link href="mailto:vmtofficers@gmail.com" passHref>
