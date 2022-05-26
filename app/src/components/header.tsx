@@ -6,7 +6,7 @@ import { useState } from 'react';
 const NavLink = ({ index, href, name }) => {
   return (
     <Link href={href} passHref>
-      <a className='mb-2 md:mx-4 md:mb-0 text-white text-md'><span className='text-pink'>#{index}. </span>{name}</a>
+      <a className='mb-2 md:mx-4 md:mb-0 text-white hover:text-pink text-md transition-all'><span className='text-pink'>#{index}. </span>{name}</a>
     </Link>
   );
 }
