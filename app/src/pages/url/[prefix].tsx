@@ -11,7 +11,7 @@ export const getServerSideProps = async (ctx) => {
     return {
       redirect: {
         destination: row[1],
-        permanent: false
+        permanent: true
       }
     }
   }
