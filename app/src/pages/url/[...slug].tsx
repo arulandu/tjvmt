@@ -5,7 +5,8 @@ import { useRouter } from "next/router";
 export const getServerSideProps = async (ctx) => {
   const res = await fetch(process.env.PREFIXER_API_URL)
   const data = await res.json()
-  const row = data.values.filter(row => row[0] == ctx.query.prefix)[0]
+  const route = ctx.query.slug.join('/')
+  const row = data.values.filter(row => row[0] == route)[0]
   
   if(row){
     return {
@@ -21,7 +22,6 @@ export const getServerSideProps = async (ctx) => {
 
 const Post: NextPage<any> = () => {
   const router = useRouter()
-  const { prefix } = router.query
 
   return (
     <Layout>
