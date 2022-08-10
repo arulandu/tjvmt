@@ -2,6 +2,7 @@ import { Layout } from '@/components/layout';
 import Error from 'next/error'
 
 const Custom404 = () => {
+  console.log('custom 404')
   return (
     <Layout>
       <section className='h-screen flex justify-center items-center'>
