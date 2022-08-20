@@ -56,9 +56,11 @@ const SignUp: NextPage<any> = () => {
         <br></br>
 
         <div>
-          <p className='text-white text-xl inline-block p-3'>Personal email: </p>
-          <label htmlFor='email'/>
-          <input className = 'inline-block p-1' name='email' id="email" type="email" value={input.email} onChange={handleInputChange}></input>
+          <div className = 'flex items-center justify-center'>
+            <p className='text-white text-xl whitespace-nowrap inline-block p-1'>Personal email: </p>
+            <label htmlFor='email'/>
+            <input className = 'inline-block p-1' name='email' id="email" type="email" value={input.email} onChange={handleInputChange}></input>
+          </div>
           <br></br>
           <br></br>
           <div className = 'flex items-center justify-center'>
