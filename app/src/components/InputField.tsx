@@ -4,8 +4,8 @@ export const InputField = ({ name, value, onChange }) => {
 
   return (
     <div className='relative w-full mt-4 group'>
-      <label className={`absolute block transition-all ${labelClass} text-white group-focus-within:text-pink`} htmlFor='email'>Personal Email</label>
-      <input className='w-full pb-2 border-solid border-b-2 border-white text-white bg-transparent transition-all group-focus-within:border-pink' name='email' id="email" type="email" value={value} onChange={onChange}></input>
+      <label className={`absolute block transition-all ${labelClass} text-white group-focus-within:text-pink`} htmlFor={name}>{name}</label>
+      <input className='w-full pb-2 border-solid border-b-2 border-white text-white bg-transparent transition-all group-focus-within:border-pink' name={name} id={name} type={name} value={value} onChange={onChange}></input>
     </div>
   );
 }

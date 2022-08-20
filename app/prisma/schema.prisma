@@ -17,6 +17,34 @@ model User {
   schoolEmail String
   email String
   profilePic String
+
+  admin Boolean @default(false)
+  submissions Submission[]
 }
 
+model TST {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String @unique
+  weighted Boolean @default(false)
 
+  submissions Submission[]
+}
+
+model Submission { 
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  answers Int[]
+
+  tst TST @relation(fields: [tstId], references: [id])
+  tstId String
+
+  author User @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+}
+
+model Selection {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  drops Int @default(0)
+  weights Json?
+}
