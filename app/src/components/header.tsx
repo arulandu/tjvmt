@@ -26,10 +26,10 @@ const HamburgerButton = ({ open, onClick = () => { } }) => {
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const router = useRouter()
-  const { session, clearSession } = useSession()
+  const { session, setSession } = useSession()
 
   const logOut = () => {
-    clearSession();
+    setSession(null);
     router.reload();
   }
 

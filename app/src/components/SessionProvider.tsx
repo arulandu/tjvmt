@@ -22,6 +22,6 @@ export const SessionProvider = ({children}) => {
 
 export const useSession = () => {
   let {session, setSession} = useContext(ctx)
-  let clearSession = () => {Cookies.set('auth', null); setSession(null)}
-  return {session, clearSession}
+  let changeSession = (v) => {Cookies.set('auth', v); setSession(v)}
+  return {session: session, setSession: changeSession}
 }
