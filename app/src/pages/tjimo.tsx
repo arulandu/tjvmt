@@ -12,7 +12,7 @@ const TjimoPage: NextPage<any> = () => {
       <section className="h-screen flex items-center justify-center">
         <div>
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
-          <p className="text-center text-2xl text-white">Spring, 2023 @ TJHSST</p>
+          <p className="text-center text-2xl text-white">Fall, 2022 @ TJHSST</p>
           <p className="text-center text-xl text-white">Date TBD</p>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">
