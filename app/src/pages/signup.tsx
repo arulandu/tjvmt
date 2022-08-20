@@ -48,13 +48,22 @@ const SignUp: NextPage<any> = () => {
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center">
         <div className='text-center'>
           <h1 className='text-white text-3xl'>Welcome to VMT!</h1>
-          <p className='text-white text-xl'>Before we get started, could you give us a little more information about yourself?</p>
+          <br></br>
+          <p className='text-white text-xl'>Create an account to access rankings, attendance, and other information.</p>
         </div>
         
+        <br></br>
+        <br></br>
+
         <div>
+          <p className='text-white text-xl inline-block p-3'>Personal email: </p>
           <label htmlFor='email'/>
-          <input name='email' id="email" type="email" placeholder='email' value={input.email} onChange={handleInputChange}></input>
-          <OutlineButton name="Let's go!" onClick={submit}/>
+          <input className = 'inline-block p-1' name='email' id="email" type="email" value={input.email} onChange={handleInputChange}></input>
+          <br></br>
+          <br></br>
+          <div className = 'flex items-center justify-center'>
+            <OutlineButton name="Register" onClick={submit}/>
+          </div>
         </div>
       </section>
     </Layout>
