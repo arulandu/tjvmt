@@ -8,7 +8,7 @@ import { useSession } from '@/components/SessionProvider';
 import Router from 'next/router';
 
 const SignUp: NextPage<any> = () => {
-  const session = useSession()
+  const { session } = useSession()
   const [input, setInput] = useState({
     email: ''
   })

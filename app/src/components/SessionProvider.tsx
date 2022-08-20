@@ -7,18 +7,21 @@ export const SessionProvider = ({children}) => {
 
   useEffect(() => {
     const s = Cookies.get('auth')
+    
     if(s) {
       setSession(JSON.parse(s))
     }
   }, [])
 
   return (
-    <ctx.Provider value={session}>
+    <ctx.Provider value={{session, setSession}}>
       {children}
     </ctx.Provider>
   );
 }
 
 export const useSession = () => {
-  return useContext(ctx)
+  let {session, setSession} = useContext(ctx)
+  let clearSession = () => {Cookies.set('auth', null); setSession(null)}
+  return {session, clearSession}
 }
