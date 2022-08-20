@@ -9,8 +9,8 @@ const News: NextPage<any> = () => {
 
             <section className="flex flex-col items-center justify-center pt-24">
                 <h2 className="mb-6 text-white text-5xl gradient-text text-center">Calendar</h2>
-                <iframe src="https://calendar.google.com/calendar/embed?src=vmtofficers%40gmail.com&ctz=America/New_York"
-                    className="border-0" width={800} height={600} scrolling="no"></iframe>
+                <iframe className = "w-10/12 h-screen" src="https://calendar.google.com/calendar/embed?src=vmtofficers%40gmail.com&ctz=America/New_York"
+                    ></iframe>
                 <br></br>
                 <p>
                     <small className="mb-6 text-white text-base gradient-text text-center">
@@ -20,9 +20,6 @@ const News: NextPage<any> = () => {
                     </small>
                 </p>
             </section>
-            {/* TODO: Add back announcments functionality. 
-            This section was removed as it wasn't updated when 
-            weekly emails were sent in the beginning of the year. */}
         </Layout >
     )
 }
