@@ -30,5 +30,11 @@ module.exports = {
       }
     },
   },
+  variants: {
+    extend: {
+      borderColor: ['group-focus', 'group-focus-within'],
+      textColor: ['group-focus-within', 'placeholder-shown'],
+    }
+  },
   plugins: [],
 }

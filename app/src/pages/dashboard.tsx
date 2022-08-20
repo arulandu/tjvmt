@@ -37,7 +37,6 @@ const Dashboard: NextPage<any> = ({ user }) => {
           user ?
             <>
               <h1 className='text-white text-4xl'>Dashboard</h1>
-              <br></br>
               <p className='text-white text-xl'>WOW! Your PFP is so cool :))</p>
               <img alt="pfp" src={user.profilePic}/>
             </>

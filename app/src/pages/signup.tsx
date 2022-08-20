@@ -6,13 +6,14 @@ import OutlineButton from '@/components/OutlineButton';
 import { useState } from 'react';
 import { useSession } from '@/components/SessionProvider';
 import Router from 'next/router';
+import { InputField } from '@/components/InputField';
 
 const SignUp: NextPage<any> = () => {
   const { session } = useSession()
   const [input, setInput] = useState({
     email: ''
   })
-  
+
   const handleInputChange = (e) => {
     const target = e.target
     const val = target.type == 'checkbox' ? target.checked : target.value
@@ -36,7 +37,7 @@ const SignUp: NextPage<any> = () => {
       })
     })
 
-    if(userRes.status != 200){
+    if (userRes.status != 200) {
       console.error('You already exist? fix later :*')
     } else {
       Router.push('/dashboard')
@@ -46,15 +47,20 @@ const SignUp: NextPage<any> = () => {
   return (
     <Layout>
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center">
-        <div className='text-center'>
-          <h1 className='text-white text-3xl'>Welcome to VMT!</h1>
-          <p className='text-white text-xl'>Before we get started, could you give us a little more information about yourself?</p>
-        </div>
-        
-        <div>
-          <label htmlFor='email'/>
-          <input name='email' id="email" type="email" placeholder='email' value={input.email} onChange={handleInputChange}></input>
-          <OutlineButton name="Let's go!" onClick={submit}/>
+        <div className='bg-white bg-opacity-5 p-4'>
+          <div className='w-full'>
+            <h1 className='text-white text-3xl'>Welcome to VMT!</h1>
+            <p className='text-white text-xl mt-2'>Create an account to access rankings, attendance, and other information.</p>
+          </div>
+
+          <div className='w-full mt-4 flex justify-start flex-wrap'>
+            <div className='w-72 mr-4'>
+              <InputField name="Personal Email" value={input.email} onChange={handleInputChange} />
+            </div>
+            <div className='mt-4 flex items-center justify-center'>
+              <OutlineButton name="Register" onClick={submit} />
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
