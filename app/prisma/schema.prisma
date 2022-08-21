@@ -17,9 +17,12 @@ model User {
   schoolEmail String
   email String
   profilePic String
-
+  
   admin Boolean @default(false)
+  competitor Boolean @default(true)
+
   submissions Submission[]
+  applications Application[]
 }
 
 model TST {
@@ -34,9 +37,11 @@ model Submission {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
   answers Int[]
+  score Float @default(-1.0)
+  index Float @default(-1.0)
 
   tst TST @relation(fields: [tstId], references: [id])
-  tstId String
+  tstId String @db.ObjectId
 
   author User @relation(fields: [authorId], references: [id])
   authorId String @db.ObjectId
@@ -47,4 +52,19 @@ model Selection {
 
   drops Int @default(0)
   weights Json?
+
+  applications Application[]
+}
+
+model Application {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  index Float @default(-1.0)
+  elligible Boolean @default(true)
+
+  author User @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+
+  selection Selection @relation(fields: [selectionId], references: [id])
+  selectionId String @db.ObjectId
 }

@@ -2,26 +2,34 @@ import { authorize } from '@/lib/api/authorize';
 import { db } from '@/lib/db/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+/**
+ * Create / update a TST
+ * Add a submission for a TST
+ * Create a selection criteria
+ */
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => { 
   if(req.method == 'POST'){
-    const {authorized, profileBody, user} = await authorize(req, res, true)
+    let {authorized, profileBody, user} = await authorize(req, res, true)
     if(!authorized) return res.status(401).send(null)
-
-    // admin: create selection criteria
+    
     try {
-      const selection = await db.selection.create({
+      user = await db.user.findFirst({where: {ionId: String(profileBody.id)}});
+
+      const sub = await db.submission.create({
         data: {
-          drops: req.body.drops,
-          weights: req.body.weights
+          answers: req.body.answers,
+          tstId: req.body.tstId,
+          authorId: user.id
         }
       })
 
       return res.status(200).json({
-        selection
+        sub
       })
     } catch (e) {
       return res.status(400).json({
-        error: 'selection already exists',
+        error: 'submission already exists',
         message: e
       })
     }
@@ -29,9 +37,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const {authorized, profileBody, user} = await authorize(req, res, false)
     if(!authorized) return res.status(401).send(null)
 
-    // user: get all selections
-    const selections = await db.selection.findMany();
-    return res.status(200).json({selections})
+    const tsts = await db.tST.findMany({where: {}});
+    return res.status(200).json({
+      tsts
+    })
   }
 
   return res.status(400).send(null)

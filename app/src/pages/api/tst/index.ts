@@ -2,17 +2,12 @@ import { authorize } from '@/lib/api/authorize';
 import { db } from '@/lib/db/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-/**
- * Create / update a TST
- * Add a submission for a TST
- * Create a selection criteria
- */
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => { 
-  const {authorized, profileBody, user} = await authorize(req, res, true)
-  if(!authorized) return res.status(401).send(null)
-
   if(req.method == 'POST'){
+    // admin: create TST
+    const {authorized, profileBody, user} = await authorize(req, res, true)
+    if(!authorized) return res.status(401).send(null)
+    
     try {
       const tst = await db.tST.create({
         data: {
@@ -30,6 +25,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         message: e
       })
     }
+  } else if(req.method == 'GET') {
+    // user: get all TSTs
+    const {authorized, profileBody, user} = await authorize(req, res, false)
+    if(!authorized) return res.status(401).send(null)
+
+    const tsts = await db.tST.findMany({where: {}});
+    return res.status(200).json({
+      tsts
+    })
   }
 
   return res.status(400).send(null)
