@@ -3,11 +3,11 @@ import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import Link from 'next/link';
 import { db } from '@/lib/db/db'
+import { authorize } from '@/lib/api/authorize';
 import { InputField } from '@/components/InputField';
 import { useState } from 'react';
 import OutlineButton from '@/components/OutlineButton';
 import { useSession } from '@/components/SessionProvider';
-import { authorize } from '@/lib/api/authorize';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { authorized, profileBody } = await authorize(req, res)
@@ -33,23 +33,48 @@ export const getServerSideProps = async ({ req, res }) => {
   }
 }
 
+const AdminDashboard: NextPage<any> = ({ user }) => {
+  const [input, setInput] = useState({
+    name: "",
+    weighted: "NO",
+  })
 
+  const handleInputChange = (e) => {
+    const target = e.target
+    const val = target.type == 'checkbox' ? target.checked : target.value
+    const name = target.name.toLowerCase();
 
-const Dashboard: NextPage<any> = ({ user }) => {
+    //@ts-ignore
+    setInput({
+      ...input,
+      [name]: val
+    })
+  }
 
   const {session} = useSession();
 
-  const signIn = async () => {
-    
-    const res = await fetch('/api/attendance', {
+  const createTST = async () => {
+    console.log(input)
+
+    const res = await fetch('/api/tst', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${session.access_token}`
       },
+      body: JSON.stringify({
+        name: input.name,
+        weighted: input.weighted == "YES"
+      })
     })
     const resBody = await res.json();
     console.log(resBody)
+  }
+
+  const reset = async () => {
+    const res = await fetch('/api/attendance', {
+      method: 'PUT',
+    })
   }
 
   return (
@@ -58,10 +83,25 @@ const Dashboard: NextPage<any> = ({ user }) => {
         {
           user ?
             <>
-              <h1 className='text-white text-4xl'>Dashboard</h1>
-              <p className='text-white text-xl'>WOW! Your PFP is so cool :))</p>
-              <img alt="pfp" src={user.profilePic}/>
-              <OutlineButton className = 'm-4' name='Attendance' onClick={signIn}/>
+              <h1 className='text-white text-4xl'>Admin Dashboard</h1>
+              <div className = 'mt-8'>
+              <h1 className='text-white text-2xl'>Create a TST</h1>
+                <div className = 'mt-6'>
+                  <InputField name="Name" value={input.name} onChange={handleInputChange}/>
+                </div>
+
+                <div className = 'mt-10 mb-6'>
+                  <InputField name="Weighted" value={input.weighted} onChange={handleInputChange}/>
+                </div>
+
+                <div>
+                  <OutlineButton className = "content-center" name='Create' onClick={createTST}/>
+                </div>
+
+                <div className = 'mt-6'>
+                  <OutlineButton className = 'm-4' name='Reset Attendance' onClick={reset}/>
+                </div>
+              </div>
             </>
             : <h1 className='text-white text-4xl'>Log in to view Dashboard.</h1>
         }
@@ -70,4 +110,4 @@ const Dashboard: NextPage<any> = ({ user }) => {
   )
 }
 
-export default Dashboard
+export default AdminDashboard
