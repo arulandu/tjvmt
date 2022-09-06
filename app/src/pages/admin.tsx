@@ -26,14 +26,32 @@ export const getServerSideProps = async ({ req, res }) => {
   const pic = `data:${picRes.headers.get('content-type')};base64,${Buffer.from(buffer).toString("base64")}`
   user.profilePic = pic
 
+  const users = await db.user.findMany ({
+    where: {
+      attendance: true
+    }
+
+    }
+  )
+  var listOfNames = []
+
+  for(let i = 0; i < users.length; i++)
+  {
+    listOfNames[i] = users[i].ionUsername
+  }
+  listOfNames.sort()
+
   return {
     props: {
-      user: user
+      user: user,
+      users: users,
+      listOfNames: listOfNames
     }
   }
+  
 }
 
-const AdminDashboard: NextPage<any> = ({ user }) => {
+const AdminDashboard: NextPage<any> = ({ user, users, listOfNames }) => {
   const [input, setInput] = useState({
     name: "",
     weighted: "NO",
@@ -77,6 +95,11 @@ const AdminDashboard: NextPage<any> = ({ user }) => {
     })
   }
 
+  const [isShown, setIsShown] = useState(false);
+  const view = async() => {
+    setIsShown(current => !current);
+  }
+
   return (
     <Layout>
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center">
@@ -100,6 +123,19 @@ const AdminDashboard: NextPage<any> = ({ user }) => {
 
                 <div className = 'mt-6'>
                   <OutlineButton className = 'm-4' name='Reset Attendance' onClick={reset}/>
+                </div>
+
+                <div>
+                  <OutlineButton className = 'm-4' name='View Attendance' onClick={view}/>
+                  {isShown && (
+                    <div>
+                      <ul className='text-white'>
+                        {listOfNames.map(name => (
+                        <li>{name}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </>

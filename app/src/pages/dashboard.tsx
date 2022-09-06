@@ -37,16 +37,10 @@ export const getServerSideProps = async ({ req, res }) => {
 
 const Dashboard: NextPage<any> = ({ user }) => {
 
-  const {session} = useSession();
-
   const signIn = async () => {
     
     const res = await fetch('/api/attendance', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${session.access_token}`
-      },
     })
     const resBody = await res.json();
     console.log(resBody)
