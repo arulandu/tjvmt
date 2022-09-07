@@ -9,7 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method == 'GET') {
       if(!user.admin) return res.status(401).send(null)
-      const responses = await db.pollResponse.findMany({where: {pollId: req.query.id as string}, include: {author: {select: {name: true}}}, orderBy: [{author: {name: 'asc'}}]})
+      const responses = await db.pollResponse.findMany({where: {pollId: req.query.id as string}, select: {optionIndex: true, author: {select: {name: true}}}, orderBy: [{author: {name: 'asc'}}]})
 
       return res.status(200).json({
         responses
@@ -20,18 +20,25 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       })
       if(!poll || poll.closed) throw new Error("Invalid poll")
 
-      const response = await db.pollResponse.create({
-        data: {
-          date: new Date(),
-          optionIndex: req.body.optionIndex,
-          pollId: req.body.pollId,
-          authorId: user.id
-        }
+      const data = {
+        date: new Date(),
+        optionIndex: req.body.optionIndex,
+        pollId: req.body.pollId,
+        authorId: user.id
+      }
+
+      const response = await db.pollResponse.upsert({
+        where: {
+          id: req.body.responseId ? req.body.responseId : user.id
+        },
+        create: data,
+        update: data
       })
 
       return res.status(200).json({response})
     }
   } catch (e) {
+    console.log(e)
     return res.status(400).json({
       message: e
     })

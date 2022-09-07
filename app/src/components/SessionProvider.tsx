@@ -9,7 +9,8 @@ export const SessionProvider = ({children}) => {
     const s = Cookies.get('auth')
     
     if(s) {
-      setSession(JSON.parse(s))
+      const auth = JSON.parse(s)
+      setSession(auth)
     }
   }, [])
 
@@ -22,6 +23,8 @@ export const SessionProvider = ({children}) => {
 
 export const useSession = () => {
   let {session, setSession} = useContext(ctx)
-  let changeSession = (v) => {Cookies.set('auth', v); setSession(v)}
-  return {session: session, setSession: changeSession}
+  let changeSession = (v) => {
+    Cookies.set('auth', v); setSession(v)
+  }
+  return {session, setSession: changeSession}
 }

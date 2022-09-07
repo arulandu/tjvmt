@@ -9,8 +9,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method == 'GET') {
       const polls = await db.poll.findMany({
-        where: {
-          closed: false
+        where: {},
+        include: {
+          responses: {
+            where: {
+              authorId: user.id
+            }
+          }
+        },
+        orderBy: {
+          closed: 'asc'
         }
       })
 
