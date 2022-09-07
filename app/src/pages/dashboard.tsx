@@ -80,8 +80,7 @@ const Poll = ({ data, edit, setView }) => {
     })).json()
 
     const d = res.responses.map(r => r.author.name + " (" + data.options[r.optionIndex] + ")")
-    const repeat = (arr, n) => [].concat(...Array(n).fill(arr));
-    setView(repeat(d, 100))
+    setView(d)
   }
 
   return (
