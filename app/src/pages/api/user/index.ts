@@ -11,6 +11,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const user = await db.user.create({
         data: {
           ionId: String(profileBody.id),
+          name: profileBody.full_name,
+          nickname: profileBody.nickname ? profileBody.nickname : profileBody.first_name,
           ionUsername: profileBody.ion_username,
           schoolEmail: profileBody.tj_email,
           email: req.body.email,

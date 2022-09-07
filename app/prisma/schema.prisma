@@ -10,22 +10,33 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// USER //
+
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  
   ionId String @unique
   ionUsername String
   schoolEmail String
+  
+  name String
+  nickname String
   email String
   profilePic String
   
+  // TODO: separate admin and competitor into separate models?
   admin Boolean @default(false)
-  competitor Boolean @default(true)
+  polls Poll[]
+  pollResponses PollResponse[]
 
+  competitor Boolean @default(true)
   submissions Submission[]
   applications Application[]
 
   attendance Boolean @default(false)
 }
+
+// TSTs //
 
 model TST {
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -69,4 +80,36 @@ model Application {
 
   selection Selection @relation(fields: [selectionId], references: [id])
   selectionId String @db.ObjectId
+}
+
+// EVENTS //
+
+// POLLS //
+
+model Poll {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+  startDate DateTime
+  endDate DateTime?
+  closed Boolean @default(false)
+  
+  text String?
+  options String[]
+  responses PollResponse[]
+
+  author User @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+}
+
+model PollResponse {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  date DateTime
+  optionIndex Int
+  
+  poll Poll @relation(fields: [pollId], references: [id])
+  pollId String @db.ObjectId
+
+  author User @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
 }

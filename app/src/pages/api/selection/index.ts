@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => { 
   if(req.method == 'POST'){
-    const {authorized, profileBody, user} = await authorize(req, res, true)
+    const {authorized, user} = await authorize(req, res, true)
     if(!authorized) return res.status(401).send(null)
 
     // admin: create selection criteria
@@ -26,7 +26,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       })
     }
   } else if(req.method == 'GET') {
-    const {authorized, profileBody, user} = await authorize(req, res, false)
+    const {authorized, user} = await authorize(req, res, false)
     if(!authorized) return res.status(401).send(null)
 
     // user: get all selections

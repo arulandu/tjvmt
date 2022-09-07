@@ -3,7 +3,7 @@ import { db } from '@/lib/db/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => { 
-  const {authorized, profileBody, user} = await authorize(req, res, true)
+  const {authorized, user} = await authorize(req, res, true)
   if(!authorized) return res.status(401).send(null)
 
   if(req.method == 'POST'){

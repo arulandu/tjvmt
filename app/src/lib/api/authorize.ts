@@ -13,21 +13,17 @@ export const authorize = async (req: NextApiRequest, res: NextApiResponse, admin
   }})
   let profileBody = await profileRes.json()
   let authorized = Boolean(profileBody.id)
-  let user = null
+  let user = await db.user.findFirst({
+    where: {
+      ionId: String(profileBody.id)
+    }
+  })
   
-  if(admin && authorized){
-    user = await db.user.findFirst({
-      where: {
-        ionId: String(profileBody.id)
-      }
-    })
-  
-    if(!user.admin) authorized = false;
-  }
+  if(admin && authorized && !user.admin) authorized = false;
 
   return {
     authorized,
-    profileBody,
-    user
+    user,
+    profileBody
   }
 }

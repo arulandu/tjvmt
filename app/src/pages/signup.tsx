@@ -55,7 +55,7 @@ const SignUp: NextPage<any> = () => {
 
           <div className='w-full mt-4 flex justify-start flex-wrap'>
             <div className='w-72 mr-4'>
-              <InputField name="Personal Email" value={input.email} onChange={handleInputChange} />
+              <InputField name="Personal Email" id="email" value={input.email} onChange={handleInputChange} />
             </div>
             <div className='mt-4 flex items-center justify-center'>
               <OutlineButton name="Register" onClick={submit} />

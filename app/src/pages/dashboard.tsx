@@ -10,17 +10,11 @@ import { useSession } from '@/components/SessionProvider';
 import { authorize } from '@/lib/api/authorize';
 
 export const getServerSideProps = async ({ req, res }) => {
-  const { authorized, profileBody } = await authorize(req, res)
+  const { authorized, user } = await authorize(req, res)
 
   if (!authorized) return { props: {} }
 
-  const user = await db.user.findFirst({
-    where: {
-      ionId: String(profileBody.id)
-    }
-  })
-
-  const picRes = await fetch(`https://ion.tjhsst.edu/api/profile/${profileBody.id}/picture`, { headers: { 'Authorization': req.headers.authorization } })
+  const picRes = await fetch(`https://ion.tjhsst.edu/api/profile/${user.ionId}/picture`, { headers: { 'Authorization': req.headers.authorization } })
   //@ts-ignore
   const buffer = await picRes.arrayBuffer()
   const pic = `data:${picRes.headers.get('content-type')};base64,${Buffer.from(buffer).toString("base64")}`

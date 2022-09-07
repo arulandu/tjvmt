@@ -5,6 +5,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev",
+    "db": "yarn prisma generate && yarn prisma db push",
     "build": "yarn prisma generate && next build",
     "start": "next start"
   },

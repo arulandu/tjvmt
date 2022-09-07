@@ -10,12 +10,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => { 
   if(req.method == 'POST'){
-    let {authorized, profileBody, user} = await authorize(req, res, true)
+    let {authorized, user} = await authorize(req, res, true)
     if(!authorized) return res.status(401).send(null)
     
     try {
-      user = await db.user.findFirst({where: {ionId: String(profileBody.id)}});
-
       const sub = await db.submission.create({
         data: {
           answers: req.body.answers,
@@ -34,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       })
     }
   } else if(req.method == 'GET') {
-    const {authorized, profileBody, user} = await authorize(req, res, false)
+    const {authorized, user} = await authorize(req, res, false)
     if(!authorized) return res.status(401).send(null)
 
     const tsts = await db.tST.findMany({where: {}});
