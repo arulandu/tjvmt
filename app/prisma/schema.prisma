@@ -23,6 +23,8 @@ model User {
 
   submissions Submission[]
   applications Application[]
+
+  attendance Boolean @default(false)
 }
 
 model TST {

@@ -26,14 +26,32 @@ export const getServerSideProps = async ({ req, res }) => {
   const pic = `data:${picRes.headers.get('content-type')};base64,${Buffer.from(buffer).toString("base64")}`
   user.profilePic = pic
 
+  const users = await db.user.findMany ({
+    where: {
+      attendance: true
+    }
+
+    }
+  )
+  var listOfNames = []
+
+  for(let i = 0; i < users.length; i++)
+  {
+    listOfNames[i] = users[i].ionUsername
+  }
+  listOfNames.sort()
+
   return {
     props: {
-      user: user
+      user: user,
+      users: users,
+      listOfNames: listOfNames
     }
   }
+  
 }
 
-const AdminDashboard: NextPage<any> = ({ user }) => {
+const AdminDashboard: NextPage<any> = ({ user, users, listOfNames }) => {
   const [input, setInput] = useState({
     name: "",
     weighted: "NO",
@@ -71,6 +89,17 @@ const AdminDashboard: NextPage<any> = ({ user }) => {
     console.log(resBody)
   }
 
+  const reset = async () => {
+    const res = await fetch('/api/attendance', {
+      method: 'PUT',
+    })
+  }
+
+  const [isShown, setIsShown] = useState(false);
+  const view = async() => {
+    setIsShown(current => !current);
+  }
+
   return (
     <Layout>
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center">
@@ -78,10 +107,36 @@ const AdminDashboard: NextPage<any> = ({ user }) => {
           user ?
             <>
               <h1 className='text-white text-4xl'>Admin Dashboard</h1>
-              <div>
-                <InputField name="Name" value={input.name} onChange={handleInputChange}/>
-                <InputField name="Weighted" value={input.weighted} onChange={handleInputChange}/>
-                <OutlineButton name='Create' onClick={createTST}/>
+              <div className = 'mt-8'>
+              <h1 className='text-white text-2xl'>Create a TST</h1>
+                <div className = 'mt-6'>
+                  <InputField name="Name" value={input.name} onChange={handleInputChange}/>
+                </div>
+
+                <div className = 'mt-10 mb-6'>
+                  <InputField name="Weighted" value={input.weighted} onChange={handleInputChange}/>
+                </div>
+
+                <div>
+                  <OutlineButton className = "content-center" name='Create' onClick={createTST}/>
+                </div>
+
+                <div className = 'mt-6'>
+                  <OutlineButton className = 'm-4' name='Reset Attendance' onClick={reset}/>
+                </div>
+
+                <div>
+                  <OutlineButton className = 'm-4' name='View Attendance' onClick={view}/>
+                  {isShown && (
+                    <div>
+                      <ul className='text-white'>
+                        {listOfNames.map(name => (
+                        <li>{name}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
             </>
             : <h1 className='text-white text-4xl'>Log in to view Dashboard.</h1>
