@@ -8,6 +8,7 @@ import { useState } from 'react';
 import OutlineButton from '@/components/OutlineButton';
 import { useSession } from '@/components/SessionProvider';
 import { authorize } from '@/lib/api/authorize';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { authorized, user } = await authorize(req, res)
@@ -127,6 +128,7 @@ const TSTPanel = () => {
     })
   }
 
+
   const createTST = async () => {
     console.log(input)
 
@@ -169,8 +171,85 @@ const TSTPanel = () => {
   );
 }
 
-const Dashboard: NextPage<any> = ({ user, polls }) => {
+const CreatePoll = () => {
+  const { session } = useSession()
+  const [input, setInput] = useState({
+    text: '',
+    choices: ''
+  })
+  const router = useRouter()
+
+  const handleInputChange = (e) => {
+    const target = e.target
+    const val = target.type == 'checkbox' ? target.checked : target.value
+    const name = target.name.toLowerCase();
+
+    //@ts-ignore
+    setInput({
+      ...input,
+      [name]: val
+    })
+  }
+
+  const create = async () => {
+    const res = await fetch('/api/poll', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({
+        text: input.text,
+        options: input.choices.split(';').map(c => c.trim())
+      })
+    })
+
+    setInput({ text: '', choices: '' })
+    router.reload()
+  }
+
+  return (
+    <div className='w-96 bg-navy-light bg-opacity-50 p-4'>
+      <h3 className='text-white text-3xl font-bold'>Create a Poll</h3>
+      <p className='text-white mt-2 text-md'>Provide some description your poll and list the choices using ; to separate.</p>
+      <InputField id='text' name='Description' value={input.text} onChange={handleInputChange} />
+      <InputField id='choices' name='Choices' value={input.choices} onChange={handleInputChange} />
+      <OutlineButton name='Create' className='mt-4' onClick={create} />
+    </div>
+  );
+}
+
+const PollSection = ({ user, polls }) => {
   const [view, setView] = useState(null)
+
+  return (
+    <>
+      {user.admin ? <CreatePoll /> : null}
+      <div className='w-full'>
+        <h3 className='text-white mt-16 text-center text-3xl font-bold'>Polls</h3>
+        <div className='w-full mt-8 flex justify-center flex-wrap'>
+          {polls.map((p) =>
+            <Poll key={p.id} data={p} edit={user.admin} setView={setView} />
+          )}
+        </div>
+        {user.admin ?
+          <div className='w-full'>
+            <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
+            <div className='w-full h-96 overflow-y-scroll mt-8 p-4 bg-navy-light bg-opacity-50 flex flex-wrap justify-center items-center'>
+              {
+                view ?
+                  view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
+                  : <h1 className='text-white text-center text-xl'>View poll results here.</h1>
+              }
+            </div>
+          </div>
+          : null}
+      </div>
+    </>
+  );
+}
+
+const Dashboard: NextPage<any> = ({ user, polls }) => {
 
   return (
     <Layout>
@@ -179,29 +258,10 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
           <h1 className='text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
         </div>
-        <div className='w-full'>
-          <h3 className='text-white mt-16 text-center text-3xl font-bold'>Polls</h3>
-          <div className='w-full mt-8 flex justify-center flex-wrap'>
-            {polls.map((p) =>
-              <Poll key={p.id} data={p} edit={user.admin} setView={setView} />
-            )}
-          </div>
-          {user.admin ?
-            <div className='w-full'>
-              <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
-              <div className='w-full h-96 overflow-y-scroll mt-8 p-4 bg-navy-light bg-opacity-50 flex flex-wrap justify-center items-center'>
-                {
-                  view ?
-                    view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
-                    : <h1 className='text-white text-center text-4xl'>View poll results here.</h1>
-                }
-              </div>
-            </div>
-          : null}
-        </div>
+        <PollSection user={user} polls={polls} />
         {/* <TSTPanel/> */}
       </section>
-    </Layout>
+    </Layout >
   )
 }
 
