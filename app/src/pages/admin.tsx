@@ -89,6 +89,7 @@ const AdminDashboard: NextPage<any> = ({ user, users, listOfNames }) => {
     console.log(resBody)
   }
 
+<<<<<<< HEAD
   const reset = async () => {
     const res = await fetch('/api/attendance', {
       method: 'PUT',
@@ -100,6 +101,8 @@ const AdminDashboard: NextPage<any> = ({ user, users, listOfNames }) => {
     setIsShown(current => !current);
   }
 
+=======
+>>>>>>> main
   return (
     <Layout>
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center">
@@ -107,6 +110,7 @@ const AdminDashboard: NextPage<any> = ({ user, users, listOfNames }) => {
           user ?
             <>
               <h1 className='text-white text-4xl'>Admin Dashboard</h1>
+<<<<<<< HEAD
               <div className = 'mt-8'>
               <h1 className='text-white text-2xl'>Create a TST</h1>
                 <div className = 'mt-6'>
@@ -137,6 +141,12 @@ const AdminDashboard: NextPage<any> = ({ user, users, listOfNames }) => {
                     </div>
                   )}
                 </div>
+=======
+              <div>
+                <InputField name="Name" value={input.name} onChange={handleInputChange}/>
+                <InputField name="Weighted" value={input.weighted} onChange={handleInputChange}/>
+                <OutlineButton name='Create' onClick={createTST}/>
+>>>>>>> main
               </div>
             </>
             : <h1 className='text-white text-4xl'>Log in to view Dashboard.</h1>

@@ -9,7 +9,7 @@ import Router from 'next/router';
 import { InputField } from '@/components/InputField';
 
 const SignUp: NextPage<any> = () => {
-  const session = useSession()
+  const { session } = useSession()
   const [input, setInput] = useState({
     email: ''
   })

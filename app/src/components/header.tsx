@@ -26,7 +26,12 @@ const HamburgerButton = ({ open, onClick = () => { } }) => {
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const router = useRouter()
-  const session = useSession()
+  const { session, setSession } = useSession()
+
+  const logOut = () => {
+    setSession(null);
+    router.reload();
+  }
 
   return (
     <header className='fixed z-50 w-full h-16 sm:h-24 px-4 sm:px-12 lg:px-24'>
@@ -50,12 +55,12 @@ const Header = () => {
             </a>
           </Link>
           {
-            !session ?
+            session ?
+              <OutlineButton className='mt-4 md:ml-4 md:mt-0' name="Log Out" onClick={logOut}/>
+              :
               <a href={`/api/auth/ion?path=${router.asPath}`}>
-                <OutlineButton className='mt-4 md:ml-4 md:mt-0' name="Sign Up" />
+                <OutlineButton className='mt-4 md:ml-4 md:mt-0' name="Log In" />
               </a>
-              // </Link>
-              : null
           }
         </div>
       </nav>
