@@ -1,3 +1,4 @@
+import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import {db} from '@/lib/db/db'
 
@@ -15,6 +16,7 @@ export const authorize = async (req: NextApiRequest, res: NextApiResponse, admin
   }})
   let profileBody = await profileRes.json()
   let authorized = Boolean(profileBody.id)
+  
   let user = await db.user.findFirst({
     where: {
       ionId: String(profileBody.id)
@@ -22,7 +24,7 @@ export const authorize = async (req: NextApiRequest, res: NextApiResponse, admin
   })
   
   if(admin && authorized && !user.admin) authorized = false;
-
+  
   return {
     authorized,
     user,
