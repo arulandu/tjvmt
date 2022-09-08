@@ -17,9 +17,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             }
           }
         },
-        orderBy: {
-          closed: 'asc'
-        }
+        orderBy: [
+          {closed: 'asc'},
+          {startDate: 'desc'}
+        ]
       })
 
       return res.status(200).json({
