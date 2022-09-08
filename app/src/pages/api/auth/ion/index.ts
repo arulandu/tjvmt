@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {  
-  console.log('ion', req.query.path)
   const state = encodeURIComponent(JSON.stringify({
     origin: req.query.path
   }))

@@ -1,4 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import {db} from '@/lib/db/db'
+
 export const authorize = async (req: NextApiRequest, res: NextApiResponse, admin=false) => {
   let authorization = null
   if(!authorization) authorization = req.headers.authorization
