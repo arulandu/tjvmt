@@ -1,3 +1,10 @@
+# TJVMT
+A dynamic website for TJVMT. 
+
+## Development
+Local development does NOT work on FCPS wifi. Use a hotspot if you want to work in school.
+
+## Default
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

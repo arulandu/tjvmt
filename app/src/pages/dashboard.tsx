@@ -53,6 +53,8 @@ const Poll = ({ data, edit, setView }) => {
   }
 
   const vote = async (ind) => {
+    if(data.closed) return;
+    
     const res = await fetch('/api/poll/response', {
       method: 'POST',
       headers: {
