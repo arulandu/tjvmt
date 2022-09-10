@@ -12,8 +12,7 @@ const TjimoPage: NextPage<any> = () => {
       <section className="h-screen flex items-center justify-center">
         <div>
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
-          <p className="text-center text-2xl text-white">Fall, 2022 @ TJHSST</p>
-          <p className="text-center text-xl text-white">Date TBD</p>
+          <p className="text-center text-2xl text-white">December 10, 2022 @ TJHSST</p>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">
           <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
@@ -48,15 +47,15 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">Q</span>: Can I register as an individual or homeschool student?<br />
           <span className="font-bold">A</span>: If you are homeschooled, you may register individually and indicate that you are homeschooled on the form. If you attend a public or private school, we ask that you ask your school’s math teacher/math team coordinator to register for you. Please email us at vmtofficers@gmail.com if you have any questions.<br /><br />
           <span className="font-bold">Q</span>: What is the role of the teacher/coordinator?<br />
-          <span className="font-bold">A</span>: The role of the teacher/coordinator is simply being the link between us, the organizers, and the students - an essential role in the virtual environment. In other words, they will be responsible for making sure the students are at the right place at the right time and relaying information to students.<br /><br />
+          <span className="font-bold">A</span>: The role of the teacher/coordinator is simply being the link between us, the organizers, and the students - an essential role at TJIMO. In other words, they will be responsible for making sure the students are at the right place at the right time and relaying information to students.<br /><br />
           <span className="font-bold">Q</span>: Will students from the same school compete as a team?<br />
           <span className="font-bold">A</span>: No, students will be assigned to teams balanced by math level during the individual round.<br /><br />
           <span className="font-bold">Q</span>: What will students need for the competition? <br />
-          <span className="font-bold">A</span>: Pencils, paper, and a <strong>scanner/scanning app</strong>. Please email us if scanning is a problem (Recommended apps: Dropbox, CamScanner, iPhone Notes app, Adobe Scan).
+          <span className="font-bold">A</span>: Pencils, paper, and a <strong>willingness to learn!</strong>
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
         <p className="mb-4 font-bold">
-          Registration will open in mid-January of 2023.
+          Registration will open in late September of 2022.
         </p>
       </section>
 
