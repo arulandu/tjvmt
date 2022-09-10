@@ -63,6 +63,8 @@ model Submission {
 model Selection {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
+  name String
+  size Int
   drops Int @default(0)
   weights Json?
 

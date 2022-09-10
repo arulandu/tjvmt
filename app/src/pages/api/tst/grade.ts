@@ -11,6 +11,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     
     // compute answers: potentially weighted
     let answers = tst.submissions.map(s => s.answers)
+    if(answers.length == 0) return res.status(200).json({})
+    
     if(tst.weighted){
       let weights = answers.reduce((a, b) => a.map((e, i) => e + b[i]))
 

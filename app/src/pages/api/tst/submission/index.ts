@@ -12,13 +12,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if(req.method == 'POST'){
     let {authorized, user} = await authorize(req, res, true)
     if(!authorized) return res.status(401).send(null)
-    
+
     try {
       const sub = await db.submission.create({
         data: {
           answers: req.body.answers,
           tstId: req.body.tstId,
-          authorId: user.id
+          authorId: req.body.userId
         }
       })
 
