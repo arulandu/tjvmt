@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const apps = await db.application.findMany({where: {selectionId}, include: {author: { select: { ionUsername: true }}}, orderBy: {index: 'desc'}})
       const ranks = apps.map(app => ({}))
-      const submissions = await db.submission.findMany({where: {authorId: user.id}})
+      const submissions = await db.submission.findMany({where: {authorId: user.id}, include: {tst: {select: {name: true}}}})
 
       let rank = 1; let starts = [0]
       let userInd = -1
@@ -32,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
       
       const cutoff = apps[Math.min(apps.length,selection.size)-1].index
-      return res.status(200).json({ cutoff, userInd, rankings: ranks})
+      return res.status(200).json({ cutoff, userInd, submissions, rankings: ranks})
     }
   } catch (e) {
     return res.status(400).json({

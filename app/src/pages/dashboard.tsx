@@ -415,9 +415,9 @@ const GraderSection = ({ selections }) => {
   );
 }
 
-const RankingsSection = ({selections}) => {
+const RankingsSection = ({ selections }) => {
   const { session } = useSession();
-  const [data, setData] = useState({ cutoff: -1, userInd: -1, rankings: [] })
+  const [data, setData] = useState({ cutoff: -1, userInd: -1, submissions: [], rankings: [] })
   const [input, setInput] = useState({
     selectionId: ''
   })
@@ -432,7 +432,7 @@ const RankingsSection = ({selections}) => {
         },
       }
       fetch(`/api/ranking?selectionId=${selectionId}`, options).then(res => res.json()).then((data) => setData(data))
-      setInput({ ...input, selectionId})
+      setInput({ ...input, selectionId })
     }
   }, [selections])
 
@@ -443,9 +443,29 @@ const RankingsSection = ({selections}) => {
 
   return (
     <div className='my-2 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
+      <table className='text-white text-center'>
+        <thead>
+          <tr>
+            <th>TST</th>
+            <th>Index</th>
+            <th>Breakdown</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.submissions.map(sub =>
+          <tr className='border-y border-solid'>
+            <th className='p-2'>{sub.tst.name}</th>
+
+            <th className='p-2'>{sub.index.toFixed(2)}</th>
+            <th className='p-2'>{sub.answers.join("")}</th>
+          </tr>
+          )}
+        </tbody>
+      </table>
+
       <Dropdown id="selectionId" label="Selection" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
 
-      <table className='text-white'>
+      <table className='text-white text-center'>
         <thead>
           <tr>
             <th>Rank</th>
@@ -458,7 +478,7 @@ const RankingsSection = ({selections}) => {
             <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
               <td>{r.rank}</td>
               <td>{r.name}</td>
-              <td>{r.index}</td>
+              <td>{r.index.toFixed(2)}</td>
             </tr>
           )}
         </tbody>
