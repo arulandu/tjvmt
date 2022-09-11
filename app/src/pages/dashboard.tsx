@@ -455,7 +455,6 @@ const RankingsSection = ({ selections }) => {
           {data.submissions.map(sub =>
           <tr className='border-y border-solid'>
             <th className='p-2'>{sub.tst.name}</th>
-
             <th className='p-2'>{sub.index.toFixed(2)}</th>
             <th className='p-2'>{sub.answers.join("")}</th>
           </tr>
@@ -463,7 +462,8 @@ const RankingsSection = ({ selections }) => {
         </tbody>
       </table>
 
-      <Dropdown id="selectionId" label="Selection" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+      <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+      {data.cutoff >= 0 ? <p className='text-white text-xl'>Cutoff: {data.cutoff}</p> : null}
 
       <table className='text-white text-center'>
         <thead>
@@ -476,9 +476,9 @@ const RankingsSection = ({ selections }) => {
         <tbody>
           {data.rankings.map((r, i) =>
             <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
-              <td>{r.rank}</td>
-              <td>{r.name}</td>
-              <td>{r.index.toFixed(2)}</td>
+              <td className='p-2'>{r.rank}</td>
+              <td className='p-2'>{r.name}</td>
+              <td className='p-2'>{r.index.toFixed(2)}</td>
             </tr>
           )}
         </tbody>
