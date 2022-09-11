@@ -78,8 +78,8 @@ const Poll = ({ data, edit, setView }) => {
     })
 
     const newResponse = (await res.json()).response
-
     setChoice({ optionIndex: ind, response: newResponse })
+    notify(toastDispatch, "", `Voted "${data.options[ind]}" in poll: ${data.text}`, ToastType.SUCCESS)
   }
 
   const view = async () => {
