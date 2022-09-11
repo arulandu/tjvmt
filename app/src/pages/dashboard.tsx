@@ -453,7 +453,7 @@ const RankingsSection = ({ selections }) => {
         </thead>
         <tbody>
           {data.submissions.map(sub =>
-          <tr className='border-y border-solid'>
+          <tr key={sub.id} className='border-y border-solid'>
             <th className='p-2'>{sub.tst.name}</th>
             <th className='p-2'>{sub.index.toFixed(2)}</th>
             <th className='p-2'>{sub.answers.join("")}</th>
