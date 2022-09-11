@@ -169,7 +169,7 @@ const PollSection = ({ user, polls }) => {
         {user.admin ?
           <div className='w-full'>
             <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
-            <div className='w-full h-96 overflow-y-scroll mt-8 p-4 bg-navy-light bg-opacity-50 flex flex-wrap justify-center items-center'>
+            <div className='w-full max-h-96 overflow-y-scroll mt-8 p-4 bg-navy-light bg-opacity-50 flex flex-wrap justify-center items-center'>
               {
                 view ?
                   view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
@@ -375,7 +375,7 @@ const SubmitGrade = ({ tsts, users }) => {
   }
 
   return (
-    <div className='mt-2 w-96 bg-navy-light bg-opacity-50 p-4'>
+    <div className='mt-2 max-w-96 bg-navy-light bg-opacity-50 p-4'>
       <h3 className='text-white text-2xl font-bold'>Submit Grade</h3>
       <p className='text-white mt-2 text-md'>Key in answers using space to separate.</p>
       <Dropdown id="tstId" label="TST" options={tsts.map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
