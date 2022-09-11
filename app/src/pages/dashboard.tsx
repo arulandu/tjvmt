@@ -525,16 +525,6 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
         {user.admin ? <GraderSection selections={selections} /> : null}
         <RankingsSection selections={selections} />
       </section>
-      <section className='mt-6 sm:mx-12 lg:mx-24 flex flex-col items-center justify-center border-solid border-2 border-white'>
-        <div className = 'm-8 items-center justify-center'>
-          <h1 className='text-white text-center text-3xl font-bold mb-4'>Internal Resources (Do Not Share)</h1>
-          <div className = 'text-center'>
-            <Link href={`https://docs.google.com/document/d/1y5xmvv1OFQOh21uZ-EA5KX4Od82mfpp0gqyD8J0nCts/edit?usp=sharing`} passHref>
-            <a className='text-xl text-white opacity-100 hover:opacity-50 transition-al' target="_blank">AMCs Guide (Isabella Zhu)</a>
-            </Link>
-          </div>
-        </div>
-      </section>
     </Layout >
   )
 }
