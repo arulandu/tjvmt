@@ -20,7 +20,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     for(let i = 0; i < users.length; i++){
       let application = await db.application.findFirst({where: {authorId: users[i].id}});
       const doc = {
-        authorId: user.id,
+        authorId: users[i].id,
         selectionId: selection.id,
         index: indexes[i]
       }

@@ -2,12 +2,18 @@ import { authorize } from '@/lib/api/authorize';
 import { db } from '@/lib/db/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => { 
-  const {authorized, profileBody} = await authorize(req, res)
-  if(!authorized) return res.status(401).send(null)
-  
-  if(req.method == 'POST'){
-    try {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { authorized, profileBody } = await authorize(req, res)
+  if (!authorized) return res.status(401).send(null)
+
+  try {
+    if (req.method == 'GET') {
+      const where = req.query.competitor === 'true' ? {competitor: true} : {} 
+      const users = await db.user.findMany({where})
+      return res.status(200).json({
+        users
+      })
+    } else if (req.method == 'POST') {
       const user = await db.user.create({
         data: {
           ionId: String(profileBody.id),
@@ -23,15 +29,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json({
         user: user
       })
-    } catch (e) {
-      return res.status(400).json({
-        error: 'user already exists',
-        message: e
-      })
     }
-  }
 
-  return res.status(400).send(null)
+    return res.status(400).send(null)
+  } catch (e) {
+    return res.status(400).json({
+      message: e
+    })
+  }
 }
 
 export default handler;

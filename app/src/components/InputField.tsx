@@ -1,5 +1,5 @@
 export const InputField = ({ id, name, value, onChange }) => {
-  let filled = value.length > 0;
+  let filled = String(value).length > 0;
   let labelClass = filled ? '-top-6 text-sm': 'text-xl top-0 group-focus-within:-top-6 group-focus-within:text-sm';
 
   return (

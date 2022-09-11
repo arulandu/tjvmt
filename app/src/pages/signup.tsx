@@ -7,23 +7,13 @@ import { useState } from 'react';
 import { useSession } from '@/components/SessionProvider';
 import Router from 'next/router';
 import { InputField } from '@/components/InputField';
+import { handleInputChange } from '@/lib/handleInputChange';
 
 const SignUp: NextPage<any> = () => {
   const { session } = useSession()
   const [input, setInput] = useState({
     email: ''
   })
-
-  const handleInputChange = (e) => {
-    const target = e.target
-    const val = target.type == 'checkbox' ? target.checked : target.value
-    const name = target.name
-
-    //@ts-ignore
-    setInput({
-      [name]: val
-    })
-  }
 
   const submit = async () => {
     const userRes = await fetch('/api/user', {
@@ -55,7 +45,7 @@ const SignUp: NextPage<any> = () => {
 
           <div className='w-full mt-4 flex justify-start flex-wrap'>
             <div className='w-72 mr-4'>
-              <InputField name="Personal Email" id="email" value={input.email} onChange={handleInputChange} />
+              <InputField name="Personal Email" id="email" value={input.email} onChange={(e) => handleInputChange(e, input, setInput)} />
             </div>
             <div className='mt-4 flex items-center justify-center'>
               <OutlineButton name="Register" onClick={submit} />
