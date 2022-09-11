@@ -6,10 +6,10 @@ import { Router, useRouter } from 'next/router';
 import { useSession } from './SessionProvider';
 import { ToastAction, useToasts } from './ToastProvider';
 
-const NavLink = ({ index, href, name }) => {
+const NavLink = ({ index, href, name, onClick=()=>{} }) => {
   return (
     <Link href={href} passHref>
-      <a className='mb-2 md:mx-4 md:mb-0 text-white hover:text-pink text-md transition-all'><span className='text-pink'>#{index}. </span>{name}</a>
+      <a className='mb-2 md:mx-4 md:mb-0 text-white hover:text-pink text-md transition-all' onClick={onClick}><span className='text-pink'>#{index}. </span>{name}</a>
     </Link>
   );
 }
@@ -38,6 +38,7 @@ const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const router = useRouter()
   const { session, setSession } = useSession()
+  const { toastDispatch } = useToasts()
 
   const logOut = () => {
     setSession(null);
@@ -55,7 +56,7 @@ const NavBar = () => {
         </Link>
       </div>
       <div className={`block w-full md:w-fit h-screen md:h-full z-40 absolute md:relative top-0 ${isOpen ? 'left-0' : 'left-[-100%] md:left-0'} px-4 sm:px-12 md:px-0 flex flex-col md:flex-row items-start md:items-center justify-center bg-navy bg-opacity-90 md:bg-transparent transition-all`}>
-        <NavLink index={0} href="/dashboard" name="Dashboard" />
+        <NavLink index={0} href="/dashboard" name="Dashboard" onClick={() => notify(toastDispatch, "", "Loading your dashboard...", ToastType.DEFAULT)}/>
         <NavLink index={1} href="/tjimo" name="TJIMO" />
         <NavLink index={2} href="/resources" name="Resources" />
         <NavLink index={3} href="/Calendar" name="Calendar" />

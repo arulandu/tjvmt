@@ -540,7 +540,8 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
     <Layout>
       <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center'>
         <div className="h-screen flex flex-col items-center justify-center">
-          <h1 className='text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
+          <img alt="Profile Picture" src={user.profilePic} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white'/>
+          <h1 className='mt-4 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
         </div>
         <PollSection user={user} polls={polls} />
