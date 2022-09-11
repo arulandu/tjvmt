@@ -156,9 +156,9 @@ const PollSection = ({ user, polls }) => {
 
   return (
     <>
-      <div className='w-full flex flex-col items-center border-2 border-white border-solid'>
-        <div className='w-full mb-6'>
-          <h3 className='text-white mt-12 text-center text-3xl font-bold'>Polls</h3>
+      <div className='w-full mb-2 flex flex-col items-center border-2 border-white border-solid'>
+        <div className='w-full mb-8'>
+          <h3 className='text-white mt-8 text-center text-3xl font-bold'>Polls</h3>
           <div className='w-full mt-8 flex justify-center flex-wrap gap-x-2 gap-y-8'>
             {polls.map((p) =>
               <Poll key={p.id} data={p} edit={user.admin} setView={setView} />
@@ -166,9 +166,9 @@ const PollSection = ({ user, polls }) => {
           </div>
         </div>
         {user.admin ?
-          <div className='w-full p-8'>
+          <div className='w-full p-8 items-center'>
             <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
-            <div className='w-full max-h-96 overflow-y-scroll mt-8 p-4 bg-navy-light bg-opacity-50 flex flex-wrap justify-center items-center'>
+            <div className='w-full p-2 overflow-y-scroll mt-8 bg-navy-light bg-opacity-50 justify-center text-center'>
               {
                 view ?
                   view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
@@ -177,9 +177,11 @@ const PollSection = ({ user, polls }) => {
             </div>
           </div>
           : null}
-        <div className = 'mt-16 mb-4 p-4'>
-          {user.admin ? <CreatePoll /> : null}
-        </div>
+        {user.admin ?
+          <div className='mt-16 mb-4 p-4'>
+            <CreatePoll />
+          </div>
+          : null}
       </div>
     </>
   );
@@ -450,7 +452,7 @@ const RankingsSection = ({ selections }) => {
 
   return (
     <div className='my-2 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
-      <h1 className='mt-12 text-white text-center text-3xl font-bold'>Rankings</h1>
+      <h1 className='mt-8 text-white text-center text-3xl font-bold'>Rankings</h1>
       <table className='text-white text-center m-6'>
         <thead>
           <tr>
@@ -471,9 +473,11 @@ const RankingsSection = ({ selections }) => {
       </table>
 
       <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
-      {data.cutoff >= 0 ? <p className='text-white text-xl'>Cutoff: {data.cutoff}</p> : null}
+      <div className = 'm-2'>
+        {data.cutoff >= 0 ? <p className='text-white text-xl'>Cutoff: {data.cutoff}</p> : null}
+      </div>
 
-      <table className='text-white text-center mt-12 mb-6'>
+      <table className='text-white text-center mt-2 mb-8'>
         <thead>
           <tr>
             <th>Rank</th>
@@ -521,7 +525,7 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
         {user.admin ? <GraderSection selections={selections} /> : null}
         <RankingsSection selections={selections} />
       </section>
-      <section className='m-4 mt-16 sm:mx-12 lg:mx-24 flex flex-col items-center justify-center border-solid border-2 border-white'>
+      <section className='mt-6 sm:mx-12 lg:mx-24 flex flex-col items-center justify-center border-solid border-2 border-white'>
         <div className = 'm-8 items-center justify-center'>
           <h1 className='text-white text-center text-3xl font-bold mb-4'>Internal Resources (Do Not Share)</h1>
           <div className = 'text-center'>
