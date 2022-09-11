@@ -48,7 +48,7 @@ const NavBar = () => {
     <nav className='relative h-full flex items-center justify-between z-10'>
       <div className='flex relative z-10'>
         <HamburgerButton open={isOpen} onClick={() => setOpen(!isOpen)} />
-        <Link href="/#home" passHref>
+        <Link href="/" passHref>
           <a className="relative ml-4 w-12 md:w-24 aspect-[5/3] opacity-90 hover:opacity-100 transition-all ease-in-out">
             <Image src="/images/logo.png" alt="Logo" layout="fill" />
           </a>
