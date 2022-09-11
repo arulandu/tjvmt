@@ -512,7 +512,7 @@ const RankingsSection = ({ selections }) => {
             <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
               <td className='p-2'>{r.rank}</td>
               <td className='p-2'>{r.name}</td>
-              <td className='p-2'>{r.index.toFixed(2)}</td>
+              <td className='p-2'>{r.index >= 0 ? r.index.toFixed(2) : '???'}</td>
             </tr>
           )}
         </tbody>
