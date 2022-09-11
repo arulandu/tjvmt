@@ -11,6 +11,8 @@ import { authorize } from '@/lib/api/authorize';
 import { useRouter } from 'next/router';
 import { handleInputChange } from '@/lib/handleInputChange';
 import { Dropdown } from '@/components/Dropdown';
+import { ToastAction, useToasts } from '@/components/ToastProvider';
+import { DefaultToast, notify, ToastType } from '@/components/header';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { authorized, user } = await authorize(req, res)
@@ -41,6 +43,7 @@ const PollOption = ({ name = "", className = "", selected = false, onClick = () 
 
 const Poll = ({ data, edit, setView }) => {
   const { session } = useSession();
+  const { toastDispatch} = useToasts();
   const [choice, setChoice] = useState(data.responses.length > 0 ? { optionIndex: data.responses[0].optionIndex, response: data.responses[0] } : null)
 
   const close = async () => {
@@ -54,6 +57,8 @@ const Poll = ({ data, edit, setView }) => {
         id: data.id
       })
     })
+
+    notify(toastDispatch, "", "Closed Poll: " + data.text, ToastType.SUCCESS)
   }
 
   const vote = async (ind) => {
@@ -116,6 +121,7 @@ const Poll = ({ data, edit, setView }) => {
 }
 
 const CreatePoll = () => {
+  const { toastDispatch} = useToasts();
   const { session } = useSession()
   const [input, setInput] = useState({
     text: '',
@@ -135,6 +141,8 @@ const CreatePoll = () => {
         options: input.choices.split(';').map(c => c.trim())
       })
     })
+    
+    notify(toastDispatch, "Created Poll", "", ToastType.SUCCESS)
 
     setInput({ text: '', choices: '' })
     router.reload()
@@ -190,6 +198,7 @@ const PollSection = ({ user, polls }) => {
 // GRADER
 const ViewTSTs = ({ tsts }) => {
   const { session } = useSession()
+  const {toastDispatch} = useToasts()
 
   const grade = async (tstId) => {
     await fetch('/api/tst/grade', {
@@ -200,6 +209,8 @@ const ViewTSTs = ({ tsts }) => {
       },
       body: JSON.stringify({ tstId })
     })
+
+    notify(toastDispatch, "", `Re-computed ${tsts.filter(t => t.id == tstId)[0].name} indices`)
   }
 
   return (
@@ -220,14 +231,13 @@ const ViewTSTs = ({ tsts }) => {
 
 const CreateTST = () => {
   const { session } = useSession();
+  const {toastDispatch} = useToasts();
   const [input, setInput] = useState({
     name: "",
     weighted: "NO",
   })
 
   const create = async () => {
-    console.log(input)
-
     const res = await fetch('/api/tst', {
       method: 'POST',
       headers: {
@@ -239,8 +249,8 @@ const CreateTST = () => {
         weighted: input.weighted == "YES"
       })
     })
-    const resBody = await res.json();
-    console.log(resBody)
+    
+    notify(toastDispatch, "", `Created ${input.name} TST`, ToastType.SUCCESS)
   }
 
   return (
@@ -261,6 +271,8 @@ const CreateTST = () => {
 
 const CreateSelection = () => {
   const { session } = useSession();
+  const {toastDispatch} = useToasts();
+
   const [input, setInput] = useState({
     name: "",
     weights: "",
@@ -285,7 +297,7 @@ const CreateSelection = () => {
         weights: ws
       })
     })
-    const resBody = await res.json();
+    notify(toastDispatch, "", `Created selection: ${input.name}`, ToastType.SUCCESS)
   }
 
   return (
@@ -317,6 +329,7 @@ const CreateSelection = () => {
 
 const ViewSelections = ({ selections }) => {
   const { session } = useSession()
+  const {toastDispatch} = useToasts();
 
   const grade = async (selectionId) => {
     await fetch('/api/selection/grade', {
@@ -327,6 +340,8 @@ const ViewSelections = ({ selections }) => {
       },
       body: JSON.stringify({ selectionId })
     })
+
+    notify(toastDispatch, "", `Re-computed rankings for ${selections.filter(s => s.id == selectionId)[0].name}`)
   }
 
   return (
@@ -348,6 +363,7 @@ const ViewSelections = ({ selections }) => {
 
 const SubmitGrade = ({ tsts, users }) => {
   const { session } = useSession()
+  const {toastDispatch} = useToasts()
   const [input, setInput] = useState({
     answers: '',
     tstId: '',
@@ -376,7 +392,7 @@ const SubmitGrade = ({ tsts, users }) => {
         userId: input.userId
       })
     })
-
+    notify(toastDispatch, "", `Graded ${tsts.filter(t => t.id == input.tstId)[0].name} for ${users.filter(u => u.id == input.userId)[0].ionUsername}`)
     setInput({ ...input, answers: '' })
   }
 
@@ -426,6 +442,7 @@ const GraderSection = ({ selections }) => {
 
 const RankingsSection = ({ selections }) => {
   const { session } = useSession();
+  const {toastDispatch} = useToasts();
   const [data, setData] = useState({ cutoff: -1, userInd: -1, submissions: [], rankings: [] })
   const [input, setInput] = useState({
     selectionId: ''
@@ -434,21 +451,24 @@ const RankingsSection = ({ selections }) => {
   useEffect(() => {
     if (selections.length > 0) {
       const selectionId = selections[0].id
-      const options = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.access_token}`
-        },
-      }
-      fetch(`/api/ranking?selectionId=${selectionId}`, options).then(res => res.json()).then((data) => setData(data))
       setInput({ ...input, selectionId })
     }
   }, [selections])
 
   useEffect(() => {
-    if (!session) return
-
-  }, [session])
+    if (!session || input.selectionId.length <= 0) return
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+    }
+    fetch(`/api/ranking?selectionId=${input.selectionId}`, options).then(res => res.json()).then((data) => {
+      setData(data);
+      notify(toastDispatch, "", `Calculated your ranking for selection ${selections.filter(s => s.id == input.selectionId)[0].name}`);
+    })
+    
+  }, [session, input.selectionId])
 
   return (
     <div className='my-2 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>

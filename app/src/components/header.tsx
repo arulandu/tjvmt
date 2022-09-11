@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 import { useSession } from './SessionProvider';
-import { useToasts } from './ToastProvider';
+import { ToastAction, useToasts } from './ToastProvider';
 
 const NavLink = ({ index, href, name }) => {
   return (
@@ -24,6 +24,16 @@ const HamburgerButton = ({ open, onClick = () => { } }) => {
   );
 }
 
+const CloseButton = ({ open, className='', onClick=()=>{}}) => {
+  return (
+    <button className={`${className}`} onClick={onClick}>
+      <div className={`w-2 h-[2px] bg-pink ${open ? 'translate-y-[10px] rotate-45' : ''} transition-all`}></div>
+      <div className={`w-2 h-[2px] my-2 ${open ? 'bg-transparent' : 'bg-pink'} transition-all`}></div>
+      <div className={`w-2 h-[2px] bg-pink ${open ? ' -translate-y-[10px] -rotate-45' : ''} transition-all`}></div>
+    </button>
+  );
+}
+
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const router = useRouter()
@@ -35,8 +45,8 @@ const NavBar = () => {
   }
 
   return (
-    <nav className='h-full flex items-center justify-between'>
-      <div className='flex relative z-50'>
+    <nav className='relative h-full flex items-center justify-between z-10'>
+      <div className='flex relative z-10'>
         <HamburgerButton open={isOpen} onClick={() => setOpen(!isOpen)} />
         <Link href="/#home" passHref>
           <a className="relative ml-4 w-12 md:w-24 aspect-[5/3] opacity-90 hover:opacity-100 transition-all ease-in-out">
@@ -67,16 +77,63 @@ const NavBar = () => {
   );
 }
 
-const SnackBar = () => {
-  const toasts = useToasts();
+export enum ToastType {
+  SUCCESS,
+  DANGER,
+  DEFAULT
+}
+
+export const DefaultToast = ({title, description, type=ToastType.DEFAULT}) => {
+  let color = 'text-white'
+  switch(type) {
+    case ToastType.SUCCESS: 
+      color = 'text-green-300';
+      break;
+    case ToastType.DANGER: 
+      color = 'text-pink'
+      break;
+  }
 
   return (
     <>
-      {/* <div className='absolute top-0 right-0 bg-slate p-2 rounded-md'>
-        <h3 className='text-3xl'>Notification Title</h3>
-        <p className='text-xl'>Some description about the notification</p>
-      </div> */}
+    <h5 className={`${color} text-xl font-bold`}>{title}</h5>
+    <p className={`${color} text-sm`}>{description}</p>
     </>
+  );
+}
+
+export const notify = (toastDispatch, title, description, type=ToastType.SUCCESS) => {
+  toastDispatch({type: ToastAction.ADD, payload: {
+    content: <DefaultToast title={title} description={description} type={type}/>,
+  }})
+}
+
+const Toast = ({ toast }) => {
+  const {toastDispatch} = useToasts()
+  const close = () => {
+    toastDispatch({ type: ToastAction.REMOVE, payload: { id: toast.id } })
+  }
+
+  useEffect(() => {
+    const t = setTimeout(() => close(), 1e3*toast.duration)
+    return () => clearTimeout(t)
+  })
+
+  return (
+    <div key={toast.id} className='relative m-2 p-2 w-64 bg-navy-light rounded-md'>
+      <CloseButton open={true} onClick={close} className='absolute top-0 right-2'/>
+      {toast.content}
+    </div>
+  );
+}
+
+const Toaster = () => {
+  const { toasts } = useToasts();
+
+  return (
+    <div className='absolute top-0 right-0 z-20'>
+      {toasts.map(t => <Toast key={t.id} toast={t}/>)}
+    </div>
 
   );
 }
@@ -84,8 +141,8 @@ const SnackBar = () => {
 const Header = () => {
   return (
     <header className='fixed z-50 w-full h-16 sm:h-24 px-4 sm:px-12 lg:px-24'>
+      <Toaster />
       <NavBar />
-      <SnackBar />
     </header>
   );
 }

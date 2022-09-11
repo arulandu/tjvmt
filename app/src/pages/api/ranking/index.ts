@@ -31,7 +31,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       for(let i = 0; i < apps.length; i++){
         ranks[i]['name'] = i < 10 || Math.abs(ranks[i]['rank']-ranks[userInd]['rank']) <= 1? apps[i].author.ionUsername : "???"
       }
-      
+
       const cutoff = apps[Math.min(apps.length,selection.size)-1].index
       return res.status(200).json({ cutoff, userInd, submissions, rankings: ranks})
     }
