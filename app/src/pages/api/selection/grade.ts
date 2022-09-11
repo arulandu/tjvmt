@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const indexes = users.map(user => [0].concat(user.submissions.map(s => selection.weights[tstId2Name[s.tstId]] * s.index)).reduce((a, b) => a+b))
 
     for(let i = 0; i < users.length; i++){
-      let application = await db.application.findFirst({where: {authorId: users[i].id}});
+      let application = await db.application.findFirst({where: {authorId: users[i].id, selectionId: selection.id}});
       const doc = {
         authorId: users[i].id,
         selectionId: selection.id,

@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const tst = await db.tST.create({
         data: {
           name: req.body.name,
-          weighted: req.body.weighted ? req.body.weighted : false
+          weighted: req.body.weighted ? req.body.weighted : false,
         }
       })
 
