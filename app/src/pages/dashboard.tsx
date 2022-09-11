@@ -459,6 +459,7 @@ const RankingsSection = ({ selections }) => {
             <th>TST</th>
             <th>Index</th>
             <th>Breakdown</th>
+            <th>Solves</th>
           </tr>
         </thead>
         <tbody>
@@ -466,7 +467,8 @@ const RankingsSection = ({ selections }) => {
           <tr key={sub.id} className='border-y border-solid'>
             <th className='p-2'>{sub.tst.name}</th>
             <th className='p-2'>{sub.index.toFixed(2)}</th>
-            <th className='p-2'>{sub.answers.join("")}</th>
+            <th className='p-2'>{sub.answers.join(" ")}</th>
+            <th className='p-2'>{sub.tst.solves.map(s => s >= 0 ? s : "?").join(" ")}</th>
           </tr>
           )}
         </tbody>

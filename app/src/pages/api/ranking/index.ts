@@ -14,7 +14,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const apps = await db.application.findMany({where: {selectionId}, include: {author: { select: { ionUsername: true }}}, orderBy: {index: 'desc'}})
       const ranks = apps.map(app => ({}))
-      const submissions = await db.submission.findMany({where: {authorId: user.id}, include: {tst: {select: {name: true}}}})
+      const submissions = await db.submission.findMany({where: {authorId: user.id}, include: {tst: {select: {name: true, solves: true}}}})
+      submissions.forEach(s => s.tst.solves = s.tst.solves.map((e,i) => s.answers[i] > 0 ? e : -1))
 
       let rank = 1; let starts = [0]
       let userInd = -1

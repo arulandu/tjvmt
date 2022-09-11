@@ -12,12 +12,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     // compute answers: potentially weighted
     let answers = tst.submissions.map(s => s.answers)
     if(answers.length == 0) return res.status(200).json({})
-    
+
+    let solves = answers.reduce((a, b) => a.map((e, i) => e + b[i]))
     if(tst.weighted){
-      let weights = answers.reduce((a, b) => a.map((e, i) => e + b[i]))
-
-      weights = weights.map(w => w == 0 ? 0 : 1+Math.log(answers.length / w)) // weight: 1 + Log(submissions/solves)
-
+      let weights = solves.map(s => s == 0 ? 0 : 1+Math.log(answers.length / s)) // weight: 1 + Log(submissions/solves)
       answers = answers.map(s => s.map((x, i) => x*weights[i]))
     }
     
@@ -29,6 +27,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     let topAvg = [...scores].sort((a, b) => b-a).slice(0, top).reduce((a, b) => a+b)/top
     let index = scores.map(s => s*2000/topAvg) // index = 2000*score/top12avg
 
+    await db.tST.update({where: {id: tst.id}, data: { solves }})
+    
     // update submission documents
     for(let i = 0; i < tst.submissions.length; i++){
       await db.submission.update({

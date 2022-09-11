@@ -44,6 +44,7 @@ model TST {
   weighted Boolean @default(false)
 
   submissions Submission[]
+  solves Int[]
 }
 
 model Submission { 
