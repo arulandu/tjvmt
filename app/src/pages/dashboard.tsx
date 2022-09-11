@@ -93,7 +93,7 @@ const Poll = ({ data, edit, setView }) => {
   return (
     <div className='p-4 mx-2 bg-navy-light bg-opacity-50 rounded-md'>
       <div className='flex justify-start'>
-        <p className='text-white text-sm'>Status: {data.closed ? 'Closed' : 'Open'}</p>
+        <p className='text-white text-sm'>Status: <b>{data.closed ? 'Closed' : 'Open'}</b></p>
       </div>
       <p className='text-white text-xl'>{data.text}</p>
       <div className='flex flex-col flex-nowrap justify-center items-center'>
@@ -141,8 +141,8 @@ const CreatePoll = () => {
   }
 
   return (
-    <div className='w-96 bg-navy-light bg-opacity-50 p-4'>
-      <h3 className='text-white text-3xl font-bold'>Create a Poll</h3>
+    <div className='mt-6 sm:w-60 md:w-96 bg-navy-light bg-opacity-50 p-4'>
+      <h3 className='text-white text-2xl font-bold'>Create a Poll</h3>
       <p className='text-white mt-2 text-md'>Provide some description your poll and list the choices using ; to separate.</p>
       <InputField id='text' name='Description' value={input.text} onChange={(e) => handleInputChange(e, input, setInput)} />
       <InputField id='choices' name='Choices' value={input.choices} onChange={(e) => handleInputChange(e, input, setInput)} />
@@ -157,19 +157,18 @@ const PollSection = ({ user, polls }) => {
   return (
     <>
       <div className='w-full flex flex-col items-center border-2 border-white border-solid'>
-        {user.admin ? <CreatePoll /> : null}
-        <div className='w-full'>
-          <h3 className='text-white mt-16 text-center text-3xl font-bold'>Polls</h3>
-          <div className='w-full mt-8 flex justify-center flex-wrap'>
+        <div className='w-full mb-6'>
+          <h3 className='text-white mt-12 text-center text-3xl font-bold'>Polls</h3>
+          <div className='w-full mt-8 flex justify-center flex-wrap gap-x-2 gap-y-8'>
             {polls.map((p) =>
               <Poll key={p.id} data={p} edit={user.admin} setView={setView} />
             )}
           </div>
         </div>
         {user.admin ?
-          <div className='w-full'>
+          <div className='w-full p-8'>
             <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
-            <div className='w-full h-96 overflow-y-scroll mt-8 p-4 bg-navy-light bg-opacity-50 flex flex-wrap justify-center items-center'>
+            <div className='w-full overflow-y-scroll mt-8 p-4 bg-navy-light bg-opacity-50 text-center justify-center items-center'>
               {
                 view ?
                   view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
@@ -178,6 +177,9 @@ const PollSection = ({ user, polls }) => {
             </div>
           </div>
           : null}
+        <div className = 'mt-16 mb-4 p-4'>
+          {user.admin ? <CreatePoll /> : null}
+        </div>
       </div>
     </>
   );
@@ -240,7 +242,7 @@ const CreateTST = () => {
   }
 
   return (
-    <div className='p-2 md:p-4 bg-navy-light bg-opacity-50'>
+    <div className='my-4 w-60 p-2 md:p-4 bg-navy-light bg-opacity-50'>
       <h1 className='text-white text-2xl font-bold'>Create a TST</h1>
       <div className='mt-6'>
         <InputField id="name" name="Name" value={input.name} onChange={(e) => handleInputChange(e, input, setInput)} />
@@ -248,7 +250,7 @@ const CreateTST = () => {
 
       <Dropdown id="weighted" label="Weighted" options={[{ label: 'Yes', value: "YES" }, { label: 'No', value: 'NO' }]} value={input.weighted} onChange={(e) => handleInputChange(e, input, setInput)} />
 
-      <div>
+      <div className='mt-2'>
         <OutlineButton className="content-center" name='Create' onClick={create} />
       </div>
     </div>
@@ -285,14 +287,16 @@ const CreateSelection = () => {
   }
 
   return (
-    <div className='p-2 md:p-4 max-w-xs bg-navy-light bg-opacity-50'>
+    <div className='p-4 md:p-4 sm:w-60 md:w-96 bg-navy-light bg-opacity-50'>
       <h1 className='text-white text-2xl font-bold'>Create a Selection</h1>
-      <p className='text-white text-sm'>For each tst weight, write the tst name exactly followed by a comma followed by the weight as a decimal. Seperate each tst weight combination with a semicolon (;).</p>
+      <p className='text-white text-sm'>For each TST weight, write the TST name exactly followed by a comma followed by the weight as a decimal. Seperate each TST weight combination with a semicolon (;).</p>
+      <br></br>
+      <p className='text-white text-sm'>Example: Duke 1, 0.25; Duke 2, 0.25; Duke 3, 0.5</p>
       <div className='mt-6'>
         <InputField id="name" name="Name" value={input.name} onChange={(e) => handleInputChange(e, input, setInput)} />
       </div>
       <div className='mt-6'>
-        <InputField id="size" name="Size" value={input.size} onChange={(e) => handleInputChange(e, input, setInput)} />
+        <InputField id="size" name="Number of competitors" value={input.size} onChange={(e) => handleInputChange(e, input, setInput)} />
       </div>
       <div className='mt-6'>
         <InputField id="drops" name="Drops" value={input.drops} onChange={(e) => handleInputChange(e, input, setInput)} />
@@ -301,7 +305,7 @@ const CreateSelection = () => {
         <InputField id="weights" name="Weights" value={input.weights} onChange={(e) => handleInputChange(e, input, setInput)} />
       </div>
 
-      <div>
+      <div className = 'mt-3'>
         <OutlineButton className="content-center" name='Create' onClick={create} />
       </div>
 
@@ -329,7 +333,7 @@ const ViewSelections = ({ selections }) => {
       <div className='flex justify-center items-center'>
         {selections.map(selection =>
           <div key={selection.id} className='m-2 p-2 md:p-4 bg-navy-light bg-opacity-50'>
-            <h4 className='text-white text-xl'>{selection.name}</h4>
+            <h4 className='text-white text-xl'>Name: {selection.name}</h4>
             <p className='text-white text-md'>{selection.drops} drop{selection.drops > 1 ? "s" : ""}</p>
             <p className='text-white text-md'>Weights: {Object.entries(selection.weights).map(([k, v], h) => `${k} (${v})`).reduce((a, b) => `${a}, ${b}`)}</p>
             <OutlineButton name='Grade' onClick={() => grade(selection.id)} className='mt-2' />
@@ -375,7 +379,7 @@ const SubmitGrade = ({ tsts, users }) => {
   }
 
   return (
-    <div className='mt-2 w-96 bg-navy-light bg-opacity-50 p-4'>
+    <div className='my-4 sm:w-60 md:w-96 bg-navy-light bg-opacity-50 p-4'>
       <h3 className='text-white text-2xl font-bold'>Submit Grade</h3>
       <p className='text-white mt-2 text-md'>Key in answers using space to separate.</p>
       <Dropdown id="tstId" label="TST" options={tsts.map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
@@ -405,12 +409,15 @@ const GraderSection = ({ selections }) => {
   }, [session])
 
   return (
-    <div className='my-2 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
-      <SubmitGrade tsts={tsts} users={users} />
-      <ViewTSTs tsts={tsts} />
-      <CreateTST />
-      <CreateSelection />
-      <ViewSelections selections={selections} />
+    <div className='my-6 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
+      <h3 className='text-white mt-12 text-center text-3xl font-bold'>TST Grading</h3>
+      <div className = 'm-6'> <SubmitGrade tsts={tsts} users={users} /> </div>
+      <div className = 'm-6 content-center items-center flex flex-col'>
+        <ViewTSTs tsts={tsts} />
+        <div><CreateTST /></div>
+      </div>
+      <div className = 'm-6'><CreateSelection /></div>
+      <div className = 'm-6'><ViewSelections selections={selections} /></div>
     </div>
   );
 }
@@ -443,7 +450,8 @@ const RankingsSection = ({ selections }) => {
 
   return (
     <div className='my-2 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
-      <table className='text-white text-center'>
+      <h1 className='mt-12 text-white text-center text-3xl font-bold'>Rankings</h1>
+      <table className='text-white text-center m-6'>
         <thead>
           <tr>
             <th>TST</th>
@@ -452,7 +460,7 @@ const RankingsSection = ({ selections }) => {
           </tr>
         </thead>
         <tbody>
-          {data.submissions.map(sub =>
+          {data.submissions?.map(sub =>
           <tr key={sub.id} className='border-y border-solid'>
             <th className='p-2'>{sub.tst.name}</th>
             <th className='p-2'>{sub.index.toFixed(2)}</th>
@@ -465,7 +473,7 @@ const RankingsSection = ({ selections }) => {
       <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
       {data.cutoff >= 0 ? <p className='text-white text-xl'>Cutoff: {data.cutoff}</p> : null}
 
-      <table className='text-white text-center'>
+      <table className='text-white text-center mt-12 mb-6'>
         <thead>
           <tr>
             <th>Rank</th>
@@ -474,7 +482,7 @@ const RankingsSection = ({ selections }) => {
           </tr>
         </thead>
         <tbody>
-          {data.rankings.map((r, i) =>
+          {data.rankings?.map((r, i) =>
             <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
               <td className='p-2'>{r.rank}</td>
               <td className='p-2'>{r.name}</td>
@@ -512,6 +520,16 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
         <PollSection user={user} polls={polls} />
         {user.admin ? <GraderSection selections={selections} /> : null}
         <RankingsSection selections={selections} />
+      </section>
+      <section className='m-4 mt-16 sm:mx-12 lg:mx-24 flex flex-col items-center justify-center border-solid border-2 border-white'>
+        <div className = 'm-8 items-center justify-center'>
+          <h1 className='text-white text-center text-3xl font-bold mb-4'>Internal Resources (Do Not Share)</h1>
+          <div className = 'text-center'>
+            <Link href={`https://docs.google.com/document/d/1y5xmvv1OFQOh21uZ-EA5KX4Od82mfpp0gqyD8J0nCts/edit?usp=sharing`} passHref>
+            <a className='text-xl text-white opacity-100 hover:opacity-50 transition-al' target="_blank">AMCs Guide (Isabella Zhu)</a>
+            </Link>
+          </div>
+        </div>
       </section>
     </Layout >
   )
