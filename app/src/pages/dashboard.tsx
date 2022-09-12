@@ -13,6 +13,8 @@ import { handleInputChange } from '@/lib/handleInputChange';
 import { Dropdown } from '@/components/Dropdown';
 import { ToastAction, useToasts } from '@/components/ToastProvider';
 import { DefaultToast, notify, ToastType } from '@/components/header';
+import { MathJaxContext, MathJax } from 'better-react-mathjax';
+import { Textarea } from '@/components/Textarea';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { authorized, user } = await authorize(req, res)
@@ -43,7 +45,7 @@ const PollOption = ({ name = "", className = "", selected = false, onClick = () 
 
 const Poll = ({ data, edit, setView }) => {
   const { session } = useSession();
-  const { toastDispatch} = useToasts();
+  const { toastDispatch } = useToasts();
   const [choice, setChoice] = useState(data.responses.length > 0 ? { optionIndex: data.responses[0].optionIndex, response: data.responses[0] } : null)
 
   const close = async () => {
@@ -121,7 +123,7 @@ const Poll = ({ data, edit, setView }) => {
 }
 
 const CreatePoll = () => {
-  const { toastDispatch} = useToasts();
+  const { toastDispatch } = useToasts();
   const { session } = useSession()
   const [input, setInput] = useState({
     text: '',
@@ -141,7 +143,7 @@ const CreatePoll = () => {
         options: input.choices.split(';').map(c => c.trim())
       })
     })
-    
+
     notify(toastDispatch, "Created Poll", "", ToastType.SUCCESS)
 
     setInput({ text: '', choices: '' })
@@ -164,7 +166,7 @@ const PollSection = ({ user, polls }) => {
 
   return (
     <>
-      <div className='w-full mb-2 flex flex-col items-center border-2 border-white border-solid'>
+      <div className='w-full mt-4 flex flex-col items-center border-2 border-white border-solid'>
         <div className='w-full mb-8'>
           <h3 className='text-white mt-8 text-center text-3xl font-bold'>Polls</h3>
           <div className='w-full mt-8 flex justify-center flex-wrap gap-x-2 gap-y-8'>
@@ -198,7 +200,7 @@ const PollSection = ({ user, polls }) => {
 // GRADER
 const ViewTSTs = ({ tsts }) => {
   const { session } = useSession()
-  const {toastDispatch} = useToasts()
+  const { toastDispatch } = useToasts()
 
   const grade = async (tstId) => {
     await fetch('/api/tst/grade', {
@@ -231,7 +233,7 @@ const ViewTSTs = ({ tsts }) => {
 
 const CreateTST = () => {
   const { session } = useSession();
-  const {toastDispatch} = useToasts();
+  const { toastDispatch } = useToasts();
   const [input, setInput] = useState({
     name: "",
     weighted: "NO",
@@ -249,7 +251,7 @@ const CreateTST = () => {
         weighted: input.weighted == "YES"
       })
     })
-    
+
     notify(toastDispatch, "", `Created ${input.name} TST`, ToastType.SUCCESS)
   }
 
@@ -271,7 +273,7 @@ const CreateTST = () => {
 
 const CreateSelection = () => {
   const { session } = useSession();
-  const {toastDispatch} = useToasts();
+  const { toastDispatch } = useToasts();
 
   const [input, setInput] = useState({
     name: "",
@@ -319,7 +321,7 @@ const CreateSelection = () => {
         <InputField id="weights" name="Weights" value={input.weights} onChange={(e) => handleInputChange(e, input, setInput)} />
       </div>
 
-      <div className = 'mt-3'>
+      <div className='mt-3'>
         <OutlineButton className="content-center" name='Create' onClick={create} />
       </div>
 
@@ -329,7 +331,7 @@ const CreateSelection = () => {
 
 const ViewSelections = ({ selections }) => {
   const { session } = useSession()
-  const {toastDispatch} = useToasts();
+  const { toastDispatch } = useToasts();
 
   const grade = async (selectionId) => {
     await fetch('/api/selection/grade', {
@@ -363,7 +365,7 @@ const ViewSelections = ({ selections }) => {
 
 const SubmitGrade = ({ tsts, users }) => {
   const { session } = useSession()
-  const {toastDispatch} = useToasts()
+  const { toastDispatch } = useToasts()
   const [input, setInput] = useState({
     answers: '',
     tstId: '',
@@ -429,20 +431,20 @@ const GraderSection = ({ selections }) => {
   return (
     <div className='my-6 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
       <h3 className='text-white mt-12 text-center text-3xl font-bold'>TST Grading</h3>
-      <div className = 'm-6'> <SubmitGrade tsts={tsts} users={users} /> </div>
-      <div className = 'm-6 content-center items-center flex flex-col'>
+      <div className='m-6'> <SubmitGrade tsts={tsts} users={users} /> </div>
+      <div className='m-6 content-center items-center flex flex-col'>
         <ViewTSTs tsts={tsts} />
         <div><CreateTST /></div>
       </div>
-      <div className = 'm-6'><CreateSelection /></div>
-      <div className = 'm-6'><ViewSelections selections={selections} /></div>
+      <div className='m-6'><CreateSelection /></div>
+      <div className='m-6'><ViewSelections selections={selections} /></div>
     </div>
   );
 }
 
 const RankingsSection = ({ selections }) => {
   const { session } = useSession();
-  const {toastDispatch} = useToasts();
+  const { toastDispatch } = useToasts();
   const [data, setData] = useState({ cutoff: -1, userInd: -1, submissions: [], rankings: [] })
   const [input, setInput] = useState({
     selectionId: ''
@@ -467,11 +469,11 @@ const RankingsSection = ({ selections }) => {
       setData(data);
       notify(toastDispatch, "", `Calculated your ranking for selection ${selections.filter(s => s.id == input.selectionId)[0].name}`);
     })
-    
+
   }, [session, input.selectionId])
 
   return (
-    <div className='my-2 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
+    <div className='mt-4 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
       <h1 className='mt-8 text-white text-center text-3xl font-bold'>Rankings</h1>
       <table className='text-white text-center m-6'>
         <thead>
@@ -484,18 +486,18 @@ const RankingsSection = ({ selections }) => {
         </thead>
         <tbody>
           {data.submissions?.map(sub =>
-          <tr key={sub.id} className='border-y border-solid'>
-            <th className='p-2'>{sub.tst.name}</th>
-            <th className='p-2'>{sub.index.toFixed(2)}</th>
-            <th className='p-2'>{sub.answers.join(" ")}</th>
-            <th className='p-2'>{sub.tst.solves.map(s => s >= 0 ? s : "?").join(" ")}</th>
-          </tr>
+            <tr key={sub.id} className='border-y border-solid'>
+              <th className='p-2'>{sub.tst.name}</th>
+              <th className='p-2'>{sub.index.toFixed(2)}</th>
+              <th className='p-2'>{sub.answers.join(" ")}</th>
+              <th className='p-2'>{sub.tst.solves.map(s => s >= 0 ? s : "?").join(" ")}</th>
+            </tr>
           )}
         </tbody>
       </table>
 
       <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
-      <div className = 'm-2'>
+      <div className='m-2'>
         {data.cutoff >= 0 ? <p className='text-white text-xl'>Cutoff: {data.cutoff}</p> : null}
       </div>
 
@@ -521,6 +523,109 @@ const RankingsSection = ({ selections }) => {
   );
 }
 
+const CreateProblem = () => {
+  const { session } = useSession();
+  const { toastDispatch } = useToasts();
+  const [input, setInput] = useState({
+    name: "",
+    content: ""
+  })
+
+  const create = async () => {
+    const res = await fetch('/api/problem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({
+        name: input.name,
+        content: input.content
+      })
+    })
+
+    notify(toastDispatch, "", `Created Problem: ${input.name}`, ToastType.SUCCESS)
+    setInput({ name: "", content: "" })
+  }
+
+  return (
+    <div className='my-4 w-96 p-2 md:p-4 bg-navy-light bg-opacity-50'>
+      <h1 className='text-white text-2xl font-bold'>Create a Problem</h1>
+      <div className='mt-6'>
+        <InputField id="name" name="Name" value={input.name} onChange={(e) => handleInputChange(e, input, setInput)} />
+      </div>
+      <h3 className='mt-4 text-white text-xl font-medium'>Problem</h3>
+      <div className='w-full flex flex-col'>
+        <Textarea id="content" label="Content" value={input.content} onChange={(e) => handleInputChange(e, input, setInput)} className='w-full h-64' />
+        <MathJaxContext>
+          <MathJax hideUntilTypeset="first" className='w-full pt-1 border-t border-solid border-white' inline>{input.content}</MathJax>
+        </MathJaxContext>
+      </div>
+
+      <div className='mt-2'>
+        <OutlineButton className="content-center" name='Create' onClick={create} />
+      </div>
+    </div>
+  );
+}
+
+const Problem = ({ problem }) => {
+  const {session} = useSession();
+  const {toastDispatch} = useToasts();
+
+  const approve = async () => {
+    const res = await fetch('/api/problem/approve', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({
+        id: problem.id
+      })
+    })
+
+    notify(toastDispatch, "", `Approved Problem: ${problem.name}`, ToastType.SUCCESS)
+  }
+
+  return (
+    <div className='p-2 rounded-md bg-navy-light bg-opacity-50'>
+      <h3 className='text-xl text-white font-medium'>{problem.name}</h3>
+      <div className='mt-2 block text-md'>
+      <MathJaxContext>
+        <MathJax hideUntilTypeset="first" className='w-full' inline>{problem.content}</MathJax>
+      </MathJaxContext>
+      </div>
+      {!problem.approved ? <OutlineButton name='Approve' onClick={approve} className='mt-2'/> : null}
+    </div>
+  );
+}
+
+const ProblemSection = ({ user }) => {
+  const { session } = useSession();
+  const [problems, setProblems] = useState([])
+  useEffect(() => {
+    if (!session) return
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      }
+    }
+    fetch('/api/problem', options).then(res => res.json()).then((data) => setProblems(data.problems))
+  }, [session])
+
+  return (
+    <div className='w-full flex flex-col justify-center items-center text-white border border-solid border-white'>
+      <h3 className='text-white text-2xl font-bold'>Problems</h3>
+      <div className='m-2 p-2 w-full flex justify-center items-center'>
+        {problems.map((p, i) => user.admin || p.approved ? <Problem key={i} problem={p} /> : null)}
+      </div>
+      <CreateProblem />
+    </div>
+  );
+}
+
 const Dashboard: NextPage<any> = ({ user, polls }) => {
   const { session } = useSession();
   const [selections, setSelections] = useState([])
@@ -540,10 +645,11 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
     <Layout>
       <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center'>
         <div className="h-screen flex flex-col items-center justify-center">
-          <img alt="Profile Picture" src={user.profilePic} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white'/>
+          <img alt="Profile Picture" src={user.profilePic} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white' />
           <h1 className='mt-4 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
         </div>
+        <ProblemSection user={user} />
         <PollSection user={user} polls={polls} />
         {user.admin ? <GraderSection selections={selections} /> : null}
         <RankingsSection selections={selections} />
