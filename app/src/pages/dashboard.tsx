@@ -573,30 +573,36 @@ const Problem = ({ problem }) => {
   const {session} = useSession();
   const {toastDispatch} = useToasts();
 
-  const approve = async () => {
-    const res = await fetch('/api/problem/approve', {
+  const decide = async (status) => {
+    const res = await fetch('/api/problem/decide', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${session.access_token}`
       },
       body: JSON.stringify({
-        id: problem.id
+        id: problem.id,
+        decision: status 
       })
     })
 
-    notify(toastDispatch, "", `Approved Problem: ${problem.name}`, ToastType.SUCCESS)
+    notify(toastDispatch, "", `${status ? "Approved" : "Denied"} Problem: ${problem.name}`, ToastType.SUCCESS)
   }
 
   return (
-    <div className='p-2 rounded-md bg-navy-light bg-opacity-50'>
+    <div className='m-2 p-2 rounded-md bg-navy-light bg-opacity-50'>
       <h3 className='text-xl text-white font-medium'>{problem.name}</h3>
       <div className='mt-2 block text-md'>
       <MathJaxContext>
         <MathJax hideUntilTypeset="first" className='w-full' inline>{problem.content}</MathJax>
       </MathJaxContext>
       </div>
-      {!problem.approved ? <OutlineButton name='Approve' onClick={approve} className='mt-2'/> : null}
+      {!problem.approved ? 
+      <div className='mt-2 flex'>
+      <OutlineButton name='Approve' onClick={() => decide(true)} className=''/> 
+      <OutlineButton name='Deny' onClick={() => decide(false)} className='ml-2 '/> 
+      </div>
+      : null}
     </div>
   );
 }
@@ -618,7 +624,7 @@ const ProblemSection = ({ user }) => {
   return (
     <div className='w-full flex flex-col justify-center items-center text-white border border-solid border-white'>
       <h3 className='text-white text-2xl font-bold'>Problems</h3>
-      <div className='m-2 p-2 w-full flex justify-center items-center'>
+      <div className='m-2 p-2 w-full flex justify-center items-start'>
         {problems.map((p, i) => user.admin || p.approved ? <Problem key={i} problem={p} /> : null)}
       </div>
       <CreateProblem />

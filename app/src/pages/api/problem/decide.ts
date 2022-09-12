@@ -8,7 +8,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const { authorized, user } = await authorize(req, res, true)
       if (!authorized) return res.status(401).send(null)
       
-      const problem = await db.problem.update({where: {id: req.body.id}, data: {approved: true}})
+      let problem = null
+      if(req.body.decision){
+        problem = await db.problem.update({where: {id: req.body.id}, data: {approved: true}})
+      } else {
+        problem = await db.problem.delete({where: {id: req.body.id}})
+      }
+      
       return res.status(200).json({ problem })
     } 
   } catch (e) {
