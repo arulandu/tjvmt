@@ -23,6 +23,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         ]
       })
 
+      polls.forEach(p => {p['hasPassword'] = p.password && p.password.length > 0; p.password = '';})
+
       return res.status(200).json({
         polls
       })
@@ -33,6 +35,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           startDate: new Date(),
           text: req.body.text,
           options: req.body.options,
+          password: req.body.password,
           authorId: user.id
         }
       })

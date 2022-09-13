@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const poll = await db.poll.findFirst({
         where: {id: req.body.pollId}
       })
-      if(!poll || poll.closed) throw new Error("Invalid poll")
+      if(!poll || poll.closed || (poll.password && poll.password != req.body.password)) throw new Error("Invalid poll")
 
       const data = {
         date: new Date(),
