@@ -14,13 +14,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if(!authorized) return res.status(401).send(null)
 
     try {
-      const sub = await db.submission.create({
-        data: {
-          answers: req.body.answers,
-          tstId: req.body.tstId,
-          authorId: req.body.userId
-        }
-      })
+      let sub = await db.submission.findFirst({where: {tstId: req.body.tstId, authorId: req.body.userId}})
+      if(sub){
+        sub = await db.submission.update({where: {id: sub.id}, data: {answers: req.body.answers}})
+      } else {
+        sub = await db.submission.create({
+          data: {
+            answers: req.body.answers,
+            tstId: req.body.tstId,
+            authorId: req.body.userId
+          }
+        })
+      }
 
       return res.status(200).json({
         sub

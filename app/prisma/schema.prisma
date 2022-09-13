@@ -32,6 +32,7 @@ model User {
   competitor Boolean @default(true)
   submissions Submission[]
   applications Application[]
+  problems Problem[]
 
   attendance Boolean @default(false)
 }
@@ -85,7 +86,17 @@ model Application {
   selectionId String @db.ObjectId
 }
 
-// EVENTS //
+// PROBLEMS //
+model Problem {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  content String
+  approved Boolean @default(false)
+  createdAt DateTime
+
+  author User @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+}
 
 // POLLS //
 
