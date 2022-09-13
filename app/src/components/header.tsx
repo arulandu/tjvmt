@@ -16,7 +16,7 @@ const NavLink = ({ index, href, name, onClick=()=>{} }) => {
 
 const HamburgerButton = ({ open, onClick = () => { } }) => {
   return (
-    <button className='md:hidden' onClick={onClick}>
+    <button className='relative md:hidden' onClick={onClick}>
       <div className={`w-8 h-[2px] bg-pink ${open ? 'translate-y-[10px] rotate-45' : ''} transition-all`}></div>
       <div className={`my-2 w-8 h-[2px] ${open ? 'bg-transparent' : 'bg-pink'} transition-all`}></div>
       <div className={`w-8 h-[2px] bg-pink ${open ? ' -translate-y-[10px] -rotate-45' : ''} transition-all`}></div>
@@ -46,8 +46,8 @@ const NavBar = () => {
   }
 
   return (
-    <nav className='relative h-full flex items-center justify-between z-10'>
-      <div className='flex relative z-10'>
+    <nav className='relative h-full flex items-center justify-between z-10 px-4 sm:px-12 lg:px-24'>
+      <div className='flex relative z-20'>
         <HamburgerButton open={isOpen} onClick={() => setOpen(!isOpen)} />
         <Link href="/" passHref>
           <a className="relative ml-4 w-12 md:w-24 aspect-[5/3] opacity-90 hover:opacity-100 transition-all ease-in-out">
@@ -55,7 +55,7 @@ const NavBar = () => {
           </a>
         </Link>
       </div>
-      <div className={`block w-full md:w-fit h-screen md:h-full z-40 absolute md:relative top-0 ${isOpen ? 'left-0' : 'left-[-100%] md:left-0'} px-4 sm:px-12 md:px-0 flex flex-col md:flex-row items-start md:items-center justify-center bg-navy bg-opacity-90 md:bg-transparent transition-all`}>
+      <div className={`block w-full md:w-fit h-screen md:h-full z-10 absolute md:relative top-0 ${isOpen ? 'left-0' : 'left-[-200%] md:left-0'} px-4 sm:px-12 md:px-0 flex flex-col md:flex-row items-start md:items-center justify-center bg-navy bg-opacity-90 md:bg-transparent transition-all`}>
         <NavLink index={0} href="/dashboard" name="Dashboard" onClick={() => notify(toastDispatch, "", "Loading your dashboard...", ToastType.DEFAULT)}/>
         <NavLink index={1} href="/tjimo" name="TJIMO" />
         <NavLink index={2} href="/resources" name="Resources" />
@@ -141,7 +141,7 @@ const Toaster = () => {
 
 const Header = () => {
   return (
-    <header className='fixed z-50 w-full h-16 sm:h-24 px-4 sm:px-12 lg:px-24'>
+    <header className='fixed z-50 w-full h-16 sm:h-24'>
       <Toaster />
       <NavBar />
     </header>

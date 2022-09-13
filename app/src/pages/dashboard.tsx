@@ -218,7 +218,7 @@ const ViewTSTs = ({ tsts }) => {
   return (
     <div>
       <h3 className='text-white text-2xl font-bold text-center'>TSTs</h3>
-      <div className='flex justify-center items-center'>
+      <div className='flex flex-wrap justify-center items-center'>
         {tsts.map(tst =>
           <div key={tst.id} className='m-2 p-2 md:p-4 bg-navy-light bg-opacity-50'>
             <h4 className='text-white text-xl'>{tst.name}</h4>
@@ -349,7 +349,7 @@ const ViewSelections = ({ selections }) => {
   return (
     <div>
       <h3 className='text-white text-2xl font-bold text-center'>Selections</h3>
-      <div className='flex justify-center items-center'>
+      <div className='flex flex-wrap justify-center items-center'>
         {selections.map(selection =>
           <div key={selection.id} className='m-2 p-2 md:p-4 bg-navy-light bg-opacity-50'>
             <h4 className='text-white text-xl'>Name: {selection.name}</h4>
@@ -549,16 +549,16 @@ const CreateProblem = () => {
   }
 
   return (
-    <div className='my-4 w-96 p-2 md:p-4 bg-navy-light bg-opacity-50'>
+    <div className='my-4 w-64 md:w-96 p-2 md:p-4 bg-navy-light bg-opacity-50'>
       <h1 className='text-white text-2xl font-bold'>Create a Problem</h1>
       <div className='mt-6'>
-        <InputField id="name" name="Name" value={input.name} onChange={(e) => handleInputChange(e, input, setInput)} />
+        <InputField id="name" name="Title" value={input.name} onChange={(e) => handleInputChange(e, input, setInput)} />
       </div>
       <h3 className='mt-4 text-white text-xl font-medium'>Problem</h3>
       <div className='w-full flex flex-col'>
         <Textarea id="content" label="Content" value={input.content} onChange={(e) => handleInputChange(e, input, setInput)} className='w-full h-64' />
-        <MathJaxContext>
-          <MathJax hideUntilTypeset="first" className='w-full pt-1 border-t border-solid border-white' inline>{input.content}</MathJax>
+        <MathJaxContext version={3} config={config}>
+          <MathJax hideUntilTypeset="first" className='w-full pt-1 border-t border-solid border-white' inline dynamic>{input.content}</MathJax>
         </MathJaxContext>
       </div>
 
@@ -568,6 +568,21 @@ const CreateProblem = () => {
     </div>
   );
 }
+
+const config = {
+  loader: { load: ["[tex]/html"] },
+  tex: {
+    packages: { "[+]": ["html"] },
+    inlineMath: [
+      ["$", "$"],
+      ["\\(", "\\)"]
+    ],
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"]
+    ]
+  }
+};
 
 const Problem = ({ problem }) => {
   const {session} = useSession();
@@ -590,11 +605,11 @@ const Problem = ({ problem }) => {
   }
 
   return (
-    <div className='m-2 p-2 rounded-md bg-navy-light bg-opacity-50'>
+    <div className='m-2 p-2 max-w-xs rounded-md bg-navy-light bg-opacity-50'>
       <h3 className='text-xl text-white font-medium'>{problem.name}</h3>
       <div className='mt-2 block text-md'>
-      <MathJaxContext>
-        <MathJax hideUntilTypeset="first" className='w-full' inline>{problem.content}</MathJax>
+      <MathJaxContext version={3} config={config}>
+        <MathJax hideUntilTypeset="first" className='w-full' inline dynamic>{problem.content}</MathJax>
       </MathJaxContext>
       </div>
       {!problem.approved ? 
@@ -624,7 +639,7 @@ const ProblemSection = ({ user }) => {
   return (
     <div className='w-full flex flex-col justify-center items-center text-white border border-solid border-white'>
       <h3 className='text-white text-2xl font-bold'>Problems</h3>
-      <div className='m-2 p-2 w-full flex justify-center items-start'>
+      <div className='m-2 p-2 w-full flex flex-wrap justify-center items-start'>
         {problems.map((p, i) => user.admin || p.approved ? <Problem key={i} problem={p} /> : null)}
       </div>
       <CreateProblem />
