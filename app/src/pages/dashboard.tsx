@@ -19,18 +19,6 @@ export const getServerSideProps = async ({ req, res }) => {
   if (!authorized) return { redirect: { destination: '/404', permanent: true } }
 
   let users = (await (await fetch(`${process.env.BASE_URL}/api/user`, { headers: { 'Authorization': req.headers.authorization } })).json()).users
-
-  users = await Promise.all(users.map(async (u) => {
-    const picRes = await fetch(`https://ion.tjhsst.edu/api/profile/${u.ionId}/picture`, { headers: { 'Authorization': req.headers.authorization } })
-    //@ts-ignore
-    const buffer = await picRes.arrayBuffer()
-    const pic = `data:${picRes.headers.get('content-type')};base64,${Buffer.from(buffer).toString("base64")}`
-    u.profilePic = pic
-    return u
-  }))
-
-  user.profilePic = users.filter(u => u.id == user.id)[0].profilePic
-
   const polls = (await (await fetch(`${process.env.BASE_URL}/api/poll`, { headers: { 'Authorization': req.headers.authorization } })).json()).polls
 
   return {
@@ -681,7 +669,7 @@ const UserCard = ({ user }) => {
 
   return (
     <div className='m-2 w-64 flex bg-navy-light bg-opacity-50 rounded-md border'>
-      <img alt="Profile Picture" src={user.profilePic} className='w-16 h-16 object-cover rounded-full border-4 border-solid border-white' />
+      <img alt="Profile Picture" src={user.profilePicData} className='w-16 h-16 object-cover rounded-full border-4 border-solid border-white' />
       <div className='ml-2 text-white'>
         <p className={`${user.admin ? "text-pink" : "text-white"} font-medium`}>{user.name}</p>
         <p className='font-light'>{user.ionUsername}</p>
@@ -727,8 +715,7 @@ const Dashboard: NextPage<any> = ({ user, users, polls }) => {
     <Layout>
       <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center'>
         <div className="h-screen flex flex-col items-center justify-center">
-          {/* <img alt="Profile Picture" src={user.profilePic} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white' /> */}
-          <img alt="Profile Picture" src={user.profilePic} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white' />
+          <img alt="Profile Picture" src={user.profilePicData} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white' />
           <h1 className='mt-4 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
         </div>

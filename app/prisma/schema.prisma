@@ -22,8 +22,8 @@ model User {
   name String
   nickname String
   email String
-  profilePic String
-  
+  profilePicUrl String
+  profilePicData String
   // TODO: separate admin and competitor into separate models?
   admin Boolean @default(false)
   polls Poll[]

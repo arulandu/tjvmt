@@ -19,7 +19,7 @@ const SignUp: NextPage<any> = () => {
   })
   
   const submit = async () => {
-    const userRes = await (await fetch('/api/user', {
+    const userRes = await fetch('/api/user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,14 +28,13 @@ const SignUp: NextPage<any> = () => {
       body: JSON.stringify({
         email: input.email
       })
-    })).json()
+    })
 
-    console.log(userRes)
-
+    const user = (await userRes.json()).user
     if (userRes.status != 200) {
       notify(toastDispatch, "", "You already exist in our database. Try logging in...", ToastType.DANGER)
     } else {
-      notify(toastDispatch, "", `Merged ${userRes.ionUsername} and additional data.`, ToastType.SUCCESS)
+      notify(toastDispatch, "", `Merged ${user.ionUsername} and additional data.`, ToastType.SUCCESS)
       Router.push('/dashboard')
     }
   }

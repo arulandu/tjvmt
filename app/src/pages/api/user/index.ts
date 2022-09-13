@@ -15,6 +15,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         users
       })
     } else if (req.method == 'POST') {
+      const profilePicUrl = profileBody.picture
+      const picRes = await fetch(profilePicUrl, { headers: { 'Authorization': req.headers.authorization } })
+      //@ts-ignore
+      const buffer = await picRes.arrayBuffer()
+      const picData = `data:${picRes.headers.get('content-type')};base64,${Buffer.from(buffer).toString("base64")}`
+      
       const user = await db.user.create({
         data: {
           ionId: String(profileBody.id),
@@ -23,17 +29,42 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           ionUsername: profileBody.ion_username,
           schoolEmail: profileBody.tj_email,
           email: req.body.email,
-          profilePic: profileBody.picture
+          profilePicUrl: profilePicUrl,
+          profilePicData: picData
         }
       })
 
       return res.status(200).json({
         user: user
       })
+    } else if(req.method == 'DELETE'){
+      const user = await db.user.update({where: {id: req.query.id as string}, data: {
+        authoredProblems: {
+          deleteMany: {}
+        },
+        solvedProblems: {
+          deleteMany: {}
+        },
+        submissions: {
+          deleteMany: {}
+        },
+        applications: {
+          deleteMany: {}
+        },
+        polls: {
+          deleteMany: {}
+        },
+        pollResponses: {
+          deleteMany: {}
+        }
+      }})
+      await db.user.delete({where: {id: user.id}})
+      return res.status(200).json({user})
     }
 
     return res.status(400).send(null)
   } catch (e) {
+    console.log(e)
     return res.status(400).json({
       message: e
     })
