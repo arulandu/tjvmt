@@ -1,8 +1,5 @@
 import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
-import Image from 'next/image'
-import Link from 'next/link';
-import { db } from '@/lib/db/db'
 import { InputField } from '@/components/InputField';
 import { useEffect, useState } from 'react';
 import OutlineButton from '@/components/OutlineButton';
@@ -11,27 +8,35 @@ import { authorize } from '@/lib/api/authorize';
 import { useRouter } from 'next/router';
 import { handleInputChange } from '@/lib/handleInputChange';
 import { Dropdown } from '@/components/Dropdown';
-import { ToastAction, useToasts } from '@/components/ToastProvider';
-import { DefaultToast, notify, ToastType } from '@/components/header';
-import { MathJaxContext, MathJax } from 'better-react-mathjax';
+import { useToasts } from '@/components/ToastProvider';
+import { notify, ToastType } from '@/components/header';
 import { Textarea } from '@/components/Textarea';
+import { MathText } from '@/components/MathText';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { authorized, user } = await authorize(req, res)
 
   if (!authorized) return { redirect: { destination: '/404', permanent: true } }
 
-  const picRes = await fetch(`https://ion.tjhsst.edu/api/profile/${user.ionId}/picture`, { headers: { 'Authorization': req.headers.authorization } })
-  //@ts-ignore
-  const buffer = await picRes.arrayBuffer()
-  const pic = `data:${picRes.headers.get('content-type')};base64,${Buffer.from(buffer).toString("base64")}`
-  user.profilePic = pic
+  let users = (await (await fetch(`${process.env.BASE_URL}/api/user`, { headers: { 'Authorization': req.headers.authorization } })).json()).users
+
+  users = await Promise.all(users.map(async (u) => {
+    const picRes = await fetch(`https://ion.tjhsst.edu/api/profile/${u.ionId}/picture`, { headers: { 'Authorization': req.headers.authorization } })
+    //@ts-ignore
+    const buffer = await picRes.arrayBuffer()
+    const pic = `data:${picRes.headers.get('content-type')};base64,${Buffer.from(buffer).toString("base64")}`
+    u.profilePic = pic
+    return u
+  }))
+
+  user.profilePic = users.filter(u => u.id == user.id)[0].profilePic
 
   const polls = (await (await fetch(`${process.env.BASE_URL}/api/poll`, { headers: { 'Authorization': req.headers.authorization } })).json()).polls
 
   return {
     props: {
       user,
+      users,
       polls
     }
   }
@@ -528,7 +533,8 @@ const CreateProblem = () => {
   const { toastDispatch } = useToasts();
   const [input, setInput] = useState({
     name: "",
-    content: ""
+    content: "",
+    answer: ""
   })
 
   const create = async () => {
@@ -540,12 +546,13 @@ const CreateProblem = () => {
       },
       body: JSON.stringify({
         name: input.name,
-        content: input.content
+        content: input.content,
+        answer: input.answer.trim()
       })
     })
 
     notify(toastDispatch, "", `Created Problem: ${input.name}`, ToastType.SUCCESS)
-    setInput({ name: "", content: "" })
+    setInput({ name: "", content: "", answer: "" })
   }
 
   return (
@@ -557,10 +564,10 @@ const CreateProblem = () => {
       <h3 className='mt-4 text-white text-xl font-medium'>Problem</h3>
       <div className='w-full flex flex-col'>
         <Textarea id="content" label="Content" value={input.content} onChange={(e) => handleInputChange(e, input, setInput)} className='w-full h-64' />
-        <MathJaxContext version={3} config={config}>
-          <MathJax hideUntilTypeset="first" className='w-full pt-1 border-t border-solid border-white' inline dynamic>{input.content}</MathJax>
-        </MathJaxContext>
+
+        <MathText inline dynamic className='w-full pt-1 border-t border-solid border-white'>{input.content}</MathText>
       </div>
+      <InputField id="answer" name="Answer" value={input.answer} onChange={(e) => handleInputChange(e, input, setInput)} />
 
       <div className='mt-2'>
         <OutlineButton className="content-center" name='Create' onClick={create} />
@@ -569,24 +576,10 @@ const CreateProblem = () => {
   );
 }
 
-const config = {
-  loader: { load: ["[tex]/html"] },
-  tex: {
-    packages: { "[+]": ["html"] },
-    inlineMath: [
-      ["$", "$"],
-      ["\\(", "\\)"]
-    ],
-    displayMath: [
-      ["$$", "$$"],
-      ["\\[", "\\]"]
-    ]
-  }
-};
-
 const Problem = ({ problem }) => {
-  const {session} = useSession();
-  const {toastDispatch} = useToasts();
+  const { session } = useSession();
+  const { toastDispatch } = useToasts();
+  const [input, setInput] = useState({ answer: "" })
 
   const decide = async (status) => {
     const res = await fetch('/api/problem/decide', {
@@ -597,27 +590,54 @@ const Problem = ({ problem }) => {
       },
       body: JSON.stringify({
         id: problem.id,
-        decision: status 
+        decision: status
       })
     })
 
     notify(toastDispatch, "", `${status ? "Approved" : "Denied"} Problem: ${problem.name}`, ToastType.SUCCESS)
   }
 
+  const check = async () => {
+    const res = await (await fetch('/api/problem/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({
+        id: problem.id,
+        answer: input.answer
+      })
+    })).json()
+
+    if (res.status) {
+      notify(toastDispatch, "", `Solved problem: ${problem.name}`, ToastType.SUCCESS)
+    } else {
+      notify(toastDispatch, "", `Incorrect answer to ${problem.name}`, ToastType.DANGER)
+    }
+  }
+
   return (
     <div className='m-2 p-2 max-w-xs rounded-md bg-navy-light bg-opacity-50'>
       <h3 className='text-xl text-white font-medium'>{problem.name}</h3>
       <div className='mt-2 block text-md'>
-      <MathJaxContext version={3} config={config}>
-        <MathJax hideUntilTypeset="first" className='w-full' inline dynamic>{problem.content}</MathJax>
-      </MathJaxContext>
+        <MathText inline dynamic className='w-full'>{problem.content}</MathText>
+
       </div>
-      {!problem.approved ? 
-      <div className='mt-2 flex'>
-      <OutlineButton name='Approve' onClick={() => decide(true)} className=''/> 
-      <OutlineButton name='Deny' onClick={() => decide(false)} className='ml-2 '/> 
-      </div>
-      : null}
+      {problem.solved ?
+        <p className='text-green-300 text-md'>Solved</p>
+        :
+        <div className='flex'>
+          <InputField id="answer" name="Answer" value={input.answer} onChange={(e) => handleInputChange(e, input, setInput)} />
+          <OutlineButton name="Solve" onClick={check} className='ml-2' />
+        </div>
+      }
+      {!problem.approved ?
+        <div className='mt-2 flex'>
+          <OutlineButton name='Approve' onClick={() => decide(true)} className='' />
+          <OutlineButton name='Deny' onClick={() => decide(false)} className='ml-2 ' />
+        </div>
+        : null}
     </div>
   );
 }
@@ -647,7 +667,39 @@ const ProblemSection = ({ user }) => {
   );
 }
 
-const Dashboard: NextPage<any> = ({ user, polls }) => {
+const UserCard = ({ user }) => {
+  const { session } = useSession()
+
+  return (
+    <div className='m-2 w-64 flex bg-navy-light bg-opacity-50 rounded-md border'>
+      <img alt="Profile Picture" src={user.profilePic} className='w-16 h-16 object-cover rounded-full border-4 border-solid border-white' />
+      <div className='ml-2 text-white'>
+        <p className={`${user.admin ? "text-pink": "text-white"} font-medium`}>{user.name}</p>
+        <p className='font-light'>{user.ionUsername}</p>
+        <p className='text-green-300'>{user.solvedProblemIds.length} solves</p>
+      </div>
+    </div>
+  );
+}
+
+const UserSection = ({ users }) => {
+  const { session } = useSession();
+
+  return (
+    <div className='my-4 border-solid border-2 border-white w-full flex flex-col justify-center items-center'>
+      <h3 className='text-white text-2xl font-bold'>Directory</h3>
+      <p className='text-white'>Solve more POTDs!</p>
+      <div className='flex flex-wrap justify-center items-center'>
+        {users.map((u) =>
+          <UserCard key={u.id} user={u} />
+        )}
+      </div>
+    </div>
+
+  );
+}
+
+const Dashboard: NextPage<any> = ({ user, users, polls }) => {
   const { session } = useSession();
   const [selections, setSelections] = useState([])
 
@@ -666,6 +718,7 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
     <Layout>
       <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center'>
         <div className="h-screen flex flex-col items-center justify-center">
+          {/* <img alt="Profile Picture" src={user.profilePic} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white' /> */}
           <img alt="Profile Picture" src={user.profilePic} className='w-32 h-32 object-cover rounded-full border-4 border-solid border-white' />
           <h1 className='mt-4 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
@@ -674,6 +727,7 @@ const Dashboard: NextPage<any> = ({ user, polls }) => {
         <PollSection user={user} polls={polls} />
         {user.admin ? <GraderSection selections={selections} /> : null}
         <RankingsSection selections={selections} />
+        <UserSection users={users} />
       </section>
     </Layout >
   )

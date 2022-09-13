@@ -9,9 +9,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if(req.method == 'GET'){
       const problems = await db.problem.findMany({orderBy: {createdAt: 'desc'}})
+      problems.forEach(prob => prob['solved'] = prob.solverIds.includes(user.id))
+      
       return res.status(200).json({problems})
     } else if (req.method == 'POST') {
-      const problem = await db.problem.create({data: {name: req.body.name, content: req.body.content, approved: req.body.approved, authorId: user.id, createdAt: new Date()}})
+      const problem = await db.problem.create({data: {name: req.body.name, content: req.body.content, answer: req.body.answer, approved: req.body.approved, authorId: user.id, createdAt: new Date()}})
       return res.status(200).json({ problem })
     } 
   } catch (e) {

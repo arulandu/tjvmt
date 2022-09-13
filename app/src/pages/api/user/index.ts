@@ -9,7 +9,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method == 'GET') {
       const where = req.query.competitor === 'true' ? {competitor: true} : {} 
-      const users = await db.user.findMany({where})
+      let users = await db.user.findMany({where})
+      users = users.sort((a,b) => b.solvedProblemIds.length - a.solvedProblemIds.length)
       return res.status(200).json({
         users
       })
