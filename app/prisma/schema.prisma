@@ -114,6 +114,7 @@ model Poll {
   closed Boolean @default(false)
   
   text String?
+  password String @default("")
   options String[]
   responses PollResponse[]
 

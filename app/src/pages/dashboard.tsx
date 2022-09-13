@@ -52,6 +52,7 @@ const Poll = ({ data, edit, setView }) => {
   const { session } = useSession();
   const { toastDispatch } = useToasts();
   const [choice, setChoice] = useState(data.responses.length > 0 ? { optionIndex: data.responses[0].optionIndex, response: data.responses[0] } : null)
+  const [input, setInput] = useState({ password: '' })
 
   const close = async () => {
     const res = await fetch('/api/poll', {
@@ -79,14 +80,19 @@ const Poll = ({ data, edit, setView }) => {
       },
       body: JSON.stringify({
         responseId: choice ? choice.response.id : undefined,
+        password: input.password.length > 0 ? input.password : undefined,
         pollId: data.id,
         optionIndex: ind
       })
     })
-
+    
+    if(res.status == 200){
     const newResponse = (await res.json()).response
     setChoice({ optionIndex: ind, response: newResponse })
     notify(toastDispatch, "", `Voted "${data.options[ind]}" in poll: ${data.text}`, ToastType.SUCCESS)
+    } else {
+      notify(toastDispatch, "", `Invalid password for poll ${data.text}`, ToastType.DANGER)
+    }
   }
 
   const view = async () => {
@@ -110,6 +116,7 @@ const Poll = ({ data, edit, setView }) => {
       <p className='text-white text-xl'>{data.text}</p>
       <div className='flex flex-col flex-nowrap justify-center items-center'>
         {data.options.map((op, i) => <PollOption key={i} name={op} className='m-1' onClick={() => vote(i)} selected={choice && choice.response.optionIndex == i} />)}
+        <InputField id="password" name="Password" value={input.password} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-6' />
         {
           edit ?
             <>
@@ -132,7 +139,8 @@ const CreatePoll = () => {
   const { session } = useSession()
   const [input, setInput] = useState({
     text: '',
-    choices: ''
+    choices: '',
+    password: ""
   })
   const router = useRouter()
 
@@ -145,22 +153,24 @@ const CreatePoll = () => {
       },
       body: JSON.stringify({
         text: input.text,
-        options: input.choices.split(';').map(c => c.trim())
+        options: input.choices.split(';').map(c => c.trim()),
+        password: input.password.length > 0 ? input.password : undefined
       })
     })
 
-    notify(toastDispatch, "Created Poll", "", ToastType.SUCCESS)
+    notify(toastDispatch, "", `Created poll: ${input.text}`, ToastType.SUCCESS)
 
-    setInput({ text: '', choices: '' })
+    setInput({ text: '', choices: '', password: '' })
     router.reload()
   }
 
   return (
     <div className='mt-6 sm:w-60 md:w-96 bg-navy-light bg-opacity-50 p-4'>
       <h3 className='text-white text-2xl font-bold'>Create a Poll</h3>
-      <p className='text-white mt-2 text-md'>Provide some description your poll and list the choices using ; to separate.</p>
+      <p className='text-white mt-2 text-md'>Provide some description your poll and list the choices using ; to separate. Password field is optional.</p>
       <InputField id='text' name='Description' value={input.text} onChange={(e) => handleInputChange(e, input, setInput)} />
       <InputField id='choices' name='Choices' value={input.choices} onChange={(e) => handleInputChange(e, input, setInput)} />
+      <InputField id="password" name="Password" value={input.password} onChange={(e) => handleInputChange(e, input, setInput)} />
       <OutlineButton name='Create' className='mt-4' onClick={create} />
     </div>
   );
@@ -534,7 +544,7 @@ const CreateProblem = () => {
   const [input, setInput] = useState({
     name: "",
     content: "",
-    answer: ""
+    answer: "",
   })
 
   const create = async () => {
@@ -547,7 +557,7 @@ const CreateProblem = () => {
       body: JSON.stringify({
         name: input.name,
         content: input.content,
-        answer: input.answer.trim()
+        answer: input.answer.trim(),
       })
     })
 
@@ -568,7 +578,6 @@ const CreateProblem = () => {
         <MathText inline dynamic className='w-full pt-1 border-t border-solid border-white'>{input.content}</MathText>
       </div>
       <InputField id="answer" name="Answer" value={input.answer} onChange={(e) => handleInputChange(e, input, setInput)} />
-
       <div className='mt-2'>
         <OutlineButton className="content-center" name='Create' onClick={create} />
       </div>
@@ -674,7 +683,7 @@ const UserCard = ({ user }) => {
     <div className='m-2 w-64 flex bg-navy-light bg-opacity-50 rounded-md border'>
       <img alt="Profile Picture" src={user.profilePic} className='w-16 h-16 object-cover rounded-full border-4 border-solid border-white' />
       <div className='ml-2 text-white'>
-        <p className={`${user.admin ? "text-pink": "text-white"} font-medium`}>{user.name}</p>
+        <p className={`${user.admin ? "text-pink" : "text-white"} font-medium`}>{user.name}</p>
         <p className='font-light'>{user.ionUsername}</p>
         <p className='text-green-300'>{user.solvedProblemIds.length} solves</p>
       </div>
