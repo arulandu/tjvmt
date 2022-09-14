@@ -96,7 +96,7 @@ const Poll = ({ data, edit, setView }) => {
     setView(d)
   }
   const startDate = new Date(data.startDate)
-  const startDateTxt = `${startDate.getMonth()+1}/${startDate.getDay()}/${startDate.getFullYear()} ${startDate.getHours()%12}:${startDate.getMinutes() < 10 ? '0' : ''}${startDate.getMinutes()} ${startDate.getHours() >= 12 ? 'PM' : 'AM'} `
+  const startDateTxt = `${startDate.getMonth() + 1}/${startDate.getDay()}/${startDate.getFullYear()} ${startDate.getHours() % 12}:${startDate.getMinutes() < 10 ? '0' : ''}${startDate.getMinutes()} ${startDate.getHours() >= 12 ? 'PM' : 'AM'} `
 
   return (
     <div className='p-4 mx-2 bg-navy-light bg-opacity-50 rounded-md'>
@@ -622,19 +622,25 @@ const Problem = ({ problem }) => {
         <MathText inline dynamic className='w-full'>{problem.content}</MathText>
 
       </div>
-      {problem.solved && problem.approved ?
+      {problem.approved ? problem.solved ?
         <p className='text-green-300 text-md'>Solved</p>
         :
         <div className='flex'>
           <InputField id="answer" name="Answer" value={input.answer} onChange={(e) => handleInputChange(e, input, setInput)} />
           <OutlineButton name="Solve" onClick={check} className='ml-2' />
         </div>
+        : null
       }
       {!problem.approved ?
-        <div className='mt-2 flex'>
-          <OutlineButton name='Approve' onClick={() => decide(true)} className='' />
-          <OutlineButton name='Deny' onClick={() => decide(false)} className='ml-2 ' />
-        </div>
+        <>
+          <p className="text-white">Answer: {problem.answer}</p>
+
+          <div className='mt-2 flex'>
+            <OutlineButton name='Approve' onClick={() => decide(true)} className='' />
+            <OutlineButton name='Deny' onClick={() => decide(false)} className='ml-2 ' />
+          </div>
+
+        </>
         : null}
     </div>
   );
@@ -713,7 +719,7 @@ const UserSection = ({ users, user }) => {
     <div className='my-4 border-solid border-2 border-white w-full flex flex-col justify-center items-center'>
       <h3 className='text-white text-2xl font-bold'>Directory</h3>
       <p className='text-white'>Solve more POTDs!</p>
-      {!user.discordId || user.discordId.length < 17?
+      {!user.discordId || user.discordId.length < 17 ?
         <div className='m-2'>
           <p className='text-white text-center'>Settings ➡️ Copy your Discord Tag ➡️ Advanced ➡️ Enable Developer Mode ➡️ My Account ➡️ (three dots) ➡️ Copy ID</p>
           <InputField id="discordTag" name="Discord Tag" value={input.discordTag} onChange={(e) => handleInputChange(e, input, setInput)} />
