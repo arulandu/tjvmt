@@ -4,7 +4,7 @@ export const InputField = ({ id, name, value, onChange, className='' }) => {
 
   return (
     <div className={`relative w-full mt-4 group ${className}`}>
-      <label className={`absolute block transition-all ${labelClass} text-white group-focus-within:text-pink`} htmlFor={name}>{name}</label>
+      <label className={`pointer-events-none absolute block transition-all ${labelClass} text-white group-focus-within:text-pink`} htmlFor={name}>{name}</label>
       <input className='w-full pb-2 border-solid border-b-2 border-white text-white bg-transparent transition-all group-focus-within:border-pink' name={id} id={id} value={value} onChange={onChange}></input>
     </div>
   );
