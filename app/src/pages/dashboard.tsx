@@ -221,8 +221,8 @@ const ViewTSTs = ({ tsts }) => {
 
   return (
     <div>
-      <h3 className='text-white text-2xl font-bold text-center'>TSTs</h3>
-      <div className='flex flex-wrap justify-center items-center'>
+      <h3 className='ml-2 text-white text-2xl font-bold text-start'>TSTs</h3>
+      <div className='flex flex-wrap justify-start items-center'>
         {tsts.map(tst =>
           <div key={tst.id} className='m-2 p-2 md:p-4 bg-navy-light bg-opacity-50'>
             <h4 className='text-white text-xl'>{tst.name}</h4>
@@ -260,13 +260,13 @@ const CreateTST = () => {
   }
 
   return (
-    <div className='my-4 w-60 p-2 md:p-4 bg-navy-light bg-opacity-50'>
+    <div className='my-4 w-full p-2 md:p-4 bg-navy-light bg-opacity-50'>
       <h1 className='text-white text-2xl font-bold'>Create a TST</h1>
       <div className='mt-6'>
         <InputField id="name" name="Name" value={input.name} onChange={(e) => handleInputChange(e, input, setInput)} />
       </div>
 
-      <Dropdown id="weighted" label="Weighted" options={[{ label: 'Yes', value: "YES" }, { label: 'No', value: 'NO' }]} value={input.weighted} onChange={(e) => handleInputChange(e, input, setInput)} />
+      <Dropdown id="weighted" label="Weighted" options={[{ label: 'Yes', value: "YES" }, { label: 'No', value: 'NO' }]} value={input.weighted} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
 
       <div className='mt-2'>
         <OutlineButton className="content-center" name='Create' onClick={create} />
@@ -307,7 +307,7 @@ const CreateSelection = () => {
   }
 
   return (
-    <div className='p-4 md:p-4 sm:w-60 md:w-96 bg-navy-light bg-opacity-50'>
+    <div className='p-4 md:p-4 w-full bg-navy-light bg-opacity-50'>
       <h1 className='text-white text-2xl font-bold'>Create a Selection</h1>
       <p className='text-white text-sm'>For each TST weight, write the TST name exactly followed by a comma followed by the weight as a decimal. Seperate each TST weight combination with a semicolon (;).</p>
       <br></br>
@@ -352,11 +352,11 @@ const ViewSelections = ({ selections }) => {
 
   return (
     <div>
-      <h3 className='text-white text-2xl font-bold text-center'>Selections</h3>
-      <div className='flex flex-wrap justify-center items-center'>
+      <h3 className='ml-2 text-white text-2xl font-bold'>Selections</h3>
+      <div className='flex flex-wrap justify-start items-center'>
         {selections.map(selection =>
           <div key={selection.id} className='m-2 p-2 md:p-4 bg-navy-light bg-opacity-50'>
-            <h4 className='text-white text-xl'>Name: {selection.name}</h4>
+            <h4 className='text-white text-xl'>{selection.name}</h4>
             <p className='text-white text-md'>{selection.drops} drop{selection.drops > 1 ? "s" : ""}</p>
             <p className='text-white text-md'>Weights: {Object.entries(selection.weights).map(([k, v], h) => `${k} (${v})`).reduce((a, b) => `${a}, ${b}`)}</p>
             <OutlineButton name='Grade' onClick={() => grade(selection.id)} className='mt-2' />
@@ -403,7 +403,7 @@ const SubmitGrade = ({ tsts, users }) => {
   }
 
   return (
-    <div className='mt-2 max-w-96 bg-navy-light bg-opacity-50 p-4'>
+    <div className='mt-2 w-full bg-navy-light bg-opacity-50 p-4'>
       <h3 className='text-white text-2xl font-bold'>Submit Grade</h3>
       <p className='text-white mt-2 text-md'>Key in answers using space to separate.</p>
       <Dropdown id="tstId" label="TST" options={tsts.map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
@@ -433,15 +433,19 @@ const GraderSection = ({ selections }) => {
   }, [session])
 
   return (
-    <div className='my-6 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
-      <h3 className='text-white mt-12 text-center text-3xl font-bold'>TST Grading</h3>
-      <div className='m-6'> <SubmitGrade tsts={tsts} users={users} /> </div>
-      <div className='m-6 content-center items-center flex flex-col'>
-        <ViewTSTs tsts={tsts} />
-        <div><CreateTST /></div>
+    <div className='my-6 p-2 w-full flex flex-col items-center'>
+      <h3 className='text-white text-center text-3xl font-black'>TST Grading</h3>
+      <div className='mt-12 w-full flex flex-wrap items-start justify-evenly'>
+        <div className='max-w-lg'>
+          <ViewTSTs tsts={tsts} />
+          <ViewSelections selections={selections} />
+          <SubmitGrade tsts={tsts} users={users} />
+        </div>
+        <div className='ml-2 max-w-lg'>
+          <CreateTST />
+          <CreateSelection />
+        </div>
       </div>
-      <div className='m-6'><CreateSelection /></div>
-      <div className='m-6'><ViewSelections selections={selections} /></div>
     </div>
   );
 }
@@ -477,52 +481,56 @@ const RankingsSection = ({ selections }) => {
   }, [session, input.selectionId])
 
   return (
-    <div className='mt-4 p-2 w-full flex flex-col items-center border-solid border-2 border-white'>
-      <h1 className='mt-8 text-white text-center text-3xl font-bold'>Rankings</h1>
-      <table className='text-white text-center m-6'>
-        <thead>
-          <tr>
-            <th>TST</th>
-            <th>Index</th>
-            <th>Breakdown</th>
-            <th>Solves</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.submissions?.map(sub =>
-            <tr key={sub.id} className='border-y border-solid'>
-              <th className='p-2'>{sub.tst.name}</th>
-              <th className='p-2'>{sub.index.toFixed(2)}</th>
-              <th className='p-2'>{sub.answers.join(" ")}</th>
-              <th className='p-2'>{sub.tst.solves.map(s => s >= 0 ? s : "?").join(" ")}</th>
-            </tr>
-          )}
-        </tbody>
-      </table>
+    <div className='mt-4 p-2 w-full flex flex-col items-center'>
+      <h1 className='text-white text-center text-3xl font-black'>Rankings</h1>
+      <div className='mt-12 w-full flex flex-wrap justify-evenly items-start'>
+        <div className=''>
+          <table className='text-white text-center'>
+            <thead>
+              <tr>
+                <th className='p-2'>TST</th>
+                <th className='p-2'>Index</th>
+                <th className='p-2'>Breakdown</th>
+                <th className='p-2'>Solves</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.submissions?.map(sub =>
+                <tr key={sub.id} className='border-t-2 border-solid'>
+                  <th className='p-2'>{sub.tst.name}</th>
+                  <th className='p-2'>{sub.index.toFixed(2)}</th>
+                  <th className='p-2'>{sub.answers.join(" ")}</th>
+                  <th className='p-2'>{sub.tst.solves.map(s => s >= 0 ? s : "?").join(" ")}</th>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
 
-      <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
-      <div className='m-2'>
-        {data.cutoff >= 0 ? <p className='text-white text-xl'>Cutoff: {data.cutoff}</p> : null}
+        <div className=''>
+          <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+          {data.cutoff >= 0 ? <p className='mt-2 text-white'>Cutoff: {data.cutoff}</p> : null}
+
+          <table className='text-white text-center mt-2 mb-8'>
+            <thead>
+              <tr>
+                <th className='p-2'>Rank</th>
+                <th className='p-2'>Name</th>
+                <th className='p-2'>Index</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.rankings?.map((r, i) =>
+                <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
+                  <td className='p-2'>{r.rank}</td>
+                  <td className='p-2'>{r.name}</td>
+                  <td className='p-2'>{r.index >= 0 ? r.index.toFixed(2) : '???'}</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      <table className='text-white text-center mt-2 mb-8'>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Index</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.rankings?.map((r, i) =>
-            <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
-              <td className='p-2'>{r.rank}</td>
-              <td className='p-2'>{r.name}</td>
-              <td className='p-2'>{r.index >= 0 ? r.index.toFixed(2) : '???'}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
     </div>
   );
 }
@@ -661,8 +669,8 @@ const ProblemSection = ({ user }) => {
   }, [session])
 
   return (
-    <div className='w-full flex flex-col justify-center items-center text-white border border-solid border-white'>
-      <h3 className='text-white text-2xl font-bold'>Problems</h3>
+    <div className='w-full flex flex-col justify-center items-center text-white'>
+      <h3 className='text-white text-3xl font-black'>Problems</h3>
       <div className='m-2 p-2 w-full flex flex-wrap justify-center items-start'>
         {problems.map((p, i) => user.admin || p.approved ? <Problem key={i} problem={p} /> : null)}
       </div>
@@ -675,7 +683,7 @@ const UserCard = ({ user }) => {
   const { session } = useSession()
 
   return (
-    <div className='m-2 w-[18rem] flex bg-navy-light bg-opacity-50 rounded-md border'>
+    <div className='m-2 max-w-[18rem] flex bg-navy-light bg-opacity-50 rounded-md border'>
       <img alt="Profile Picture" src={user.profilePicData} className='w-16 h-16 object-cover rounded-full border-4 border-solid border-white' />
       <div className='ml-2 text-white'>
         <p className={`${user.admin ? "text-pink" : "text-white"} font-medium`}>{user.name}</p>
@@ -716,10 +724,10 @@ const UserSection = ({ users, user }) => {
   }
 
   return (
-    <div className='my-4 border-solid border-2 border-white w-full flex flex-col justify-center items-center'>
-      <h3 className='text-white text-2xl font-bold'>Directory</h3>
+    <div className='my-4 w-full flex flex-col justify-center items-center'>
+      <h3 className='text-white text-3xl font-black'>Directory</h3>
       <p className='text-white'>Solve more POTDs!</p>
-      {!user.discordId || user.discordId.length < 17 ?
+      {!user.discordId || user.discordId.length < 17?
         <div className='m-2'>
           <p className='text-white text-center'>Settings ➡️ Copy your Discord Tag ➡️ Advanced ➡️ Enable Developer Mode ➡️ My Account ➡️ (three dots) ➡️ Copy ID</p>
           <InputField id="discordTag" name="Discord Tag" value={input.discordTag} onChange={(e) => handleInputChange(e, input, setInput)} />
