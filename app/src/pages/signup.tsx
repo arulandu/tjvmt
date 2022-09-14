@@ -19,6 +19,10 @@ const SignUp: NextPage<any> = () => {
   })
   
   const submit = async () => {
+    if(input.email.includes('@') && input.email.includes('.')) {
+      notify(toastDispatch, "", "Provide a valid email..", ToastType.DANGER)
+      return;
+    }
     const userRes = await fetch('/api/user', {
       method: 'POST',
       headers: {
