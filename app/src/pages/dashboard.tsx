@@ -95,11 +95,14 @@ const Poll = ({ data, edit, setView }) => {
     const d = res.responses.map(r => r.author.name + " (" + data.options[r.optionIndex] + ")")
     setView(d)
   }
+  const startDate = new Date(data.startDate)
+  const startDateTxt = `${startDate.getMonth()+1}/${startDate.getDay()}/${startDate.getFullYear()} ${startDate.getHours()%12}:${startDate.getMinutes() < 10 ? '0' : ''}${startDate.getMinutes()} ${startDate.getHours() >= 12 ? 'PM' : 'AM'} `
 
   return (
     <div className='p-4 mx-2 bg-navy-light bg-opacity-50 rounded-md'>
-      <div className='flex justify-start'>
+      <div className=''>
         <p className='text-white text-sm'>Status: <b>{data.closed ? 'Closed' : 'Open'}</b></p>
+        <p className='text-white text-sm'>Posted: {startDateTxt}</p>
       </div>
       <p className='text-white text-xl'>{data.text}</p>
       <div className='flex flex-col flex-nowrap justify-center items-center'>
@@ -108,8 +111,7 @@ const Poll = ({ data, edit, setView }) => {
         {
           edit ?
             <>
-              <hr className='my-2 border border-white border-solid w-full'></hr>
-              <div className='w-full flex justify-center'>
+              <div className='mt-2 w-full flex justify-center'>
                 {!data.closed ? <OutlineButton className='mx-1' name='Close' onClick={close} /> : null}
                 <OutlineButton className='mx-1' name='View' onClick={view} />
               </div>
