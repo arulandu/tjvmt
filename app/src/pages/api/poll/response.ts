@@ -9,8 +9,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method == 'GET') {
       if(!user.admin) return res.status(401).send(null)
-      const responses = await db.pollResponse.findMany({where: {pollId: req.query.id as string}, select: {optionIndex: true, author: {select: {name: true}}}, orderBy: [{author: {name: 'asc'}}]})
+      let responses = await db.pollResponse.findMany({where: {pollId: req.query.id as string}, select: {optionIndex: true, author: {select: {name: true}}}, orderBy: [{author: {name: 'asc'}}]})
+      const last = (a) => {
+        let s = a.author.name.split(' ')
+        return s[s.length-1]
+      }
 
+      responses = responses.sort((a, b) => {
+        let sa = last(a), sb = last(b)
+        return sa < sb ? -1 : (sa > sb ? 1 : 0)
+      })
       return res.status(200).json({
         responses
       })
