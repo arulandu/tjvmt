@@ -3,14 +3,23 @@ import { db } from '@/lib/db/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { authorized, profileBody } = await authorize(req, res)
+  const { authorized, profileBody, user } = await authorize(req, res)
   if (!authorized) return res.status(401).send(null)
 
   try {
     if (req.method == 'GET') {
       const where = req.query.competitor === 'true' ? {competitor: true} : {} 
       let users = await db.user.findMany({where})
+
+      const players = (await (await fetch(`https://mee6.xyz/api/plugins/levels/leaderboard/${process.env.DISCORD_GUILD_ID}`, {method: "GET"})).json()).players
+      const playerMap = {}; players.forEach(p => playerMap[p.id] = p)
+
+      users.forEach((u) => {
+        u['stats'] = u.discordId ? playerMap[u.discordId] : {}
+      })
+
       users = users.sort((a,b) => b.solvedProblemIds.length - a.solvedProblemIds.length)
+
       return res.status(200).json({
         users
       })
@@ -36,6 +45,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       return res.status(200).json({
         user: user
+      })
+    } else if(req.method == 'PATCH'){
+      const u = await db.user.update({where: {id: user.id}, data: {discordTag: req.body.discordTag, discordId: req.body.discordId}})
+      return res.status(200).json({
+        user: u
       })
     } else if(req.method == 'DELETE'){
       const user = await db.user.update({where: {id: req.query.id as string}, data: {

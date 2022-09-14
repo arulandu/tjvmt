@@ -29,6 +29,9 @@ model User {
   polls Poll[]
   pollResponses PollResponse[]
 
+  discordTag String?
+  discordId String?
+
   competitor Boolean @default(true)
   submissions Submission[]
   applications Application[]

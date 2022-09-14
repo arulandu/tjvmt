@@ -15,7 +15,7 @@ const SignUp: NextPage<any> = () => {
   const { session } = useSession()
   const { toastDispatch } = useToasts();
   const [input, setInput] = useState({
-    email: ''
+    email: '',
   })
   
   const submit = async () => {
@@ -23,6 +23,7 @@ const SignUp: NextPage<any> = () => {
       notify(toastDispatch, "", "Provide a valid email..", ToastType.DANGER)
       return;
     }
+
     const userRes = await fetch('/api/user', {
       method: 'POST',
       headers: {

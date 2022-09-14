@@ -73,11 +73,11 @@ const Poll = ({ data, edit, setView }) => {
         optionIndex: ind
       })
     })
-    
-    if(res.status == 200){
-    const newResponse = (await res.json()).response
-    setChoice({ optionIndex: ind, response: newResponse })
-    notify(toastDispatch, "", `Voted "${data.options[ind]}" in poll: ${data.text}`, ToastType.SUCCESS)
+
+    if (res.status == 200) {
+      const newResponse = (await res.json()).response
+      setChoice({ optionIndex: ind, response: newResponse })
+      notify(toastDispatch, "", `Voted "${data.options[ind]}" in poll: ${data.text}`, ToastType.SUCCESS)
     } else {
       notify(toastDispatch, "", `Invalid password for poll ${data.text}`, ToastType.DANGER)
     }
@@ -668,25 +668,58 @@ const UserCard = ({ user }) => {
   const { session } = useSession()
 
   return (
-    <div className='m-2 w-64 flex bg-navy-light bg-opacity-50 rounded-md border'>
+    <div className='m-2 w-[18rem] flex bg-navy-light bg-opacity-50 rounded-md border'>
       <img alt="Profile Picture" src={user.profilePicData} className='w-16 h-16 object-cover rounded-full border-4 border-solid border-white' />
       <div className='ml-2 text-white'>
         <p className={`${user.admin ? "text-pink" : "text-white"} font-medium`}>{user.name}</p>
-        <p className='font-light'>{user.ionUsername}</p>
-        <p className='text-green-300'>{user.solvedProblemIds.length} solves</p>
+        <p className='font-light'>{user.ionUsername} / {user.stats ? `${user.stats.username}` : '???'}</p>
+        <p className='text-green-300'>{user.solvedProblemIds.length} solves / Level {user.stats ? user.stats.level : '???'} / XP {user.stats ? user.stats.level : '???'}</p>
       </div>
     </div>
   );
 }
 
-const UserSection = ({ users }) => {
+const UserSection = ({ users, user }) => {
   const { session } = useSession();
+  const { toastDispatch } = useToasts();
+  const [input, setInput] = useState({
+    discordTag: '',
+    discordId: ''
+  })
+
+  const link = async () => {
+    if (input.discordTag.match(/\w+#\d+/).length == 0 || input.discordId.match(/\d{17,}/).length == 0) {
+      notify(toastDispatch, "", "Provide valid discord info", ToastType.DANGER)
+      return;
+    }
+
+    const res = await fetch('/api/user', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({
+        discordTag: input.discordTag,
+        discordId: input.discordId
+      })
+    })
+
+    notify(toastDispatch, "", `Linked Discord: ${input.discordTag} : ${input.discordId}`)
+  }
 
   return (
     <div className='my-4 border-solid border-2 border-white w-full flex flex-col justify-center items-center'>
       <h3 className='text-white text-2xl font-bold'>Directory</h3>
       <p className='text-white'>Solve more POTDs!</p>
-      <div className='flex flex-wrap justify-center items-center'>
+      {!user.discordId || user.discordId.length < 17 ?
+        <div className='m-2'>
+          <InputField id="discordTag" name="Discord Tag" value={input.discordTag} onChange={(e) => handleInputChange(e, input, setInput)} />
+          <InputField id="discordId" name="Discord ID" value={input.discordId} onChange={(e) => handleInputChange(e, input, setInput)} />
+          <OutlineButton name="Link Discord" onClick={link} className='mt-2' />
+        </div>
+        : null}
+      <div className='mt-4 flex flex-wrap justify-center items-center'>
         {users.map((u) =>
           <UserCard key={u.id} user={u} />
         )}
@@ -723,7 +756,7 @@ const Dashboard: NextPage<any> = ({ user, users, polls }) => {
         {user.admin ? <GraderSection selections={selections} /> : null}
         <RankingsSection selections={selections} />
         <ProblemSection user={user} />
-        <UserSection users={users} />
+        <UserSection users={users} user={user} />
       </section>
     </Layout >
   )
