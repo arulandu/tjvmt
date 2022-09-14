@@ -673,7 +673,7 @@ const UserCard = ({ user }) => {
       <div className='ml-2 text-white'>
         <p className={`${user.admin ? "text-pink" : "text-white"} font-medium`}>{user.name}</p>
         <p className='font-light'>{user.ionUsername} / {user.stats ? `${user.stats.username}` : '???'}</p>
-        <p className='text-green-300'>{user.solvedProblemIds.length} solves / Level {user.stats ? user.stats.level : '???'} / XP {user.stats ? user.stats.level : '???'}</p>
+        <p className='text-green-300'>{user.solvedProblemIds.length} solves / Level {user.stats ? user.stats.level : '???'} / XP {user.stats ? user.stats.xp : '???'}</p>
       </div>
     </div>
   );
