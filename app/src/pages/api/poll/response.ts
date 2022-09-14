@@ -34,16 +34,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         pollId: req.body.pollId,
         authorId: user.id
       }
+      let r = await db.pollResponse.findFirst({where: {pollId: req.body.pollId, authorId: user.id}})
+      if(r){
+        r = await db.pollResponse.update({where: {id: r.id}, data})
+      } else {
+        r = await db.pollResponse.create({data})
+      }
 
-      const response = await db.pollResponse.upsert({
-        where: {
-          id: req.body.responseId ? req.body.responseId : user.id
-        },
-        create: data,
-        update: data
-      })
-
-      return res.status(200).json({response})
+      return res.status(200).json({response: r})
     }
   } catch (e) {
     console.log(e)
