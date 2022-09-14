@@ -117,7 +117,6 @@ const Poll = ({ data, edit, setView }) => {
             : null
         }
       </div>
-
     </div>
   );
 }
@@ -712,8 +711,9 @@ const UserSection = ({ users, user }) => {
     <div className='my-4 border-solid border-2 border-white w-full flex flex-col justify-center items-center'>
       <h3 className='text-white text-2xl font-bold'>Directory</h3>
       <p className='text-white'>Solve more POTDs!</p>
-      {!user.discordId || user.discordId.length < 17 ?
+      {!user.discordId || user.discordId.length < 17?
         <div className='m-2'>
+          <p className='text-white text-center'>Settings ➡️ Copy your Discord Tag ➡️ Advanced ➡️ Enable Developer Mode ➡️ My Account ➡️ (three dots) ➡️ Copy ID</p>
           <InputField id="discordTag" name="Discord Tag" value={input.discordTag} onChange={(e) => handleInputChange(e, input, setInput)} />
           <InputField id="discordId" name="Discord ID" value={input.discordId} onChange={(e) => handleInputChange(e, input, setInput)} />
           <OutlineButton name="Link Discord" onClick={link} className='mt-2' />
