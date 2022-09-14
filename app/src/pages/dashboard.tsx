@@ -620,7 +620,7 @@ const Problem = ({ problem }) => {
         <MathText inline dynamic className='w-full'>{problem.content}</MathText>
 
       </div>
-      {problem.solved ?
+      {problem.solved && problem.approved ?
         <p className='text-green-300 text-md'>Solved</p>
         :
         <div className='flex'>
