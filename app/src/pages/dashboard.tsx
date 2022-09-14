@@ -719,10 +719,10 @@ const Dashboard: NextPage<any> = ({ user, users, polls }) => {
           <h1 className='mt-4 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
         </div>
-        <ProblemSection user={user} />
         <PollSection user={user} polls={polls} />
         {user.admin ? <GraderSection selections={selections} /> : null}
         <RankingsSection selections={selections} />
+        <ProblemSection user={user} />
         <UserSection users={users} />
       </section>
     </Layout >
