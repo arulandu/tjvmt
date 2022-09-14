@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const playerMap = {}; players.forEach(p => playerMap[p.id] = p)
 
       users.forEach((u) => {
-        u['stats'] = u.discordId ? playerMap[u.discordId] : {}
+        u['stats'] = u.discordId ? playerMap[u.discordId] : undefined
       })
 
       users = users.sort((a,b) => b.solvedProblemIds.length - a.solvedProblemIds.length)
