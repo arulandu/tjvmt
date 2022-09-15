@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!authorized) return res.status(401).send(null)
 
     if(req.method == 'GET'){
-      const problems = await db.problem.findMany({orderBy: {createdAt: 'desc'}})
+      const problems = await db.problem.findMany({orderBy: {createdAt: 'desc'}, include: {author: {select: {name: true}}}})
       problems.forEach(prob => prob['solved'] = prob.solverIds.includes(user.id))
       
       return res.status(200).json({problems})

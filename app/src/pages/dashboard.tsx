@@ -626,9 +626,9 @@ const Problem = ({ problem }) => {
   return (
     <div className='m-2 p-2 max-w-xs rounded-md bg-navy-light bg-opacity-50'>
       <h3 className='text-xl text-white font-medium'>{problem.name}</h3>
-      <div className='mt-2 block text-md'>
+      <p className='text-white font-light'>By {problem.author.name}</p>
+      <div className='mt-2 block text-md overflow-x-auto overflow-y-hidden'>
         <MathText inline dynamic className='w-full'>{problem.content}</MathText>
-
       </div>
       {problem.approved ? problem.solved ?
         <p className='text-green-300 text-md'>Solved</p>
