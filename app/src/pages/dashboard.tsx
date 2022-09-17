@@ -624,7 +624,7 @@ const Problem = ({ problem }) => {
   }
 
   return (
-    <div className='m-2 p-2 max-w-xs rounded-md bg-navy-light bg-opacity-50'>
+    <div className=' m-2 p-2 min-w-[20rem] rounded-md bg-navy-light bg-opacity-50'>
       <h3 className='text-xl text-white font-medium'>{problem.name}</h3>
       <p className='text-white font-light'>By {problem.author.name}</p>
       <div className='mt-2 block text-md overflow-x-auto overflow-y-hidden'>
@@ -671,8 +671,10 @@ const ProblemSection = ({ user }) => {
   return (
     <div className='w-full flex flex-col justify-center items-center text-white'>
       <h3 className='text-white text-3xl font-black'>Problems</h3>
-      <div className='m-2 p-2 w-full flex flex-wrap justify-center items-start'>
+      <div className='w-full overflow-auto'>
+      <div className='w-full m-2 p-2 flex justify-start items-start'>
         {problems.map((p, i) => user.admin || p.approved ? <Problem key={i} problem={p} /> : null)}
+      </div>
       </div>
       <CreateProblem />
     </div>
