@@ -103,6 +103,7 @@ const Poll = ({ data, edit, setView }) => {
       <div className=''>
         <p className='text-white text-sm'>Status: <b>{data.closed ? 'Closed' : 'Open'}</b></p>
         <p className='text-white text-sm'>Posted: {startDateTxt}</p>
+        {edit ? <p className='text-white text-sm'>Password: {data.password}</p> : null}
       </div>
       <p className='text-white text-xl'>{data.text}</p>
       <div className='flex flex-col flex-nowrap justify-center items-center'>
