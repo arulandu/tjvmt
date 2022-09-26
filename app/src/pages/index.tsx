@@ -72,7 +72,7 @@ const ExperienceSection = () => {
 
 const LeadershipSection = ({officers}: {officers: {picture: string, position: string, name: string}[]}) => {
   return (
-    <section id="leadership" className='mx-4 sm:mx-12 lg:mx-24 py-24 flex flex-wrap xl:flex-nowrap items-start'>
+    <section id="leadership" className='mx-4 sm:mx-8 lg:mx-8 py-24 flex flex-wrap xl:flex-nowrap items-start'>
       {/* <div className='w-full flex items-start'> */}
         <div className='flex-grow'>
           <div className='relative aspect-[13/10]'>
@@ -84,12 +84,12 @@ const LeadershipSection = ({officers}: {officers: {picture: string, position: st
           </p>
         </div>
         <div className='mt-16 xl:mt-0 ml-auto flex-grow flex flex-wrap items-center justify-around xl:justify-end'>
-          {/* <h1 className='mb-4 w-full text-center text-white text-3xl font-bold'>Officers (2021-2022)</h1> */}
+          {/* <h1 className='mb-4 w-full text-center text-white text-3xl font-bold'>Officers (2022-2023)</h1> */}
           {
             officers.map((officer) => {
               return (
                 <div key={officer.name} className='m-2 group flex justify-center'>
-                  <div className='relative w-64 aspect-[3/2] '>
+                  <div className='relative w-48 aspect-[1/1] '>
                     <div className='absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200'>
                       <p className='text-navy text-base font-bold text-center'>{officer.name} ({officer.position})</p>
                       {/* <p className=''></p> */}
@@ -121,15 +121,15 @@ export async function getStaticProps() {
   return {
     props: {
       officers: [
-        { picture: `/images/officers/garrett.jpg`, position: "Captain", name: "Garrett Heller" },
-        { picture: `/images/officers/drew.jpg`, position: "Co-Captain", name: "Andrew Kim" },
-        { picture: `/images/officers/hilal.jpg`, position: "Co-Captain", name: "Mirza Hussain" },
-        { picture: `/images/officers/caleb.jpg`, position: "Statistician", name: "Alvan Caleb Arulandu" },
-        { picture: `/images/officers/pranav.jpg`, position: "Statistician", name: "Pranav Mathur" },
-        { picture: `/images/officers/nikhil.jpg`, position: "Finance Officer", name: "Nikhil Pesaladinne" },
-        { picture: `/images/officers/mihika.jpg`, position: "Finance Officer", name: "Mihika Dusad" },
-        { picture: `/images/officers/aarav.jpg`, position: "Secretary", name: "Aarav Bajaj" },
-        { picture: `/images/officers/shyla.jpg`, position: "Historian", name: "Shyla Bisht" }
+        { picture: `/images/officers/nikhil.png`, position: "Captain", name: "Nikhil Pesaladinne" },
+        { picture: `/images/officers/caleb.png`, position: "Co-Captain", name: "Alvan Caleb Arulandu" },
+        { picture: `/images/officers/isabella.png`, position: "Co-Captain", name: "Isabella Zhu" },
+        { picture: `/images/officers/michelle.png`, position: "Statistician", name: "Michelle Kang" },
+        { picture: `/images/officers/laura.png`, position: "Statistician", name: "Laura Zhang" },
+        { picture: `/images/officers/avni.png`, position: "Finance Officer", name: "Avni Garg" },
+        { picture: `/images/officers/zani.png`, position: "Finance Officer", name: "Zani Xu" },
+        { picture: `/images/officers/mihika.png`, position: "Secretary", name: "Mihika Dusad" },
+        { picture: `/images/officers/madhav.png`, position: "Historian", name: "Madhav Krishnaswamy" }
       ]
     }
   }
