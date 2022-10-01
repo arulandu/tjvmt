@@ -6,7 +6,7 @@ import { MathText } from "../MathText";
 import OutlineButton from "../OutlineButton";
 import { useSession } from "../SessionProvider";
 import { Spinner } from "../Spinner";
-import { TextArea } from "../Textarea";
+import { TextArea } from "../TextArea";
 import { useToasts } from "../ToastProvider";
 
 const CreateProblem = () => {
