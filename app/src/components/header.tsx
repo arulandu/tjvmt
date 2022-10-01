@@ -70,7 +70,7 @@ const NavBar = () => {
         <NavLink index={0} href="/dashboard" name="Dashboard" onClick={() => notify(toastDispatch, "", "Loading your dashboard...", ToastType.DEFAULT)}/>
         <NavLink index={1} href="/tjimo" name="TJIMO" />
         <NavLink index={2} href="/resources" name="Resources" />
-        <NavLink index={3} href="/Calendar" name="Calendar" />
+        <NavLink index={3} href="/calendar" name="Calendar" />
         <Link href="mailto:vmtofficers@gmail.com" passHref>
           <a className='mt-4 md:ml-4 md:mt-0'>
             <OutlineButton name="Contact" />

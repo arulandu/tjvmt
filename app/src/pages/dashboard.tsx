@@ -39,7 +39,7 @@ const Dashboard: NextPage<any> = ({ }) => {
   }
 
   return (
-    <Layout>
+    <Layout dim>
       <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center'>
         <div className="h-screen flex flex-col items-center justify-center">
           <div className='w-32 h-32 rounded-full border-solid border-4 border-white bg-black overflow-hidden'>

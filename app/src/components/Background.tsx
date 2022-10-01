@@ -1,6 +1,6 @@
 import Particles, { IOptions, RecursivePartial } from "react-tsparticles";
 
-const Background = () => {
+const Background = ({className}) => {
   const particleParams: RecursivePartial<IOptions> = {
     "particles": {
       "number": {
@@ -114,10 +114,10 @@ const Background = () => {
 
   return (
     <div className='fixed top-0 left-0 w-full h-full bg-navy z-[-1]'>
-      {/* <Particles
-        className='w-full h-full'
+      <Particles
+        className={`w-full h-full ${className}`}
         options={particleParams}
-      /> */}
+      />
     </div>
   );
 }

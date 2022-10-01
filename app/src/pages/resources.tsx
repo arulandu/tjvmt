@@ -26,7 +26,7 @@ const ArchiveEmbed = ({ name, id }) => {
 
 const Resources: NextPage<any> = ({ user }) => {
   return (
-    <Layout>
+    <Layout dim>
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="mb-6 text-white text-5xl gradient-text text-center">Archive</h1>
