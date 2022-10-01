@@ -6,6 +6,7 @@ import { InputField } from "../InputField";
 import OutlineButton from "../OutlineButton";
 import { useSession } from "../SessionProvider";
 import { Spinner } from "../Spinner";
+import { TabSelect } from "../TabSelect";
 import { useToasts } from "../ToastProvider";
 
 const PollOption = ({ name = "", className = "", selected = false, onClick = () => { } }) => {
@@ -146,6 +147,9 @@ export const PollSection = () => {
   const [view, setView] = useState(null)
   const { session, user } = useSession();
   const [polls, setPolls] = useState([])
+  const [input, setInput] = useState({
+    status: 'open'
+  })
 
   useEffect(() => {
     if (!session) return
@@ -170,9 +174,10 @@ export const PollSection = () => {
               <CreatePoll />
             </div>
             : null}
+          <TabSelect id='status' options={[{label: 'Open Only', value: 'open'}, {label: 'All', value: 'all'}]} value={input.status} onChange={(x) => setInput({...input, status: x})} className='mx-auto'/>
           <div className='w-full mt-8 flex justify-center flex-wrap gap-x-2 gap-y-8'>
             {polls.map((p) =>
-              <Poll key={p.id} data={p} edit={user.admin} setView={setView} />
+              input.status === 'all' || !p.closed ? <Poll key={p.id} data={p} edit={user.admin} setView={setView} /> : null
             )}
           </div>
         </div>

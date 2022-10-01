@@ -14,12 +14,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if(!authorized) return res.status(401).send(null)
 
     try {
+      const writer = req.body.writer ? req.body.writer === 'true' : false;
       let sub = await db.submission.findFirst({where: {tstId: req.body.tstId, authorId: req.body.userId}})
       if(sub){
-        sub = await db.submission.update({where: {id: sub.id}, data: {answers: req.body.answers}})
+        sub = await db.submission.update({where: {id: sub.id}, data: {answers: req.body.answers, writer}})
       } else {
         sub = await db.submission.create({
           data: {
+            writer,
             answers: req.body.answers,
             tstId: req.body.tstId,
             authorId: req.body.userId

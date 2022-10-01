@@ -10,22 +10,14 @@ import { GraderSection } from '@/components/dashboard/grader';
 import { PollSection } from '@/components/dashboard/polls';
 import { handleInputChange } from '@/lib/handleInputChange';
 import { Spinner } from '@/components/Spinner';
+import { TabSelect } from '@/components/TabSelect';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { authorized } = await authorize(req, res)
   return authorized ? { props: {} } : { redirect: { destination: '/404', permanent: true } }
 }
 
-const TabSelection = ({ id, label, options, value, onChange, className = '' }) => {
-  return (
-    <div className={`${className}`}>
-      <label htmlFor={id} className='text-white text-xl'>{label}</label>
-      <select id={id} name={id} value={value} onChange={onChange} className='ml-2'>
-        {options.map((op, i) => <option key={i} value={op.value}>{op.label}</option>)}
-      </select>
-    </div>
-  );
-}
+
 
 const Dashboard: NextPage<any> = ({ }) => {
   let { user } = useSession()
@@ -55,7 +47,7 @@ const Dashboard: NextPage<any> = ({ }) => {
           </div>
           <h1 className='mt-4 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
-          <TabSelection id="tab" label="Tab:" options={tabs} value={input.tab} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+          <TabSelect id="tab" options={tabs} value={input.tab} onChange={(x) => setInput({...input, tab: x})} className='mt-8 flex-col sm:flex-row' />
         </div>
         {input.tab ? tabMap[input.tab] : null}
       </section>

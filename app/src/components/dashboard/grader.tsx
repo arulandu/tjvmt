@@ -183,7 +183,8 @@ const SubmitGrade = ({ tsts, users }) => {
   const [input, setInput] = useState({
     answers: '',
     tstId: '',
-    userId: ''
+    userId: '',
+    writer: false
   })
 
   useEffect(() => {
@@ -195,7 +196,6 @@ const SubmitGrade = ({ tsts, users }) => {
 
 
   const submit = async () => {
-    console.log(input.answers, input.tstId)
     const res = await fetch('/api/tst/submission', {
       method: 'POST',
       headers: {
@@ -203,6 +203,7 @@ const SubmitGrade = ({ tsts, users }) => {
         'Authorization': `Bearer ${session.access_token}`
       },
       body: JSON.stringify({
+        writer: input.writer,
         answers: input.answers.split(' ').map(e => parseInt(e.trim())),
         tstId: input.tstId,
         userId: input.userId
@@ -218,6 +219,7 @@ const SubmitGrade = ({ tsts, users }) => {
       <p className='text-white mt-2 text-md'>Key in answers using space to separate.</p>
       <Dropdown id="tstId" label="TST" options={tsts.map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
       <Dropdown id="userId" label="ION" options={users.map(user => ({ label: user.ionUsername, value: user.id }))} value={input.userId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+      <Dropdown id="writer" label="Writer?" options={[{label: 'YES', value: true}, {label: 'NO', value: false}]} value={input.writer} onChange={(e) => handleInputChange(e, input, setInput)} />
       <InputField id='answers' name='Answers' value={input.answers} onChange={(e) => handleInputChange(e, input, setInput)} />
       {/* <InputField id='tstId' name='Choices' value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} /> */}
       <OutlineButton name='Submit' className='mt-4' onClick={submit} />
