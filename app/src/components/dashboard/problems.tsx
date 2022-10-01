@@ -6,6 +6,7 @@ import { MathText } from "../MathText";
 import OutlineButton from "../OutlineButton";
 import { useSession } from "../SessionProvider";
 import { Spinner } from "../Spinner";
+import { TabSelect } from "../TabSelect";
 import { TextArea } from "../TextArea";
 import { useToasts } from "../ToastProvider";
 
@@ -130,7 +131,8 @@ const Problem = ({ problem }) => {
 
 export const ProblemSection = () => {
   const { session, user } = useSession();
-  const [problems, setProblems] = useState([])
+  let [problems, setProblems] = useState([])
+  const [input, setInput] = useState({unsolved: true})
   useEffect(() => {
     if (!session) return
     const options = {
@@ -142,15 +144,19 @@ export const ProblemSection = () => {
     fetch('/api/problem', options).then(res => res.json()).then((data) => setProblems(data.problems))
   }, [session])
 
+  if(input.unsolved) problems = problems.filter(p => !p.solved)
+
   return (
     <div className='relative w-full min-h-fit flex flex-col justify-center items-center text-white'>
       <h3 className='text-white text-3xl font-black'>Problems</h3>
       <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={problems.length <= 0} />
-
+      <TabSelect id="unsolved" options={[{label: 'Unsolved Only', value: true}, {label: 'All', value: false}]} value={input.unsolved} onChange={(x) => setInput({...input, unsolved: x})} className='mt-4'/>
       <div className='w-full h-full overflow-x-auto '>
+        {problems.length > 0 ?
         <div className='w-full m-2 p-2 flex justify-start items-start'>
           {problems.map((p, i) => user.admin || p.approved ? <Problem key={i} problem={p} /> : null)}
         </div>
+        : null}
       </div>
       <CreateProblem />
     </div>
