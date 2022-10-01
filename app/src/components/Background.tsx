@@ -114,10 +114,10 @@ const Background = () => {
 
   return (
     <div className='fixed top-0 left-0 w-full h-full bg-navy z-[-1]'>
-      <Particles
+      {/* <Particles
         className='w-full h-full'
         options={particleParams}
-      />
+      /> */}
     </div>
   );
 }

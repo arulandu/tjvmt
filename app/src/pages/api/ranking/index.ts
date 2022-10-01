@@ -17,10 +17,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const submissions = await db.submission.findMany({where: {authorId: user.id}, include: {tst: {select: {name: true, solves: true}}}})
       submissions.forEach(s => s.tst.solves = s.tst.solves.map((e,i) => s.answers[i] > 0 ? e : -1))
 
-      let rank = 1; let starts = [0]
+      let rank = 1; let starts = []; starts.push(0)
       let userInd = -1
       for(let i = 0; i < apps.length; i++){
-        if(i > 0 && apps[i].index != apps[i-1].index) {starts.push(i); rank++;}
+        if(i > 0 && apps[i].index != apps[i-1].index) {rank += i-starts[starts.length-1]; starts.push(i);}
         ranks[i]['rank'] = rank
         ranks[i]['index'] = apps[i].index
         if(apps[i].authorId === user.id){
@@ -28,17 +28,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       }
 
-      for(let i = 0; i < apps.length; i++){
-        if(i >= 10 && Math.abs(ranks[i]['rank']-ranks[userInd]['rank']) > 1){
-          ranks[i]['index'] = -1;
-          ranks[i]['name'] = "???"
-        } else {
-          ranks[i]['name'] = apps[i].author.ionUsername;
-        }
-      }
-
       const cutoff = apps[Math.min(apps.length,selection.size)-1].index
-      return res.status(200).json({ cutoff, userInd, submissions, rankings: ranks})
+      for(let i = 0; i < apps.length; i++){
+        ranks[i]['name'] = i < 10 || apps[i].authorId === user.id ? apps[i].author.ionUsername : '???';
+        if(i >= 10 && Math.abs(userInd-i) > 1){
+          ranks[i]['index'] = -1;
+        }
+        if(i > 0 && (ranks[i-1] == null || ranks[i-1]['index'] == -1) && ranks[i]['index'] == -1) ranks[i] = null
+      }
+      const rankings = ranks.filter((r) => r)
+      // const rankings = ranks
+      return res.status(200).json({ cutoff, userInd, submissions, rankings})
     }
   } catch (e) {
     return res.status(400).json({
