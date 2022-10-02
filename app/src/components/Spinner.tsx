@@ -5,7 +5,6 @@ export const Spinner = ({ className, show, cycle=2 }) => {
   useEffect(() => {
     const delay = setTimeout(() => {
       setCycled(true)
-      console.log(true)
     }, cycle*1000/2)
   }, [])
   return (
