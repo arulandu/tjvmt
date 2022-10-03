@@ -184,7 +184,7 @@ export const PollSection = () => {
         {user.admin ?
           <div className='w-full p-8 items-center'>
             <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
-            <div className='w-full h-96 p-2 overflow-y-scroll mt-8 bg-navy-light bg-opacity-50 flex flex-col justify-center items-center text-center'>
+            <div className='w-full h-96 p-2 overflow-y-scroll mt-8 bg-navy-light bg-opacity-50 flex flex-col items-center text-center'>
               {
                 view ?
                   view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
