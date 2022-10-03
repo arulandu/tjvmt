@@ -17,7 +17,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const writer = req.body.writer ? req.body.writer === 'true' : false;
       let sub = await db.submission.findFirst({where: {tstId: req.body.tstId, authorId: req.body.userId}})
       if(sub){
-        sub = await db.submission.update({where: {id: sub.id}, data: {answers: req.body.answers, writer}})
+        const answers = req.body.answers.map((a, i) => a == -1 ? sub.answers[i] : a).map(v => v == -1 ? 0 : v)
+        sub = await db.submission.update({where: {id: sub.id}, data: {answers, writer}})
       } else {
         sub = await db.submission.create({
           data: {
@@ -33,6 +34,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         sub
       })
     } catch (e) {
+      console.log(e)
       return res.status(400).json({
         error: 'submission already exists',
         message: e
