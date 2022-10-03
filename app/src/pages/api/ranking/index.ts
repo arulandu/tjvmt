@@ -27,11 +27,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           userInd = i;
         }
       }
-
+      
       const cutoff = apps[Math.min(apps.length,selection.size)-1].index
       for(let i = 0; i < apps.length; i++){
-        ranks[i]['name'] = i < 10 || apps[i].authorId === user.id ? apps[i].author.ionUsername : '???';
-        if(i >= 10 && Math.abs(userInd-i) > 1){
+        ranks[i]['name'] = i < selection.size || apps[i].authorId === user.id ? apps[i].author.ionUsername : '???';
+        if(i >= selection.size && Math.abs(userInd-i) > 1){
           ranks[i]['index'] = -1;
         }
         if(i > 0 && (ranks[i-1] == null || ranks[i-1]['index'] == -1) && ranks[i]['index'] == -1) ranks[i] = null
