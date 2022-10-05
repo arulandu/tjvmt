@@ -22,7 +22,7 @@ model User {
   name String
   nickname String
   email String
-  profilePic String
+  //profilePic String
   
   // TODO: separate admin and competitor into separate models?
   admin Boolean @default(false)
