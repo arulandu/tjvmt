@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Header from "./header";
 import Background from "./Background";
 
-export const Layout: FC<any> = ({ children }) => {
+export const Layout: FC<any> = ({ dim=false, children }) => {
     return (
         <>
             <Head>
@@ -44,7 +44,7 @@ export const Layout: FC<any> = ({ children }) => {
             </Head>
             <Header/>
             <div className='relative w-full m-0 h-screen'>
-                <Background/>
+                <Background className={dim ? "opacity-25" : 'opacity-100'}/>
                 <main className='relative w-full min-h-screen bg-transparent'>
                     {children}
                     <Footer/>

@@ -23,7 +23,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         ]
       })
 
-      polls.forEach(p => {p['hasPassword'] = p.password && p.password.length > 0; p.password = '';})
+      polls.forEach(p => {p['hasPassword'] = p.password && p.password.length > 0; if(!user.admin) p.password = '';})
 
       return res.status(200).json({
         polls

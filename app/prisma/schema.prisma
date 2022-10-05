@@ -22,12 +22,15 @@ model User {
   name String
   nickname String
   email String
-  //profilePic String
-  
+  profilePicUrl String
+  profilePicData String
   // TODO: separate admin and competitor into separate models?
   admin Boolean @default(false)
   polls Poll[]
   pollResponses PollResponse[]
+
+  discordTag String?
+  discordId String?
 
   competitor Boolean @default(true)
   submissions Submission[]
@@ -56,6 +59,8 @@ model Submission {
   answers Int[]
   score Float @default(-1.0)
   index Float @default(-1.0)
+
+  writer Boolean @default(false)
 
   tst TST @relation(fields: [tstId], references: [id])
   tstId String @db.ObjectId

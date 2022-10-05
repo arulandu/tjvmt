@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const News: NextPage<any> = () => {
     return (
-        <Layout>
+        <Layout dim>
 
             <section className="flex flex-col items-center justify-center pt-24">
                 <h2 className="mb-6 text-white text-5xl gradient-text text-center">Calendar</h2>

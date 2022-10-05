@@ -36,9 +36,20 @@ const CloseButton = ({ open, className='', onClick=()=>{}}) => {
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
+  const [atTop, setAtTop] = useState(true);
   const router = useRouter()
   const { session, setSession } = useSession()
   const { toastDispatch } = useToasts()
+
+  useEffect(() => {
+    const atTopCallback = () => {
+      if(window.scrollY >= 80) setAtTop(false);
+      else setAtTop(true)
+    }
+
+    window.addEventListener('scroll', atTopCallback)
+    return () => window.removeEventListener('scroll', atTopCallback)
+  })
 
   const logOut = () => {
     setSession(null);
@@ -46,7 +57,7 @@ const NavBar = () => {
   }
 
   return (
-    <nav className='relative h-full flex items-center justify-between z-10 px-4 sm:px-12 lg:px-24'>
+    <nav className={`relative h-ful ${atTop ? 'bg-transparent' : 'bg-navy'} flex items-center justify-between z-10 py-2 px-4 sm:px-12 lg:px-24 transition-all ease-in-out duration-500`}>
       <div className='flex relative z-20'>
         <HamburgerButton open={isOpen} onClick={() => setOpen(!isOpen)} />
         <Link href="/" passHref>
@@ -59,7 +70,7 @@ const NavBar = () => {
         <NavLink index={0} href="/dashboard" name="Dashboard" onClick={() => notify(toastDispatch, "", "Loading your dashboard...", ToastType.DEFAULT)}/>
         <NavLink index={1} href="/tjimo" name="TJIMO" />
         <NavLink index={2} href="/resources" name="Resources" />
-        <NavLink index={3} href="/Calendar" name="Calendar" />
+        <NavLink index={3} href="/calendar" name="Calendar" />
         <Link href="mailto:vmtofficers@gmail.com" passHref>
           <a className='mt-4 md:ml-4 md:mt-0'>
             <OutlineButton name="Contact" />

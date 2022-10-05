@@ -7,10 +7,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if(!authorized) return res.status(401).send(null)
 
   if(req.method == 'POST'){
-    const tst = await db.tST.findUnique({where: {id: req.body.tstId}, include: {submissions: {select: {id: true, answers: true}}}})
+    const tst = await db.tST.findUnique({where: {id: req.body.tstId}, include: {submissions: {select: {id: true, answers: true, writer: true}}}})
     
     // compute answers: potentially weighted
-    let answers = tst.submissions.map(s => s.answers)
+    let subs = tst.submissions.filter(s => !s.writer)
+    let answers = subs.map(s => s.answers)
     if(answers.length == 0) return res.status(200).json({})
 
     let solves = answers.reduce((a, b) => a.map((e, i) => e + b[i]))
@@ -30,10 +31,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await db.tST.update({where: {id: tst.id}, data: { solves }})
     
     // update submission documents
-    for(let i = 0; i < tst.submissions.length; i++){
+    for(let i = 0; i < subs.length; i++){
       await db.submission.update({
         where: {
-          id: tst.submissions[i].id,
+          id: subs[i].id,
         },
         data: {
           index: index[i],
@@ -41,6 +42,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       })
     }
+    
+    await Promise.all(tst.submissions.filter(s => s.writer).map(async (s) => 
+      await db.submission.update({where: {id: s.id}, data: {index: 2000}})
+    ))
 
     res.status(200).json({
       topAvg
