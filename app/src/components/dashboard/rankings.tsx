@@ -28,13 +28,13 @@ export const RankingsSection = ({}) => {
     }
     fetch('/api/selection', options).then(res => res.json()).then((data) => {
       setSelections(data.selections)
-      setInput({...input, selectionId: data.selections[0].id})
+      setInput({...input, selectionId: data.selections.length > 0 ? data.selections[0].id : null})
     })
   }, [session])
 
 
   useEffect(() => {
-    if (!session || input.selectionId.length <= 0) return
+    if (!session || !input.selectionId || input.selectionId.length <= 0) return
     const options = {
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const RankingsSection = ({}) => {
   return (
     <div className='relative mt-4 p-2 w-full flex flex-col items-center'>
       <h1 className='text-white text-center text-3xl font-black'>Rankings</h1>
-      <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={selections.length == 0 || data.submissions.length == 0} />
+      <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={input.selectionId && input.selectionId.length == 0} />
 
       <div className='mt-12 w-full flex flex-wrap justify-evenly items-start'>
         <div className=''>
@@ -70,7 +70,7 @@ export const RankingsSection = ({}) => {
                   <th className='p-2'>{sub.tst.name}</th>
                   <th className='p-2'>{sub.index.toFixed(2)}</th>
                   <th className='p-2'>{sub.answers.join(" ")}</th>
-                  <th className='p-2'>{sub.tst.solves.map(s => s >= 0 ? s : "?").join(" ")}</th>
+                  <th className='p-2'>{sub.tst.solves.join(" ")}</th>
                 </tr>
               )}
             </tbody>

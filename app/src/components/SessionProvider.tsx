@@ -39,5 +39,5 @@ export const useSession = () => {
   let changeSession = (v) => {
     Cookies.set('auth', v); setSession(v)
   }
-  return { session, user, setSession: changeSession }
+  return { session, user: !user ? {} : user, setSession: changeSession }
 }
