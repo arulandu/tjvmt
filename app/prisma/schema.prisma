@@ -38,8 +38,6 @@ model User {
   authoredProblems Problem[] @relation("AuthoredProblems")
   solvedProblems Problem[] @relation("SolvedProblems", fields: [solvedProblemIds], references: [id])
   solvedProblemIds String[] @db.ObjectId
-
-  attendance Boolean @default(false)
 }
 
 // TSTs //
