@@ -58,19 +58,17 @@ export const RankingsSection = ({}) => {
           <table className='text-white text-center'>
             <thead>
               <tr>
-                <th className='p-2'>TST</th>
-                <th className='p-2'>Index</th>
-                <th className='p-2'>Breakdown</th>
-                <th className='p-2'>Solves</th>
+                <th className='p-4'>TST</th>
+                <th className='p-4'>Index</th>
+                <th className='p-4'>Solves</th>
               </tr>
             </thead>
             <tbody>
               {data.submissions?.map(sub =>
                 <tr key={sub.id} className='border-t-2 border-solid'>
-                  <th className='p-2'>{sub.tst.name}</th>
-                  <th className='p-2'>{sub.index.toFixed(2)}</th>
-                  <th className='p-2'>{sub.answers.join(" ")}</th>
-                  <th className='p-2'>{sub.tst.solves.join(" ")}</th>
+                  <th className='p-4'>{sub.tst.name}</th>
+                  <th className='p-4'>{sub.index.toFixed(2)}</th>
+                  <th className='p-4'>{sub.answers.map((ans, index) => ans == 1 ? <span className = 'text-lime-600'>{sub.tst.solves[index]} </span> : <span className = 'text-red-500'>{sub.tst.solves[index]} </span>)}</th>
                 </tr>
               )}
             </tbody>
