@@ -147,9 +147,9 @@ const Quote = ({ text, img, author }) => {
   return (
     <div
       ref={ref}
-      className={`m-4 p-4 max-w-32 w-full bg-navy-light bg-opacity-80 rounded-md ${
-        visible ? "opacity-100 ml-0" : "-ml-32 opacity-0"
-      } flex transition-all transition-duration-1000`}
+      className={`m-4 p-4 max-w-lg bg-navy-light bg-opacity-80 rounded-md ${
+        visible ? "opacity-100 translate-x-0" : "-translate-x-12 opacity-0"
+      } flex transition-all duration-300`}
     >
       <img
         src={img}
@@ -170,7 +170,17 @@ const QuotesSection = () => {
       <h2 className="mb-12 text-center text-white text-5xl font-bold">
         Testimonials
       </h2>
-      <div className="w-full flex flex-wrap justify-center items-center">
+      <div className="w-full flex flex-wrap justify-center items-start">
+        <Quote
+          text="I learned so much from Varsity Math Team and am a forever changed mathlete. I wish I could meet other cats though cuz the cat diversity in VMT is quite lacking.. :("
+          img="/images/quotes/catloe.png"
+          author="Catloe"
+        />
+        <Quote
+          text="pet the catloe pet the catloe pet the catloe pet the catloe"
+          img="/images/quotes/jatloe.png"
+          author="Jatloe"
+        />
         <Quote
           text="I learned so much from Varsity Math Team and am a forever changed mathlete. I wish I could meet other cats though cuz the cat diversity in VMT is quite lacking.. :("
           img="/images/quotes/catloe.png"
