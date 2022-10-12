@@ -55,8 +55,9 @@ const TjimoPage: NextPage<any> = () => {
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
         <p className="mb-4 font-bold">
-          Registration will open in late September of 2022.
+          Fill out the form below to register for TJIMO 2022!
         </p>
+        <a style={{color: 'pink'}} href="https://forms.gle/W8JZfZaxV1rhCttJ6">TJIMO 2022 Registration</a>
       </section>
 
     </Layout>
