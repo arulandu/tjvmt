@@ -56,9 +56,8 @@ const TjimoPage: NextPage<any> = () => {
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
         <p className="mb-4">
-        Please complete this Google form by November 4th: <a className = "font-bold" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
+        Please complete the Google form by November 4th: <a className = "font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
         </p>
-        <a style={{color: 'pink'}} href="https://forms.gle/W8JZfZaxV1rhCttJ6">TJIMO 2022 Registration</a>
       </section>
 
     </Layout>
