@@ -40,6 +40,7 @@ const NavBar = () => {
   const router = useRouter()
   const { session, setSession } = useSession()
   const { toastDispatch } = useToasts()
+  const [path, setPath] = useState(router.asPath)
 
   useEffect(() => {
     const atTopCallback = () => {
@@ -55,6 +56,10 @@ const NavBar = () => {
     setSession(null);
     router.reload();
   }
+  
+  useEffect(() => {
+    if(typeof window !== 'undefined') setPath(window.location.href)
+  }, [path])
 
   return (
     <nav className={`relative h-ful ${atTop ? 'bg-transparent' : 'bg-navy'} flex items-center justify-between z-10 py-2 px-4 sm:px-12 lg:px-24 transition-all ease-in-out duration-500`}>
@@ -80,7 +85,7 @@ const NavBar = () => {
           session ?
             <OutlineButton className='mt-4 md:ml-4 md:mt-0' name="Log Out" onClick={logOut} />
             :
-            <a href={`/api/auth/ion?path=${router.asPath}`}>
+            <a href={`/api/auth/ion?path=${path}`}>
               <OutlineButton className='mt-4 md:ml-4 md:mt-0' name="Log In" />
             </a>
         }

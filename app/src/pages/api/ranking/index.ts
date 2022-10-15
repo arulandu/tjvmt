@@ -29,7 +29,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       
       const cutoff = apps[Math.min(apps.length,selection.size)-1].index
       for(let i = 0; i < apps.length; i++){
-        ranks[i]['name'] = i < selection.size || apps[i].authorId === user.id ? apps[i].author.ionUsername : '???';
+        ranks[i]['name'] = (i < selection.size || i == userInd) ? apps[i].author.ionUsername : '???';
         if(i >= selection.size && Math.abs(userInd-i) > 1){
           ranks[i]['index'] = -1;
         }
