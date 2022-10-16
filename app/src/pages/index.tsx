@@ -154,7 +154,7 @@ const Quote = ({ text, img, author }) => {
       <img
         src={img}
         alt={author}
-        className="w-12 h-12 mr-4 rounded-full border-solid border-white border-2"
+        className="w-20 h-20 mr-4 rounded-full border-solid border-white border-2"
       />
       <div className="w-full">
         <h4 className="text-white text-2xl font-bold p-2">{author}</h4>
@@ -167,29 +167,29 @@ const Quote = ({ text, img, author }) => {
 const QuotesSection = () => {
   return (
     <section id="relative mx-4 sm:mx-8 lg:mx-8 py-24 flex flex-wrap xl:flex-nowrap items-start">
-      <h2 className="mb-12 text-center text-white text-5xl font-bold">
+      <h2 className="mt-12 mb-4 text-center text-white text-5xl font-bold">
         Testimonials
       </h2>
       <div className="w-full flex flex-wrap justify-center items-start">
         <Quote
-          text="I learned so much from Varsity Math Team and am a forever changed mathlete. I wish I could meet other cats though cuz the cat diversity in VMT is quite lacking.. :("
-          img="/images/quotes/catloe.png"
-          author="Catloe"
+          text="VMT is such a magical community. Some of my most treasured memories come from VMT, from chasing middle schoolers at TJIMO to belting my lungs out during ARML karaoke. VMT was the first place at TJ where I felt like I truly belonged. VMT is so much more than just a bunch of math nerds. We’re a family <3."
+          img="/images/quotes/laura.jpg"
+          author="Laura Zhang (2024)"
         />
         <Quote
-          text="pet the catloe pet the catloe pet the catloe pet the catloe"
-          img="/images/quotes/jatloe.png"
-          author="Jatloe"
+          text="For the past 3 years, VMT has been an integral part of my experience at TJ. From attending my first travel competition with a bunch of upperclassmen in my freshman year, to bringing Chips Ahoy to every ARML practice, VMT has always been a great community. It's one the most unique experiences at TJ."
+          img="/images/officers/nikhil.png"
+          author="Nikhil Pesaladinne (2023)"
         />
         <Quote
-          text="I learned so much from Varsity Math Team and am a forever changed mathlete. I wish I could meet other cats though cuz the cat diversity in VMT is quite lacking.. :("
-          img="/images/quotes/catloe.png"
-          author="Catloe"
+          text="It feels so great to be part of a connected community. You know if you're ever feeling down, you'll have VMT to cheer you up."
+          img="/images/quotes/utkarsh.png"
+          author="Utkarsh Goyal (2023)"
         />
         <Quote
-          text="pet the catloe pet the catloe pet the catloe pet the catloe"
-          img="/images/quotes/jatloe.png"
-          author="Jatloe"
+          text="VMT is one of my favorite clubs at TJ, as it is where I met my closest friends and made my favorite memories."
+          img="/images/quotes/akshaya.png"
+          author="Akshaya Chakravarthy (2024)"
         />
       </div>
     </section>
