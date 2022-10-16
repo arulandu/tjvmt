@@ -173,7 +173,7 @@ const QuotesSection = () => {
       <div className="w-full flex flex-wrap justify-center items-start">
         <Quote
           text="VMT is such a magical community. Some of my most treasured memories come from VMT, from chasing middle schoolers at TJIMO to belting my lungs out during ARML karaoke. VMT was the first place at TJ where I felt like I truly belonged. VMT is so much more than just a bunch of math nerds. We’re a family <3."
-          img="/images/quotes/laura.jpg"
+          img="/images/quotes/laura.JPG"
           author="Laura Zhang (2024)"
         />
         <Quote
