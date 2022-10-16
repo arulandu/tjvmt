@@ -35,27 +35,28 @@ const TjimoPage: NextPage<any> = () => {
           <li><span className="font-bold">Team and Power Rounds</span>: The team and power rounds consists of harder problems in different formats based on those seen in college math competitions.
             Students will be given sample rounds during coaching to familarize themselves with the format and learn how to write formal proofs.</li>
           <li><span className="font-bold">Guts Round</span>: The guts round is a special team round in which students are given several consecutive sets of problems and try to solve them as fast as possible.</li>
+          <li><span className = "font-bold">Orienteering Round</span>: The orienteering round involves solving problems in different locations around the building. Students work together to finish all the problems.</li>
         </ul>
         <h2 className="text-3xl font-bold text-left mb-4">FAQ</h2>
         <p className="mb-10">
           <span className="font-bold">Q</span>: Who can participate?<br />
-          <span className="font-bold">A</span>: Students from grades 6-8.<br /><br />
+          <span className="font-bold">A</span>: Middle schoolers from grades 6-8 (no elementary schoolers) that are currently taking Geometry or a lower level math class in school.<br /><br />
           <span className="font-bold">Q</span>: Who can register?<br />
           <span className="font-bold">A</span>: ONE math teacher or math team coordinator from each school can register students from their school to participate in TJIMO.<br /><br />
           <span className="font-bold">Q</span>: How many students can attend from a school?<br />
-          <span className="font-bold">A</span>: Up to 6.<br /><br />
-          <span className="font-bold">Q</span>: Can I register as an individual or homeschool student?<br />
-          <span className="font-bold">A</span>: If you are homeschooled, you may register individually and indicate that you are homeschooled on the form. If you attend a public or private school, we ask that you ask your school’s math teacher/math team coordinator to register for you. Please email us at vmtofficers@gmail.com if you have any questions.<br /><br />
+          <span className="font-bold">A</span>: Up to 7.<br /><br />
+          <span className="font-bold">Q</span>: Can I register as an individual or homeschool student or with an organization outside of my school?<br />
+          <span className="font-bold">A</span>: If you are homeschooled, you may register individually and indicate that you are homeschooled on the form. If you attend a public or private school, we ask that you ask your school’s math teacher/math team coordinator to register for you. We do not allow non-school organizations to participate. Please email us at vmtofficers@gmail.com if you have any questions.<br /><br />
           <span className="font-bold">Q</span>: What is the role of the teacher/coordinator?<br />
           <span className="font-bold">A</span>: The role of the teacher/coordinator is simply being the link between us, the organizers, and the students - an essential role at TJIMO. In other words, they will be responsible for making sure the students are at the right place at the right time and relaying information to students.<br /><br />
           <span className="font-bold">Q</span>: Will students from the same school compete as a team?<br />
           <span className="font-bold">A</span>: No, students will be assigned to teams balanced by math level during the individual round.<br /><br />
           <span className="font-bold">Q</span>: What will students need for the competition? <br />
-          <span className="font-bold">A</span>: Pencils, paper, and a <strong>willingness to learn!</strong>
+          <span className="font-bold">A</span>: Pencils, paper, a calculator, and a <strong>willingness to learn!</strong>
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
-        <p className="mb-4 font-bold">
-          Registration will open in late September of 2022.
+        <p className="mb-4">
+        Please complete the Google form by November 4th: <a className = "font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
         </p>
       </section>
 
