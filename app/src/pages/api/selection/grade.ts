@@ -15,7 +15,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const tsts = await db.tST.findMany({});
     const tstId2Name = Object.fromEntries(tsts.map(t => [t.id, t.name]))
     
-    const indexes = users.map(user => [0].concat(user.submissions.map(s => selection.weights[tstId2Name[s.tstId]] * s.index)).reduce((a, b) => a+b))
+    const indexes = users.map(user => {
+      let subs = user.submissions.filter(s => selection.weights[tstId2Name[s.tstId]]).sort((a, b) => b.index-a.index)
+      if(subs.length === 0) return 0;
+      if(subs.length > selection.drops) subs = subs.slice(0, subs.length-selection.drops)
+      let subNames = subs.map(s => tstId2Name[s.tstId])
+
+      const entries = Object.entries(selection.weights).filter(s => subNames.indexOf(s[0]) >= 0)
+      const weightSum = entries.map(s => s[1]).reduce((a, b) => a + b)
+      const normWeights = Object.fromEntries(entries.map(s => [s[0], s[1]/weightSum]))
+      
+      const inds = [0].concat(subs.map(s => normWeights[tstId2Name[s.tstId]] * s.index))
+      const ind = inds.reduce((a, b) => a+b)
+
+      return ind
+    })
 
     for(let i = 0; i < users.length; i++){
       let application = await db.application.findFirst({where: {authorId: users[i].id, selectionId: selection.id}});

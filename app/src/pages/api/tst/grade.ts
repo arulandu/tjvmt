@@ -15,6 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if(answers.length == 0) return res.status(200).json({})
 
     let solves = answers.reduce((a, b) => a.map((e, i) => e + b[i]))
+
     if(tst.weighted){
       let weights = solves.map(s => s == 0 ? 0 : 1+Math.log(answers.length / s)) // weight: 1 + Log(submissions/solves)
       answers = answers.map(s => s.map((x, i) => x*weights[i]))
