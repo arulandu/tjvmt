@@ -32,17 +32,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await db.tST.update({where: {id: tst.id}, data: { solves }})
     
     // update submission documents
-    for(let i = 0; i < subs.length; i++){
+    await Promise.all(subs.map(async (s, i) => {
       await db.submission.update({
         where: {
-          id: subs[i].id,
+          id: s.id,
         },
         data: {
           index: index[i],
           score: scores[i]
         }
       })
-    }
+    }))
     
     await Promise.all(tst.submissions.filter(s => s.writer).map(async (s) => 
       await db.submission.update({where: {id: s.id}, data: {index: 2000}})
