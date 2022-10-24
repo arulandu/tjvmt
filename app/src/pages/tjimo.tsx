@@ -40,7 +40,7 @@ const TjimoPage: NextPage<any> = () => {
         <h2 className="text-3xl font-bold text-left mb-4">FAQ</h2>
         <p className="mb-10">
           <span className="font-bold">Q</span>: Who can participate?<br />
-          <span className="font-bold">A</span>: Middle schoolers from grades 6-8 that are currently taking Geometry or a lower level math class in school. We only allow 6th graders in elementary school to attend if this is their last year of eligibility (i.e., they are currently enrolled in Algebra I and plan on taking Geometry over the summer or are currently enrolled in Geometry). Elementary schoolers must also have a parent or teacher with them at all times for the entire duration of the competition.<br /><br />
+          <span className="font-bold">A</span>: Middle schoolers from grades 6-8 that are currently taking Geometry or a lower level math class in school. We only allow 6th graders in elementary school to attend if this is their last year of eligibility (i.e., they are currently enrolled in Algebra I and plan on taking Geometry over the summer or are currently enrolled in Geometry). Elementary schoolers must also have a parent or teacher present at the competition for the entire duration.<br /><br />
           <span className="font-bold">Q</span>: Who can register?<br />
           <span className="font-bold">A</span>: ONE math teacher or math team coordinator from each school can register students from their school to participate in TJIMO.<br /><br />
           <span className="font-bold">Q</span>: How many students can attend from a school?<br />
