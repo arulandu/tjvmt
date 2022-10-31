@@ -15,6 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if(answers.length == 0) return res.status(200).json({})
 
     let solves = answers.reduce((a, b) => a.map((e, i) => e + b[i]))
+
     if(tst.weighted){
       let weights = solves.map(s => s == 0 ? 0 : 1+Math.log(answers.length / s)) // weight: 1 + Log(submissions/solves)
       answers = answers.map(s => s.map((x, i) => x*weights[i]))
@@ -31,17 +32,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await db.tST.update({where: {id: tst.id}, data: { solves }})
     
     // update submission documents
-    for(let i = 0; i < subs.length; i++){
+    await Promise.all(subs.map(async (s, i) => {
       await db.submission.update({
         where: {
-          id: subs[i].id,
+          id: s.id,
         },
         data: {
           index: index[i],
           score: scores[i]
         }
       })
-    }
+    }))
     
     await Promise.all(tst.submissions.filter(s => s.writer).map(async (s) => 
       await db.submission.update({where: {id: s.id}, data: {index: 2000}})
