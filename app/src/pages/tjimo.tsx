@@ -58,6 +58,9 @@ const TjimoPage: NextPage<any> = () => {
         <p className="mb-4">
         Please complete the Google form by November 4th: <a className = "font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
         </p>
+        <h2 className="text-3xl font-bold text-left mb-4">Sponsors</h2>
+        <a href="http://desmos.com"><img src="/images/desmos.png" alt="Logo" width="100" height="100"/></a>
+            
       </section>
 
     </Layout>
