@@ -12,7 +12,9 @@ const TjimoPage: NextPage<any> = () => {
       <section className="h-screen flex items-center justify-center">
         <div>
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
-          <p className="text-center text-2xl text-white">December 10, 2022 @ TJHSST</p>
+          <p className="text-center text-2xl text-white mb-6">December 10, 2022 @ TJHSST</p>
+          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">Registration Form</a></p>
+          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/sponsorship">Sponsorship Packet</a></p>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">
           <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
@@ -23,6 +25,10 @@ const TjimoPage: NextPage<any> = () => {
         <p className="mb-10">
           The Thomas Jefferson Intermediate Math Open (TJIMO) is a contest that the Thomas Jefferson Varisty Math Team holds for middle schools in the
           Washington, DC area. Students learn a variety of problem-solving strategies from experienced VMT student coaches and apply these strategies in a mathematics competition.
+        </p>
+        <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
+        <p className="mb-10">
+        Please complete the Google form by November 4th: <a className = "font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">How Does the Contest Work?</h2>
         <p className="mb-4">TJIMO consists of four rounds of tests that challenge students' mathematical problem solving skills. A large block of the event is dedicated to coaching,
@@ -37,10 +43,20 @@ const TjimoPage: NextPage<any> = () => {
           <li><span className="font-bold">Guts Round</span>: The guts round is a special team round in which students are given several consecutive sets of problems and try to solve them as fast as possible.</li>
           <li><span className = "font-bold">Orienteering Round</span>: The orienteering round involves solving problems in different locations around the building. Students work together to finish all the problems.</li>
         </ul>
+        <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
+        <p className = "mb-4">
+        Sponsors allow us to provide the best experience possible for TJIMO participants by helping 
+        us host a competition full of learning, collaboration, fulfillment, and fun.
+        </p>
+        <p className = "mb-10">
+        Interested in sponsoring or partnering with us for TJIMO? 
+        Check out our <a className = "font-bold text-pink" href = "https://tjvmt.com/u/sponsorship">sponsorship packet</a> for more information!
+        You can also get in touch with us anytime at <a className = "font-bold text-pink" href = "mailto:vmtofficers@gmail.com">vmtofficers@gmail.com</a>.
+        </p>
         <h2 className="text-3xl font-bold text-left mb-4">FAQ</h2>
         <p className="mb-10">
           <span className="font-bold">Q</span>: Who can participate?<br />
-          <span className="font-bold">A</span>: Middle schoolers from grades 6-8 (no elementary schoolers) that are currently taking Geometry or a lower level math class in school.<br /><br />
+          <span className="font-bold">A</span>: Middle schoolers from grades 6-8 that are currently taking Geometry or a lower level math class in school. We only allow 6th graders in elementary school to attend if this is their last year of eligibility (i.e., they are currently enrolled in Algebra I and plan on taking Geometry over the summer or are currently enrolled in Geometry). Elementary schoolers must also have a parent or teacher present at the competition for the entire duration.<br /><br />
           <span className="font-bold">Q</span>: Who can register?<br />
           <span className="font-bold">A</span>: ONE math teacher or math team coordinator from each school can register students from their school to participate in TJIMO.<br /><br />
           <span className="font-bold">Q</span>: How many students can attend from a school?<br />
@@ -54,13 +70,6 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">Q</span>: What will students need for the competition? <br />
           <span className="font-bold">A</span>: Pencils, paper, a calculator, and a <strong>willingness to learn!</strong>
         </p>
-        <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
-        <p className="mb-4">
-        Please complete the Google form by November 4th: <a className = "font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
-        </p>
-        <h2 className="text-3xl font-bold text-left mb-4">Sponsors</h2>
-        <a href="http://desmos.com"><img src="/images/desmos.png" alt="Logo" width="100" height="100"/></a>
-            
       </section>
 
     </Layout>
