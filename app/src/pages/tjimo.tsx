@@ -48,7 +48,9 @@ const TjimoPage: NextPage<any> = () => {
         Sponsors allow us to provide the best experience possible for TJIMO participants by helping 
         us host a competition full of learning, collaboration, fulfillment, and fun.
         </p>
+        <a href="http://desmos.com"><img src="/images/desmos.png" alt="Logo" width="120" height="120"/></a>
         <p className = "mb-10">
+          
         Interested in sponsoring or partnering with us for TJIMO? 
         Check out our <a className = "font-bold text-pink" href = "https://tjvmt.com/u/sponsorship">sponsorship packet</a> for more information!
         You can also get in touch with us anytime at <a className = "font-bold text-pink" href = "mailto:vmtofficers@gmail.com">vmtofficers@gmail.com</a>.
@@ -70,6 +72,7 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">Q</span>: What will students need for the competition? <br />
           <span className="font-bold">A</span>: Pencils, paper, a calculator, and a <strong>willingness to learn!</strong>
         </p>
+
       </section>
 
     </Layout>
