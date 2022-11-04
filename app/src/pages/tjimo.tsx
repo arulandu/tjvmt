@@ -30,6 +30,16 @@ const TjimoPage: NextPage<any> = () => {
         <p className="mb-10">
         Please complete the Google form by November 4th: <a className = "font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
         </p>
+        <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
+        <p className = "mb-4">
+        Sponsors allow us to provide the best experience possible for TJIMO participants by helping 
+        us host a competition full of learning, collaboration, fulfillment, and fun.
+        </p>
+        <p className = "mb-10">
+        Interested in sponsoring or partnering with us for TJIMO? 
+        Check out our <a className = "font-bold text-pink" href = "https://tjvmt.com/u/sponsorship">sponsorship packet</a> for more information!
+        You can also get in touch with us anytime at <a className = "font-bold text-pink" href = "mailto:vmtofficers@gmail.com">vmtofficers@gmail.com</a>.
+        </p>
         <h2 className="text-3xl font-bold text-left mb-4">How Does the Contest Work?</h2>
         <p className="mb-4">TJIMO consists of four rounds of tests that challenge students' mathematical problem solving skills. A large block of the event is dedicated to coaching,
           in which students are assigned to small groups and learn strategies from VMT student coaches. See below for more details on each round.</p>
@@ -43,18 +53,8 @@ const TjimoPage: NextPage<any> = () => {
           <li><span className="font-bold">Guts Round</span>: The guts round is a special team round in which students are given several consecutive sets of problems and try to solve them as fast as possible.</li>
           <li><span className = "font-bold">Orienteering Round</span>: The orienteering round involves solving problems in different locations around the building. Students work together to finish all the problems.</li>
         </ul>
-        <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
-        <p className = "mb-4">
-        Sponsors allow us to provide the best experience possible for TJIMO participants by helping 
-        us host a competition full of learning, collaboration, fulfillment, and fun.
-        </p>
-        <p className = "mb-10">
-        Interested in sponsoring or partnering with us for TJIMO? 
-        Check out our <a className = "font-bold text-pink" href = "https://tjvmt.com/u/sponsorship">sponsorship packet</a> for more information!
-        You can also get in touch with us anytime at <a className = "font-bold text-pink" href = "mailto:vmtofficers@gmail.com">vmtofficers@gmail.com</a>.
-        </p>
         <h2 className="text-3xl font-bold text-left mb-4">FAQ</h2>
-        <p className="mb-10">
+        <p className="mb-4">
           <span className="font-bold">Q</span>: Who can participate?<br />
           <span className="font-bold">A</span>: Middle schoolers from grades 6-8 that are currently taking Geometry or a lower level math class in school. We only allow 6th graders in elementary school to attend if this is their last year of eligibility (i.e., they are currently enrolled in Algebra I and plan on taking Geometry over the summer or are currently enrolled in Geometry). Elementary schoolers must also have a parent or teacher present at the competition for the entire duration.<br /><br />
           <span className="font-bold">Q</span>: Who can register?<br />
@@ -71,7 +71,12 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">A</span>: Pencils, paper, a calculator, and a <strong>willingness to learn!</strong>
         </p>
       </section>
-
+      <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 items-center justify-center text-white bg-navy bg-opacity-50">
+      <h1 className="m-auto mb-8 text-5xl font-bold text-white text-center">Sponsors</h1>
+      <div className = "margin:auto">
+      <a href="http://desmos.com"><img className = "mx-auto" src="/images/desmos.png" alt="Desmos Logo" width="400"/></a>
+      </div>
+      </section>
     </Layout>
   )
 }

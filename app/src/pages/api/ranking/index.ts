@@ -22,6 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         if(i > 0 && apps[i].index != apps[i-1].index) {rank += i-starts[starts.length-1]; starts.push(i);}
         ranks[i]['rank'] = rank
         ranks[i]['index'] = apps[i].index
+        console.log(apps[i].authorId+" "+apps[i].index)
         if(apps[i].authorId === user.id){
           userInd = i;
         }

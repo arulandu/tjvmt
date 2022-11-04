@@ -11,6 +11,8 @@ export const Footer = () => {
             <SiteLink href={"https://www.facebook.com/groups/198737200195082"} txt={"Facebook: facebook.com/groups/198737200195082"} className="block"/>
             <p className='mt-4'>Website by <SiteLink href={"https://arulandu.com"} txt="Alvan Caleb Arulandu"/></p>
             <p>Photo Credits: Laura Zhang, Avni Garg</p>
+            
+            
         </footer>
     );
 }
