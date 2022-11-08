@@ -71,10 +71,16 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">A</span>: Pencils, paper, a calculator, and a <strong>willingness to learn!</strong>
         </p>
       </section>
-      <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 items-center justify-center text-white bg-navy bg-opacity-50">
-      <h1 className="m-auto mb-8 text-5xl font-bold text-white text-center">Sponsors</h1>
+      <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 items-center justify-center text-black bg-white bg-opacity-50">
+      <h1 className="m-auto mb-8 text-5xl font-bold text-black text-center">Sponsors</h1>
       <div className = "margin:auto">
-      <a href="http://desmos.com"><img className = "mx-auto" src="/images/desmos.png" alt="Desmos Logo" width="400"/></a>
+      <h1 className="m-auto mb-8 text-3xl font-bold text-yellow-400 text-center"> Gold Sponsors</h1>
+      <a href="https://www.janestreet.com/"><img className = "mx-auto" src="/images/jane_street.png" alt="Jane Street Logo" width="400"/></a>
+      <br></br>
+      <h1 className="m-auto mb-8 text-3xl font-bold text-gray-300 text-center"> Silver Sponsors</h1>
+      <br></br>
+      <h1 className="m-auto mb-8 text-3xl font-bold text-[#a36a31] text-center"> Bronze Sponsors</h1>
+      <a href="https://artofproblemsolving.com/"><img className = "mx-auto" src="/images/aops.png" alt="AoPS Logo" width="400"/></a>
       </div>
       </section>
     </Layout>
