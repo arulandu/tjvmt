@@ -74,7 +74,8 @@ const TjimoPage: NextPage<any> = () => {
       <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 items-center justify-center text-white bg-navy bg-opacity-50">
       <h1 className="m-auto mb-8 text-5xl font-bold text-white text-center">Sponsors</h1>
       <div className = "margin:auto">
-      <a href="http://desmos.com"><img className = "mx-auto" src="/images/desmos.png" alt="Desmos Logo" width="400"/></a>
+      <a href="https://www.janestreet.com/"><img className = "mx-auto" src="/images/jane_street.png" alt="Jane Street Logo" width="400"/></a>
+      <a href="https://artofproblemsolving.com/"><img className = "mx-auto" src="/images/aops.png" alt="AoPS Logo" width="400"/></a>
       </div>
       </section>
     </Layout>
