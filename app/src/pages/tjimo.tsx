@@ -72,16 +72,19 @@ const TjimoPage: NextPage<any> = () => {
         </p>
       </section>
       <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 items-center justify-center text-black bg-white bg-opacity-50">
-      <h1 className="m-auto mb-8 text-5xl font-bold text-black text-center">Sponsors</h1>
-      <div className = "margin:auto">
-      <h1 className="m-auto mb-8 text-3xl font-bold text-yellow-400 text-center"> Gold Sponsors</h1>
-      <a href="https://www.janestreet.com/"><img className = "mx-auto" src="/images/jane_street.png" alt="Jane Street Logo" width="400"/></a>
-      <br></br>
-      <h1 className="m-auto mb-8 text-3xl font-bold text-gray-300 text-center"> Silver Sponsors</h1>
-      <br></br>
-      <h1 className="m-auto mb-8 text-3xl font-bold text-[#a36a31] text-center"> Bronze Sponsors</h1>
-      <a href="https://artofproblemsolving.com/"><img className = "mx-auto" src="/images/aops.png" alt="AoPS Logo" width="400"/></a>
-      </div>
+        <h1 className="m-auto mb-8 text-5xl font-bold text-black text-center">Sponsors</h1>
+        <div className = "margin:auto">
+          <h1 className="m-auto mb-8 text-3xl font-bold text-yellow-400 text-center"> Gold Sponsors</h1>
+          <br></br>
+          <h1 className="m-auto mb-8 text-3xl font-bold text-gray-300 text-center"> Silver Sponsors</h1>
+          <div className="grid grid-cols-2 divide-x divide-green-500">
+            <div><a href="https://janestreet.com/"><img className = "mx-auto" src="/images/jane_street.png" alt="AoPS Logo" width="400"/></a></div>
+            <div>Jane Street is a quantitative trading firm with offices worldwide. We hire smart, humble people who love to solve problems, build systems, and test theories. You’ll learn something new every day in our office—whether it’s connecting with a colleague to share perspectives, or participating in a talk, class, or game night. Our success is driven by our people and we never stop improving.</div>
+          </div>
+          <br></br>
+          <h1 className="m-auto mb-8 text-3xl font-bold text-[#a36a31] text-center"> Bronze Sponsors</h1>
+          <a href="https://artofproblemsolving.com/"><img className = "mx-auto" src="/images/aops.png" alt="AoPS Logo" width="400"/></a>
+        </div>
       </section>
     </Layout>
   )
