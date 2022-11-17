@@ -11,7 +11,7 @@ const Custom404 = () => {
   const [path, setPath] = useState(router.asPath)
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setPath(window.location.href.match(/^[\w:\/\d]*\//)[0] + 'dashboard')
+      setPath(window.location.href.match(/^https?:\/{2}[\w:\.]*/)[0] + '/dashboard')
     }
   }, [path])
 
