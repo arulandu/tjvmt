@@ -95,7 +95,7 @@ const TjimoPage: NextPage<any> = () => {
         </p>
       </section>
       <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 text-white bg-navy bg-opacity-50">
-        <h1 className="m-auto mb-8 text-5xl font-bold text-white text-center">Sponsors</h1>
+        <h1 className="mb-6 text-5xl font-bold text-white text-center">Sponsors</h1>
         <div className = "w-full flex flex-wrap justify-center items-start grid-cols-2">
         <Sponsor
             text = "The Russian School of Mathematics (RSM) is an award winning K-12 after-school math program that has empowered students to achieve excellence for over twenty years."
