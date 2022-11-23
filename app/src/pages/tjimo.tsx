@@ -1,7 +1,30 @@
 import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
 import Image from 'next/image'
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
+
 // TODO: pascal case for acronyms — i have no idea 🤷‍♂️
+
+const Sponsor = ({ text, img, company, level, link }) => {
+  return (
+    <div
+      className={`m-4 p-4 max-w-lg bg-navy-light bg-opacity-80 rounded-md "opacity-100 translate-x-0" : "-translate-x-12 opacity-0"
+      } flex transition-all duration-300`}
+    >
+      <div className="w-full text-center items-center">
+        <h2 className = "text-white text-xl font-bold">{level}</h2>
+        <a href={link}>
+          <img
+          src={img}
+          alt={company}
+          className="mx-auto my-2"
+          />
+        </a> 
+        <p className="text-white text-lg p-2">{text}</p>
+      </div>
+    </div>
+  );
+};
 
 const TjimoPage: NextPage<any> = () => {
   return (
@@ -28,7 +51,7 @@ const TjimoPage: NextPage<any> = () => {
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
         <p className="mb-10">
-        Please complete the Google form by November 4th: <a className = "font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">https://tjvmt.com/u/tjimo/registration</a>.
+        Please complete the Google form by November 25th: <a className = "font-bold text-pink break-word" href = "https://tjvmt.com/u/tjimo/registration">registration form</a>.
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
         <p className = "mb-4">
@@ -71,17 +94,45 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">A</span>: Pencils, paper, a calculator, and a <strong>willingness to learn!</strong>
         </p>
       </section>
-      <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 items-center justify-center text-black bg-white bg-opacity-50">
-      <h1 className="m-auto mb-8 text-5xl font-bold text-black text-center">Sponsors</h1>
-      <div className = "margin:auto">
-      <h1 className="m-auto mb-8 text-3xl font-bold text-yellow-400 text-center"> Gold Sponsors</h1>
-      <a href="https://www.janestreet.com/"><img className = "mx-auto" src="/images/jane_street.png" alt="Jane Street Logo" width="400"/></a>
-      <br></br>
-      <h1 className="m-auto mb-8 text-3xl font-bold text-gray-300 text-center"> Silver Sponsors</h1>
-      <br></br>
-      <h1 className="m-auto mb-8 text-3xl font-bold text-[#a36a31] text-center"> Bronze Sponsors</h1>
-      <a href="https://artofproblemsolving.com/"><img className = "mx-auto" src="/images/aops.png" alt="AoPS Logo" width="400"/></a>
-      </div>
+      <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 text-white bg-navy bg-opacity-50">
+        <h1 className="mb-6 text-5xl font-bold text-white text-center">Sponsors</h1>
+        <div className = "w-full flex flex-wrap justify-center items-start grid-cols-2">
+        <Sponsor
+            text = "The Russian School of Mathematics (RSM) is an award winning K-12 after-school math program that has empowered students to achieve excellence for over twenty years."
+            img = "/images/sponsors/RSM.png"
+            company = "RSM"
+            level = "Gold"
+            link = "https://www.russianschool.com/"
+          />
+          <Sponsor
+            text = "The Summer Program for Applied Rationality and Cognition (SPARC) is a free two-week program for talented high schoolers to develop quantitative skills and apply them to the world."
+            img = "/images/sponsors/SPARC.png"
+            company = "SPARC"
+            level = "Silver"
+            link = "https://www.sparc-camp.com/"
+          />
+          <Sponsor
+            text="Jane Street is a quantitative trading firm with offices worldwide. We hire smart, humble people who love to solve problems, build systems, and test theories. You’ll learn something new every day in our office—whether it’s connecting with a colleague to share perspectives, or participating in a talk, class, or game night. Our success is driven by our people and we never stop improving."
+            img="/images/sponsors/jane_street.png"
+            company="Jane Street"
+            level = "Silver"
+            link = "https://janestreet.com"
+          />
+          <Sponsor
+            text="The Daily Challenge is the first and only online math course that captivates. It was invented by world famous math professor Po-Shen Loh. Lessons are taught live by instructors who are not only brilliant at math, but also skilled in improvisational comedy and performance."
+            img="/images/sponsors/daily_challenge.png"
+            company="The Daily Challenge"
+            level = "Silver"
+            link = "https://daily.poshenloh.com/"
+          />
+          <Sponsor
+            text = ""
+            img = "/images/sponsors/aops.png"
+            company = "AoPS"
+            level = "Bronze"
+            link = "https://artofproblemsolving.com"
+          />
+        </div>
       </section>
     </Layout>
   )
