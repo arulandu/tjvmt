@@ -5,26 +5,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from "react";
 
 // TODO: pascal case for acronyms — i have no idea 🤷‍♂️
 
-const Sponsor = ({ text, img, company, level, link }) => {
-  return (
-    <div
-      className={`m-4 p-4 max-w-lg bg-navy-light bg-opacity-80 rounded-md "opacity-100 translate-x-0" : "-translate-x-12 opacity-0"
-      } flex transition-all duration-300`}
-    >
-      <div className="w-full text-center items-center">
-        <h2 className = "text-white text-xl font-bold">{level}</h2>
-        <a href={link}>
-          <img
-          src={img}
-          alt={company}
-          className="mx-auto my-2"
-          />
-        </a> 
-        <p className="text-white text-lg p-2">{text}</p>
-      </div>
-    </div>
-  );
-};
+
 
 const TjimoPage: NextPage<any> = () => {
   return (
@@ -93,46 +74,6 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">Q</span>: What will students need for the competition? <br />
           <span className="font-bold">A</span>: Pencils, paper, a calculator, and a <strong>willingness to learn!</strong>
         </p>
-      </section>
-      <section className="mt-12 mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 text-white bg-navy bg-opacity-50">
-        <h1 className="mb-6 text-5xl font-bold text-white text-center">Sponsors</h1>
-        <div className = "w-full flex flex-wrap justify-center items-start grid-cols-2">
-        <Sponsor
-            text = "The Russian School of Mathematics (RSM) is an award winning K-12 after-school math program that has empowered students to achieve excellence for over twenty years."
-            img = "/images/sponsors/RSM.png"
-            company = "RSM"
-            level = "Gold"
-            link = "https://www.russianschool.com/"
-          />
-          <Sponsor
-            text = "The Summer Program for Applied Rationality and Cognition (SPARC) is a free two-week program for talented high schoolers to develop quantitative skills and apply them to the world."
-            img = "/images/sponsors/SPARC.png"
-            company = "SPARC"
-            level = "Silver"
-            link = "https://www.sparc-camp.com/"
-          />
-          <Sponsor
-            text="Jane Street is a quantitative trading firm with offices worldwide. We hire smart, humble people who love to solve problems, build systems, and test theories. You’ll learn something new every day in our office—whether it’s connecting with a colleague to share perspectives, or participating in a talk, class, or game night. Our success is driven by our people and we never stop improving."
-            img="/images/sponsors/jane_street.png"
-            company="Jane Street"
-            level = "Silver"
-            link = "https://janestreet.com"
-          />
-          <Sponsor
-            text="The Daily Challenge is the first and only online math course that captivates. It was invented by world famous math professor Po-Shen Loh. Lessons are taught live by instructors who are not only brilliant at math, but also skilled in improvisational comedy and performance."
-            img="/images/sponsors/daily_challenge.png"
-            company="The Daily Challenge"
-            level = "Silver"
-            link = "https://daily.poshenloh.com/"
-          />
-          <Sponsor
-            text = ""
-            img = "/images/sponsors/aops.png"
-            company = "AoPS"
-            level = "Bronze"
-            link = "https://artofproblemsolving.com"
-          />
-        </div>
       </section>
     </Layout>
   )
