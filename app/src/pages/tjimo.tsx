@@ -17,8 +17,6 @@ const TjimoPage: NextPage<any> = () => {
         <div>
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
           <p className="text-center text-2xl text-white mb-6">December 10, 2022 @ TJHSST</p>
-          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration">Registration Form</a></p>
-          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/sponsorship">Sponsorship Packet</a></p>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">
           <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
@@ -29,10 +27,6 @@ const TjimoPage: NextPage<any> = () => {
         <p className="mb-10">
           The Thomas Jefferson Intermediate Math Open (TJIMO) is a contest that the Thomas Jefferson Varisty Math Team holds for middle schools in the
           Washington, DC area. Students learn a variety of problem-solving strategies from experienced VMT student coaches and apply these strategies in a mathematics competition.
-        </p>
-        <h2 className="text-3xl font-bold text-left mb-4">Registration</h2>
-        <p className="mb-10">
-        Please complete the Google form by November 25th: <a className = "font-bold text-pink break-word" href = "https://tjvmt.com/u/tjimo/registration">registration form</a>.
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
         <p className = "mb-4">
