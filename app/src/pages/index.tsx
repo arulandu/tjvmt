@@ -196,134 +196,15 @@ const QuotesSection = () => {
   );
 };
 
-const LeadershipSection = ({
-  officers,
-}: {
-  officers: { picture: string; position: string; name: string }[];
-}) => {
-  return (
-    <section
-      id="leadership"
-      className="mx-4 sm:mx-8 lg:mx-8 py-24 flex flex-wrap xl:flex-nowrap items-start"
-    >
-      {/* <div className='w-full flex items-start'> */}
-      <div>
-        <h2 className="mb-12 text-center text-white text-5xl font-bold">
-          Leadership
-        </h2>
-        <div className="flex flex-wrap lg:flex-nowrap justify-center">
-          <div className="relative aspect-[13/10] w-11/12 lg:w-8/12 mb-8 lg:mb-0">
-            <Image
-              src="/images/officers.JPG"
-              alt="Officer Picture"
-              layout="fill"
-              className="object-contain"
-            />
-          </div>
-          <div className="w-1/2 lg:grid lg:grid-cols-3 lg:ml-16 flex flex-grow flex-wrap items-center justify-around xl:justify-center">
-            {officers.map((officer) => {
-              return (
-                <div
-                  key={officer.name}
-                  className="m-2 group flex justify-center"
-                >
-                  <div className="relative w-60 aspect-[1/1] ">
-                    <div className="absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
-                      <p className="text-navy text-base font-bold text-center">
-                        {officer.name} ({officer.position})
-                      </p>
-                    </div>
-                    <Image
-                      src={officer.picture}
-                      alt={`${officer.name} (${officer.position})`}
-                      layout="fill"
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <p className="mt-8 text-center text-white text-2xl font-light">
-          By giving lectures and organizing activities, our officers work
-          regularly to provide a great VMT experience for everyone, and VMT
-          would not be possible without the help of our sponsors:
-          <span className="text-pink font-medium">
-            {" "}
-            Ms. Razzino + Dr. Lampazzi
-          </span>
-        </p>
-      </div>
-
-      {/* </div> */}
-    </section>
-  );
-};
-
 const Home: NextPage<any> = ({ officers }) => {
   return (
     <Layout>
       <HeroSection />
       <ExperienceSection />
       <QuotesSection />
-      <LeadershipSection officers={officers} />
     </Layout>
   );
 };
 
-export async function getStaticProps() {
-  return {
-    props: {
-      officers: [
-        {
-          picture: `/images/officers/nikhil.png`,
-          position: "Captain",
-          name: "Nikhil Pesaladinne",
-        },
-        {
-          picture: `/images/officers/caleb.png`,
-          position: "Co-Captain",
-          name: "Alvan Caleb Arulandu",
-        },
-        {
-          picture: `/images/officers/isabella.png`,
-          position: "Co-Captain",
-          name: "Isabella Zhu",
-        },
-        {
-          picture: `/images/officers/michelle.png`,
-          position: "Statistician",
-          name: "Michelle Kang",
-        },
-        {
-          picture: `/images/officers/laura.png`,
-          position: "Statistician",
-          name: "Laura Zhang",
-        },
-        {
-          picture: `/images/officers/avni.png`,
-          position: "Finance Officer",
-          name: "Avni Garg",
-        },
-        {
-          picture: `/images/officers/zani.png`,
-          position: "Finance Officer",
-          name: "Zani Xu",
-        },
-        {
-          picture: `/images/officers/mihika.png`,
-          position: "Secretary",
-          name: "Mihika Dusad",
-        },
-        {
-          picture: `/images/officers/madhav.png`,
-          position: "Historian",
-          name: "Madhav Krishnaswamy",
-        },
-      ],
-    },
-  };
-}
 
 export default Home;

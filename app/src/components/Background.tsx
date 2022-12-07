@@ -14,11 +14,17 @@ const Background = ({className}) => {
         "value": "#ffffff"
       },
       "size": {
-        "value": 10,
+        "value": 30,
         "random": true
       },
+      "shape": {
+        "type": "image",
+        "image": {
+          "src": "/images/snowflake.svg",
+        }
+      },
       "opacity": {
-        "value": 0.8,
+        "value": 0.75,
         "random": true,
       },
       "move": {
