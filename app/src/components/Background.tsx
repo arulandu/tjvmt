@@ -7,59 +7,30 @@ const Background = ({className}) => {
         "value": 70,
         "density": {
           "enable": true,
-          "value_area": 700
+           "area": 450
         }
       },
       "color": {
         "value": "#ffffff"
       },
+      "size": {
+        "value": 30,
+        "random": true
+      },
       "shape": {
-        "type": "circle",
-        "stroke": {
-          "width": 0,
-          "color": "#000000"
-        },
-        "polygon": {
-          "nb_sides": 5
-        },
+        "type": "image",
         "image": {
-          "src": "img/github.svg",
-          "width": 100,
-          "height": 100
+          "src": "/images/snowflake.svg",
         }
       },
       "opacity": {
-        "value": 0.5,
-        "random": false,
-        "anim": {
-          "enable": false,
-          "speed": 1,
-          "opacity_min": 0.1,
-          "sync": false
-        }
-      },
-      "size": {
-        "value": 3,
-        "random": false,
-        "anim": {
-          "enable": false,
-          "speed": 80,
-          "size_min": 0.1,
-          "sync": false
-        }
-      },
-      "line_linked": {
-        "enable": true,
-        "distance": 200,
-        "color": "#ffffff",
-        "opacity": 0.4,
-        "width": 1
+        "value": 0.75,
+        "random": true,
       },
       "move": {
         "enable": true,
-        "speed": 3,
-        "direction": "none",
-        "random": true,
+        "speed": {min: 1, max: 2},
+        "direction": "bottom",
         "straight": false,
         "out_mode": "out",
         "bounce": false,
@@ -109,7 +80,7 @@ const Background = ({className}) => {
         }
       }
     },
-    "retina_detect": true
+    "retina_detect": true,
   }
 
   return (
