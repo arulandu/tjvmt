@@ -9,7 +9,7 @@ const AboutUsSection = () => {
       <h2 className="mb-6 text-center text-white text-5xl">
           About Us
       </h2>
-      <p className="relative w-11/12 lg:w-9/12 my-8 mx-auto text-center text-white text-2xl font-light">
+      <p className="relative w-11/12 lg:w-9/12 my-8 mx-auto text-center text-white text-lg lg:text-2xl font-light">
       Welcome to the TJ Varsity Math Team (VMT)! We aim to foster a passion for mathematics 
       and a community of learners through engaging student-led lectures and practice tests.
       We consistently participate and place at various college-hosted competitions. We also host
