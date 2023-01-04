@@ -67,8 +67,6 @@ export const RankingsSection = ({}) => {
               {data.submissions?.map(sub =>
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th className='p-4'>{sub.tst.name}</th>
-                  <th className='p-4'>{sub.index.toFixed(2)}</th>
-                  <th className='p-2'>{sub.tst.solves.join(" ")}</th>
                 </tr>
               )}
             </tbody>
