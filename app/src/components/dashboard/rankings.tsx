@@ -67,6 +67,8 @@ export const RankingsSection = ({}) => {
               {data.submissions?.map(sub =>
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th className='p-4'>{sub.tst.name}</th>
+                  {/*<th className='p-4'>{sub.index.toFixed(2)}</th>*/}
+                  {/* <th className='p-4'>{sub.answers.map((ans, index) => ans == 1 ? <span className = 'text-green-300'>{sub.tst.solves[index]} </span> : <span className = 'text-pink'>{sub.tst.solves[index]} </span>)}</th>*/}
                 </tr>
               )}
             </tbody>
@@ -81,7 +83,7 @@ export const RankingsSection = ({}) => {
             <thead>
               <tr>
                 <th className='p-2'>Rank</th>
-                <th className='p-2'>Name</th>
+                {/*<th className='p-2'>Name</th>*/}
                 <th className='p-2'>Index</th>
               </tr>
             </thead>
@@ -89,7 +91,7 @@ export const RankingsSection = ({}) => {
               {data.rankings?.map((r, i) =>
                 <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
                   <td className='p-2'>{r.index < 0 ? '...' : r.rank}</td>
-                  {/*<td className='p-2'>{r.index < 0 ? '...' : r.name}</td>*/}
+                  <td className='p-2'>{r.index < 0 ? '...' : r.name}</td>
                   <td className='p-2'>{r.index >= 0 ? r.index.toFixed(2) : '...'}</td>
                 </tr>
               )}
