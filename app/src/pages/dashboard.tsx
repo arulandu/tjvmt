@@ -25,15 +25,15 @@ const Dashboard: NextPage<any> = ({ }) => {
   const tabs = [
     { label: 'Polls', value: 'polls' },
     { label: 'Problems', value: 'problems'},
-    
+    { label: 'Rankings', value: 'rankings' },
     { label: 'Directory', value: 'directory' },
-    user.admin ? {label: 'Grader', value: 'grader', } : null,
-    user.admin ? {label: 'Rankings', value: 'rankings', } : null
+    user.admin ? {label: 'Grader', value: 'grader'} : null
   ].filter(v => v)
 
   const tabMap = {
     'polls': <PollSection />,
     'problems': <ProblemSection/>,
+    'rankings': <RankingsSection/>,
     'directory': <Directory/>,
     'grader': <GraderSection/>
   }
