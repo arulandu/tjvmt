@@ -28,7 +28,7 @@ export const RankingsSection = ({}) => {
     }
     fetch('/api/selection', options).then(res => res.json()).then((data) => {
       setSelections(data.selections)
-      setInput({...input, selectionId: data.selections.length > 0 ? data.selections[0].id : null})
+      setInput({...input, selectionId: data.selections.length > 0 ? data.selections[2].id : null})
     })
   }, [session])
 
@@ -67,8 +67,8 @@ export const RankingsSection = ({}) => {
               {data.submissions?.map(sub =>
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th className='p-4'>{sub.tst.name}</th>
-                  {/*<th className='p-4'>{sub.index.toFixed(2)}</th>*/}
-                  {/* <th className='p-4'>{sub.answers.map((ans, index) => ans == 1 ? <span className = 'text-green-300'>{sub.tst.solves[index]} </span> : <span className = 'text-pink'>{sub.tst.solves[index]} </span>)}</th>*/}
+                  <th className='p-4'>{sub.index.toFixed(2)}</th>
+                  <th className='p-4'>{sub.answers.map((ans, index) => ans == 1 ? <span className = 'text-green-300'>{sub.tst.solves[index]} </span> : <span className = 'text-pink'>{sub.tst.solves[index]} </span>)}</th>
                 </tr>
               )}
             </tbody>
@@ -76,14 +76,14 @@ export const RankingsSection = ({}) => {
         </div>
 
         <div className=''>
-          <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+          <Dropdown id="selectionId" label="Selection:" options={[...selections].reverse().map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
           {data.cutoff >= 0 ? <p className='mt-2 text-white'>Cutoff: {data.cutoff}</p> : null}
 
           <table className='text-white text-center mt-2 mb-8'>
             <thead>
               <tr>
                 <th className='p-2'>Rank</th>
-                {/*<th className='p-2'>Name</th>*/}
+                <th className='p-2'>Name</th>
                 <th className='p-2'>Index</th>
               </tr>
             </thead>
@@ -91,7 +91,7 @@ export const RankingsSection = ({}) => {
               {data.rankings?.map((r, i) =>
                 <tr key={i} className={`border-y border-solid ${i == data.userInd ? ' bg-pink' : 'bg-navy-light'}`}>
                   <td className='p-2'>{r.index < 0 ? '...' : r.rank}</td>
-                  {/*<td className='p-2'>{r.index < 0 ? '...' : r.name}</td>*/}
+                  <td className='p-2'>{r.index < 0 ? '...' : r.name}</td>
                   <td className='p-2'>{r.index >= 0 ? r.index.toFixed(2) : '...'}</td>
                 </tr>
               )}
