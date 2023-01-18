@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       
       let problem = null
       if(req.body.decision){
-        problem = await db.problem.update({where: {id: req.body.id}, data: {approved: true}})
+        problem = await db.problem.update({where: {id: req.body.id}, data: {approved: true, createdAt: new Date()}})
       } else {
         problem = await db.problem.delete({where: {id: req.body.id}})
       }
