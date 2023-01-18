@@ -162,7 +162,7 @@ const Header = () => {
   return (
     <header className='fixed z-50 w-full h-16 sm:h-24'>
       <Toaster />
-      <div className='bg-navy py-2'>
+      {/*<div className='bg-navy py-2'>
       <p className='text-white text-center text-base font-bold'>Announcement</p>
         <p className='text-white text-center text-sm md:text-base'>
         Competing in TJIMO? Check out the {' '}
@@ -171,7 +171,7 @@ const Header = () => {
         </Link>
         !
         </p>
-      </div>
+    </div> */}
       <NavBar />
     </header>
   );
