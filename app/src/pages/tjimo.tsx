@@ -11,7 +11,7 @@ const TjimoPage: NextPage<any> = () => {
   return (
     <Layout>
       <div className='fixed w-screen h-screen opacity-40 z-[-1]'>
-        <Image src="/images/TJIMO2022.jpg" layout="fill" objectFit='cover' />
+        <Image src="/images/TJIMO2022.JPG" layout="fill" objectFit='cover' />
       </div>
       <section className="h-screen flex items-center justify-center">
         <div>
