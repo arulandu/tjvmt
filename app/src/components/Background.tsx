@@ -4,27 +4,27 @@ const Background = ({className}) => {
   const particleParams: RecursivePartial<IOptions> = {
     "particles": {
       "number": {
-        "value": 70,
+        "value": 60,
         "density": {
           "enable": true,
-           "area": 450
+           "area": 600
         }
       },
       "color": {
         "value": "#ffffff"
       },
       "size": {
-        "value": 30,
+        "value": 25,
         "random": true
       },
       "shape": {
         "type": "image",
         "image": {
-          "src": "/images/snowflake.svg",
+          "src": "/images/heart.svg",
         }
       },
       "opacity": {
-        "value": 0.75,
+        "value": 0.9,
         "random": true,
       },
       "move": {
