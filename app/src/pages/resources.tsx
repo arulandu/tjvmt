@@ -51,6 +51,16 @@ const Resources: NextPage<any> = ({ user }) => {
                 <a className='text-xl text-white opacity-100 hover:opacity-50 transition-al' target="_blank">AMCs Guide (Isabella Zhu)</a>
               </Link>
             </div>
+            <div className='text-center mt-2'>
+              <Link href={`https://tjvmt.com/u/arml_teams`} passHref>
+                <a className='text-xl text-white opacity-100 hover:opacity-50 transition-al' target="_blank">ARML Teams Spreadsheet</a>
+              </Link>
+            </div>
+            <div className='text-center mt-2'>
+              <Link href={`https://tjvmt.com/u/orderpizza`} passHref>
+                <a className='text-xl text-white opacity-100 hover:opacity-50 transition-al' target="_blank">ARML Pizza Form</a>
+              </Link>
+            </div>
           </div>
         </section>
         : null}
