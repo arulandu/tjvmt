@@ -61,6 +61,11 @@ const Resources: NextPage<any> = ({ user }) => {
                 <a className='text-xl text-white opacity-100 hover:opacity-50 transition-al' target="_blank">ARML Pizza Form</a>
               </Link>
             </div>
+            <div className='text-center mt-2'>
+              <Link href={`https://docs.google.com/spreadsheets/d/1s1D4J-Q3RpOx26tAgkUapoPli1bRKR_P2vlOBHC4asg/edit?usp=sharing`} passHref>
+                <a className='text-xl text-white opacity-100 hover:opacity-50 transition-al' target="_blank">ARML Rankings</a>
+              </Link>
+            </div>
           </div>
         </section>
         : null}
