@@ -20,11 +20,11 @@ const Background = ({className}) => {
       "shape": {
         "type": "image",
         "image": {
-          "src": "/images/heart.svg",
+          "src": "/images/pi.svg",
         }
       },
       "opacity": {
-        "value": 0.9,
+        "value": 0.6,
         "random": true,
       },
       "move": {
