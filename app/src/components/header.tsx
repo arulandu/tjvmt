@@ -77,6 +77,7 @@ const NavBar = () => {
         <NavLink index={2} href="/tjimo" name="TJIMO" />
         <NavLink index={3} href="/resources" name="Resources" />
         <NavLink index={4} href="/calendar" name="Calendar" />
+        <NavLink index={5} href="/sponsors" name="Sponsors" />
         <Link href="mailto:vmtofficers@gmail.com" passHref>
           <a className='mt-4 md:ml-4 md:mt-0'>
             <OutlineButton name="Contact" />

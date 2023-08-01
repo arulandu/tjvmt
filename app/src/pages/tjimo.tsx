@@ -33,8 +33,8 @@ const TjimoPage: NextPage<any> = () => {
         <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
         <p className = "mb-4">
         Sponsors allow us to provide the best experience possible for TJIMO participants by helping 
-        us host a competition full of learning, collaboration, fulfillment, and fun. Our full list of sponsors is currently on 
-        our <a className = "font-bold text-pink" href = "https://tjvmt.com/about">about</a> page.
+        us host a competition full of learning, collaboration, fulfillment, and fun. Our full list of sponsors can be found on 
+        the <a className = "font-bold text-pink" href = "/sponsors">sponsors</a> page.
         </p>
         <p className = "mb-10">
         Interested in sponsoring or partnering with us for TJIMO? 

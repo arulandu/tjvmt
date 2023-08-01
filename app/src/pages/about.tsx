@@ -253,7 +253,7 @@ const Home: NextPage<any> = ({ officers }) => {
     <Layout>
       <AboutUsSection/>
       <LeadershipSection officers={officers}/>
-      <SponsorSection/>
+      {/* <SponsorSection/> */}
     </Layout>
   );
 };
