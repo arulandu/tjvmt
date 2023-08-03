@@ -24,12 +24,32 @@ const ArchiveEmbed = ({ name, id }) => {
   );
 }
 
+const CalendarSection = () => {
+  return (
+      <iframe className = "w-10/12 h-screen" src="https://calendar.google.com/calendar/embed?src=vmtofficers%40gmail.com&ctz=America/New_York"/>
+  );
+}
+
 const Resources: NextPage<any> = ({ user }) => {
   return (
     <Layout dim>
-      <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex items-center justify-center">
+      {/* <div className = "mx-4 sm:mx-8 lg:mx-8 pt-24 items-center">
+        <h1 className="mb-6 text-center text-white text-5xl"> Resources</h1>
+      </div> */}
+      <section className="flex flex-col items-center justify-center pt-24">
+          <h2 className="mb-6 text-white text-5xl gradient-text text-center">Calendar</h2>
+          <CalendarSection/>
+          <br></br>
+          <p>
+              <small className="mb-6 text-white text-base gradient-text text-center">
+                  If there are any questions concerning the calendar, please 
+                  email: <a className="text-pink hover:underline" href="mailto:vmtofficers@gmail.com">vmtofficers@gmail.com</a>.
+              </small>
+          </p>
+      </section>
+      <section className="mx-4 sm:mx-8 lg:mx-8 pt-24 items-center">
         <div className="text-center">
-          <h1 className="mb-6 text-white text-5xl gradient-text text-center">Archive</h1>
+          <h2 className="mb-6 text-white text-5xl gradient-text text-center">Archive</h2>
           <div className="flex justify-center flex-wrap">
             <ArchiveEmbed name="2022-2023" id="1rlZPq5Y5ndRdE1XwOSI4zSiJF0ln6s4L#list" />
             <ArchiveEmbed name="2021-2022" id="19Mt2b4CUkF44IeTVX-2S6Wm5PfXzs7tY#list" />

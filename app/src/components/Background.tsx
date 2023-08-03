@@ -4,33 +4,61 @@ const Background = ({className}) => {
   const particleParams: RecursivePartial<IOptions> = {
     "particles": {
       "number": {
-        "value": 60,
+        "value": 70,
         "density": {
           "enable": true,
-           "area": 600
+           "area": 700
         }
       },
       "color": {
         "value": "#ffffff"
       },
-      "size": {
-        "value": 25,
-        "random": true
-      },
       "shape": {
-        "type": "image",
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        },
+        "polygon": {
+          "nb_sides": 5
+        },
         "image": {
-          "src": "/images/pi.svg",
+          "src": "img/github.svg",
+          "width": 100,
+          "height": 100
         }
       },
       "opacity": {
-        "value": 0.6,
-        "random": true,
+        "value": 0.5,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 3,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 80,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 200,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
       },
       "move": {
         "enable": true,
-        "speed": {min: 1, max: 2},
-        "direction": "bottom",
+        "speed": {min: 2, max: 3},
+        "direction": "none",
         "straight": false,
         "out_mode": "out",
         "bounce": false,

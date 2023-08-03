@@ -16,8 +16,8 @@ const TjimoPage: NextPage<any> = () => {
       <section className="h-screen flex items-center justify-center">
         <div>
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
-          <p className="text-center text-2xl text-white mb-6">December 10, 2022 @ TJHSST</p>
-          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">TJIMO Guide</a></p>
+          <p className="text-center text-2xl text-white mb-6">October 14, 2023 @ TJHSST</p>
+          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">Last year's TJIMO Guide</a></p>
 
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">
@@ -33,7 +33,8 @@ const TjimoPage: NextPage<any> = () => {
         <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
         <p className = "mb-4">
         Sponsors allow us to provide the best experience possible for TJIMO participants by helping 
-        us host a competition full of learning, collaboration, fulfillment, and fun.
+        us host a competition full of learning, collaboration, fulfillment, and fun. Our full list of sponsors can be found on 
+        the <a className = "font-bold text-pink" href = "/sponsors">sponsors</a> page.
         </p>
         <p className = "mb-10">
         Interested in sponsoring or partnering with us for TJIMO? 
