@@ -62,7 +62,7 @@ const Resources: NextPage<any> = ({ user }) => {
           </div>
         </div>
       </section>
-      {user ?
+      {/* {user ?
         <section className='mt-6 sm:mx-12 lg:mx-24 flex flex-col items-center justify-center border-solid border-2 border-white'>
           <div className='m-8 items-center justify-center'>
             <h1 className='text-white text-center text-3xl font-bold mb-4'>Internal Resources (Do Not Share)</h1>
@@ -88,7 +88,7 @@ const Resources: NextPage<any> = ({ user }) => {
             </div>
           </div>
         </section>
-        : null}
+        : null} */}
 
     </Layout>
   )
