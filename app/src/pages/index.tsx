@@ -172,7 +172,7 @@ const QuotesSection = () => {
       </h2>
       <div className="w-full flex flex-wrap justify-center items-start">
         <Quote
-          text="“ARML was my very first competition with VMT, soI didn’t know what to expect; however, it
+          text="“ARML was my very first competition with VMT, so I didn’t know what to expect; however, it
           turned out to be one of the best experiences I had all year. The memories I made having fun
           participating in the competition while being in a welcoming and inclusive environment have me
           constantly excited for our next competition. From group ultimate frisbee to celebrating our
@@ -183,7 +183,7 @@ const QuotesSection = () => {
           author="Ryan Singh"
         />
         <Quote
-          text="ARML was one of the most memorable experiences of the year! We spent a long time practicing, and it was all worth it in the end. From the bus rides to trekking across the Penn State campus, I enjoyed spending time with all my friends in VMT. I also met incredibly talented people from other schools, and I gained so much insight about math just from talking to them. The opportunity to compete at ARML wasn’t just the culmination of weeks of practice, but also the opportunity to explore new things and bond with members of the community."
+          text="“ARML was one of the most memorable experiences of the year! We spent a long time practicing, and it was all worth it in the end. From the bus rides to trekking across the Penn State campus, I enjoyed spending time with all my friends in VMT. I also met incredibly talented people from other schools, and I gained so much insight about math just from talking to them. The opportunity to compete at ARML wasn’t just the culmination of weeks of practice, but also the opportunity to explore new things and bond with members of the community.”"
           img="/images/officers/olivia23.png"
           author="Olivia Wu"
         />
@@ -196,7 +196,7 @@ const QuotesSection = () => {
           author="Andrew Chen"
         />
         <Quote
-          text="Seeing all the students gathered at TJIMO was heartwarming because it was clear everyone was happy to be there and do math together. As the day progressed, the students in my team grew closer, and that strengthened their teamwork during the multiple rounds. TJIMO brought together an array of bright minds, and each student left with a newfound appreciation for the challenging problems VMT had presented them."
+          text="“Seeing all the students gathered at TJIMO was heartwarming because it was clear everyone was happy to be there and do math together. As the day progressed, the students in my team grew closer, and that strengthened their teamwork during the multiple rounds. TJIMO brought together an array of bright minds, and each student left with a newfound appreciation for the challenging problems VMT had presented them.”"
           img="/images/officers/marina23.png"
           author="Marina Lin"
         />
