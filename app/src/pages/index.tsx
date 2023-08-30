@@ -179,7 +179,7 @@ const QuotesSection = () => {
           placement to taking countless photos, I always remember having a smile on my face.
           Logistically, it was very well organized, and we always had clear communication and instructions
           from our sponsors and officers, and that was something I appreciated greatly.”"
-          img="/images/quotes/ryan.JPG"
+          img="/images/quotes/ryan.png"
           author="Ryan Singh"
         />
         <Quote
@@ -192,7 +192,7 @@ const QuotesSection = () => {
           karaoke with my friends or complaining about the dorms or cheering for TJ at the awards
           ceremony, this trip was definitely one of my most memorable moments at TJ. I had so much fun
           and made a lot of new friends!”"
-          img="/images/quotes/andrew.JPG"
+          img="/images/quotes/andrew.png"
           author="Andrew Chen"
         />
         <Quote
