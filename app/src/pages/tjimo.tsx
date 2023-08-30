@@ -27,7 +27,7 @@ const TjimoPage: NextPage<any> = () => {
       <section className="mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 text-white bg-navy bg-opacity-50">
         <h2 className="text-3xl font-bold text-left mb-4">What is TJIMO?</h2>
         <p className="mb-10">
-          The Thomas Jefferson Intermediate Math Open (TJIMO) is a contest that the Thomas Jefferson Varisty Math Team holds for middle schools in the
+          The Thomas Jefferson Intermediate Math Open (TJIMO) is a contest that the Thomas Jefferson Varsity Math Team holds for middle schools in the
           Washington, DC area. Students learn a variety of problem-solving strategies from experienced VMT student coaches and apply these strategies in a mathematics competition.
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">Sponsorship</h2>
