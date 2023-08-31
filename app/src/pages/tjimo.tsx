@@ -17,7 +17,9 @@ const TjimoPage: NextPage<any> = () => {
         <div>
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
           <p className="text-center text-2xl text-white mb-6">October 14, 2023 @ TJHSST</p>
-          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">Last year's TJIMO Guide</a></p>
+          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration23">2023 Registration</a></p>
+          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">TJIMO Guide</a></p>
+          
 
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">

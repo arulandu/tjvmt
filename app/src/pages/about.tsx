@@ -17,7 +17,7 @@ const AboutUsSection = () => {
       </p>
       <div className ="mx-auto relative w-11/12 lg:w-9/12 aspect-[4/3]">
       <Image
-        src="/images/duke.JPG"
+        src="/images/arml.JPG"
         alt="Duke Picture"
         layout="fill"
       />
