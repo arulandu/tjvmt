@@ -11,12 +11,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const where = req.query.competitor === 'true' ? {competitor: true} : {} 
       let users = await db.user.findMany({where})
 
-      const players = (await (await fetch(`https://mee6.xyz/api/plugins/levels/leaderboard/${process.env.DISCORD_GUILD_ID}`, {method: "GET"})).json()).players
-      const playerMap = {}; players.forEach(p => playerMap[p.id] = p)
+      // const players = (await (await fetch(`https://mee6.xyz/api/plugins/levels/leaderboard/${process.env.DISCORD_GUILD_ID}`, {method: "GET"})).json()).players
+      // const playerMap = {}; players.forEach(p => playerMap[p.id] = p)
 
-      users.forEach((u) => {
-        u['stats'] = u.discordId ? playerMap[u.discordId] : undefined
-      })
+      // users.forEach((u) => {
+      //   u['stats'] = u.discordId ? playerMap[u.discordId] : undefined
+      // })
 
       users = users.sort((a,b) => b.solvedProblemIds.length - a.solvedProblemIds.length)
 
