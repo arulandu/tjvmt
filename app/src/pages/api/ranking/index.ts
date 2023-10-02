@@ -10,9 +10,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       
       const selectionId = req.query.selectionId as string
       const selection = await db.selection.findFirst({where: {id: selectionId}})
+
       if(!selection) throw Error("selection not found")
 
-      const apps = await db.application.findMany({where: {selectionId}, include: {author: { select: { ionUsername: true }}}, orderBy: {index: 'desc'}})
+      const apps = await db.application.findMany({where: {selectionId}, include: {author: { select: { ionUsername : true }}}, orderBy: {index: 'desc'}})
       const ranks = apps.map(app => ({}))
       const submissions = await db.submission.findMany({where: {authorId: user.id}, include: {tst: {select: {name: true, solves: true}}}})
 
@@ -22,7 +23,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         if(i > 0 && apps[i].index != apps[i-1].index) {rank += i-starts[starts.length-1]; starts.push(i);}
         ranks[i]['rank'] = rank
         ranks[i]['index'] = apps[i].index
-        console.log(apps[i].authorId+" "+apps[i].index)
         if(apps[i].authorId === user.id){
           userInd = i;
         }
