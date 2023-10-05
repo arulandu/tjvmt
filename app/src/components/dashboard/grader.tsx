@@ -253,7 +253,15 @@ export const GraderSection = () => {
       }
     }
     fetch('/api/tst', options).then(res => res.json()).then((data) => setTsts(data.tsts))
-    fetch('/api/user?competitor=true', options).then(res => res.json()).then((data) => setUsers(data.users))
+
+    let pageNum = 0
+    const cb = (data) => {
+      setUsers(users => [...users, ...data.users])
+      if (data.users.length == 100)
+        fetch(`/api/user?competitor=true&limit=100&page=${++pageNum}`, options).then(res => res.json()).then(cb)
+    }
+
+    fetch(`/api/user?competitor=true&limit=100&page=${pageNum}`, options).then(res => res.json()).then(cb)
   }, [session])
 
   return (
