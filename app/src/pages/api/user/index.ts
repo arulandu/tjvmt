@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const userLimit = req.query.limit ? Number(req.query.limit) : Number.MAX_SAFE_INTEGER
       const userOffset = req.query.page ? Number(req.query.page) : 0
-      users = users.slice(userOffset * userLimit, userOffset + userLimit)
+      users = users.slice(userOffset * userLimit, userOffset * userLimit + userLimit)
 
       return res.status(200).json({
         users
