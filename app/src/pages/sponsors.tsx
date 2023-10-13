@@ -64,7 +64,7 @@ const SponsorSection = () => {
           link="https://www.thecakeshopcapital.com/"
         />
         <Sponsor
-          text="AoPS Vienna is a learning center for advanced math and language arts. We offer a variety of classes for students in grades 2-12, including math, language arts, and science."
+          text="We are the Vienna branch of Art of Problem Solving.  We offer afterschool and weekend math and language arts classes for advanced students who need more stimulating material than what they receive at school. Almost all of TJ's VMT are current or former AoPS students!"
           img="/images/sponsors/vienna.png"
           company="AoPS Vienna"
           link="https://vienna.aopsacademy.org/"
