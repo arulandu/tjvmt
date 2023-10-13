@@ -108,7 +108,7 @@ const SponsorSection = () => {
         <SmallerSponsor
           img="images/sponsors/awesomemath.png"
           company="AwesomeMath"
-          link=""
+          link="https://www.awesomemath.org/"
         />
       </div>
       <h2 className="mt-8 text-3xl font-bold text-[#3896e8] text-center">Prize Sponsors</h2>
