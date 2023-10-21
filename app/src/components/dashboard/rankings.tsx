@@ -43,7 +43,7 @@ export const RankingsSection = ({}) => {
     }
     fetch(`/api/ranking?selectionId=${input.selectionId}`, options).then(res => res.json()).then((data) => {
       setData(data);
-      notify(toastDispatch, "", `Calculated your ranking for selection ${selections.filter(s => s.id == input.selectionId)[0].name}`);
+      // notify(toastDispatch, "", `Calculated your ranking for selection ${selections.filter(s => s.id == input.selectionId)[0].name}`);
     })
 
   }, [session, input.selectionId])
