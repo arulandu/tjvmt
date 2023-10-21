@@ -132,7 +132,13 @@ const Problem = ({ problem }) => {
 export const ProblemSection = () => {
   const { session, user } = useSession();
   let [problems, setProblems] = useState([])
-  const [input, setInput] = useState({unsolved: true})
+
+  let unsolvedProblems = problems.filter(p => !p.solved)
+  let isDone = false
+  if (unsolvedProblems.length == 0) isDone = true
+  console.log(isDone)
+
+  const [input, setInput] = useState({unsolved: !isDone})
   useEffect(() => {
     if (!session) return
     const options = {
@@ -150,7 +156,9 @@ export const ProblemSection = () => {
     <div className='relative w-full min-h-fit flex flex-col justify-center items-center text-white'>
       <h3 className='text-white text-3xl font-black'>Problems</h3>
       <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={problems.length <= 0} />
-      <TabSelect id="unsolved" options={[{label: 'Unsolved Only', value: true}, {label: 'All', value: false}]} value={input.unsolved} onChange={(x) => setInput({...input, unsolved: x})} className='mt-4'/>
+      <TabSelect id="unsolved" options={[{label: 'Unsolved Only', value: !isDone}, {label: 'All', value: isDone}]} value={input.unsolved}
+      onChange={(x) => setInput({...input, unsolved: x})} className='mt-4'/>
+
       <div className='w-full h-full overflow-x-auto '>
         {problems.length > 0 ?
         <div className='w-full m-2 p-2 flex justify-start items-start'>

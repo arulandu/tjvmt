@@ -19,6 +19,7 @@ const TjimoPage: NextPage<any> = () => {
           <p className="text-center text-2xl text-white mb-6">October 14, 2023 @ TJHSST</p>
           <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration23">2023 Registration</a></p>
           <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">TJIMO Guide</a></p>
+          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "/sponsors">Sponsors Page</a></p>
           
 
         </div>
