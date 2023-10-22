@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Dropdown } from "../Dropdown";
 import { notify, ToastType } from "../header";
 import { InputField } from "../InputField";
+import { Upload } from "../Upload";
 import OutlineButton from "../OutlineButton";
 import { useSession } from "../SessionProvider";
 import { Spinner } from "../Spinner";
 import { useToasts } from "../ToastProvider";
-import Papa from 'papaparse'
+import Papa from 'papaparse';
 
 // GRADER
 const ViewTSTs = ({ tsts }) => {
@@ -220,7 +221,7 @@ const SubmitGrade = ({ tsts, users }) => {
       <p className='text-white mt-2 text-md'>Key in answers using space to separate.</p>
       <Dropdown id="tstId" label="TST" options={tsts.map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
       <Dropdown id="userId" label="ION" options={users.map(user => ({ label: user.ionUsername, value: user.id }))} value={input.userId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
-      <Dropdown id="writer" label="Writer?" options={[{label: 'YES', value: true}, {label: 'NO', value: false}]} value={input.writer} onChange={(e) => handleInputChange(e, input, setInput)} />
+      <Dropdown id="writer" label="Writer?" options={[{ label: 'YES', value: true }, { label: 'NO', value: false }]} value={input.writer} onChange={(e) => handleInputChange(e, input, setInput)} />
       <InputField id='answers' name='Answers' value={input.answers} onChange={(e) => handleInputChange(e, input, setInput)} />
       {/* <InputField id='tstId' name='Choices' value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} /> */}
       <OutlineButton name='Submit' className='mt-4' onClick={submit} />
@@ -243,7 +244,7 @@ const CSVSubmitGrade = ({ tsts }) => {
   // useEffect(() => {
   //   if (tsts.length > 0) setInput({ ...input, tstId: tsts[0].id })
   // }, [tsts])
-  
+
   const submit = () => {
     const results = []
 
@@ -253,10 +254,12 @@ const CSVSubmitGrade = ({ tsts }) => {
     reader.onload = () => {
       const csvData = reader.result
       const parsed = Papa.parse(csvData, { header: true })
-    
-      // Create a request for each row in the CSV file
+
+      // Create a request for each row in the CSV file with valid userId (24 bit hex)
       parsed.data.forEach(row => {
-        results.push(rowRequest(row))
+        if (row.userId && row.userId.length === 24) {
+          results.push(rowRequest(row))
+        }
       })
 
       // Wait for all requests to complete
@@ -275,22 +278,15 @@ const CSVSubmitGrade = ({ tsts }) => {
 
   const rowRequest = async (row) => {
 
+    // create answers array and fill in missing values with 0
     const ans = []
     for (const key in row) {
       if (key.startsWith('P')) {
-        ans[parseInt(key[1]) - 1] = row[key]
+        ans[parseInt(key[1]) - 1] = row[key] ? row[key] : '0'
       }
     }
 
     const { ObjectId } = require('bson')
-
-    // console.log('UserId:' + ObjectId.createFromHexString(row.userId))
-    // console.log('Answers:' + ans)
-    // console.log('tstid:' + input.tstId)
-    // console.log('index:' + row.index)
-    // console.log('is ObjectId:' + ObjectId.isValid(ObjectId.createFromHexString(row.userId)))
-
-
     const res = await fetch('/api/tst/submission', {
       method: 'POST',
       headers: {
@@ -311,18 +307,15 @@ const CSVSubmitGrade = ({ tsts }) => {
 
   return (
     <div className='mt-2 w-full bg-navy-light bg-opacity-50 p-4'>
-      <h3 className='text-white text-2xl font-bold'>Submit Grade (with CSV upload)</h3>
+      <h3 className='text-white text-2xl font-bold'>Submit Grade (with CSV)</h3>
+      <p className='text-white mt-2 text-md'>Include user hash values under header 'userId'. <br />Headers for each problem should be labelled 'P#'. <br />Only for non-writers scores.</p>
       <Dropdown id="tstId" label="TST" options={tsts.filter(tst => tst.name.includes('test') || tst.name.includes('2023')).map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
-      
-      {/* Upload csv file */}
-      <label htmlFor='tstUpload' className='text-white text-xl'>TST Upload </label>
-      <input type='file' id='tstUpload' name='tstUpload' className='text-white' onChange={handleFileChange} accept='.csv' />
-
+      <Upload id='tstUpload' label='Upload CSV' onChange={handleFileChange} accept='.csv' className='mt-2' />
       <OutlineButton name='Submit' className='mt-4' onClick={submit} />
     </div>
   )
 
-} 
+}
 
 export const GraderSection = () => {
   const { session } = useSession();
@@ -371,7 +364,7 @@ export const GraderSection = () => {
           <ViewTSTs tsts={tsts} />
           <ViewSelections selections={selections} />
           <SubmitGrade tsts={tsts} users={users} />
-          <CSVSubmitGrade tsts={tsts}  />
+          <CSVSubmitGrade tsts={tsts} />
         </div>
         <div className='ml-2 max-w-lg'>
           <CreateTST />
