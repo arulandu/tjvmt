@@ -266,7 +266,7 @@ const CSVSubmitGrade = ({ tsts }) => {
           setInput({ ...input, file: null })
         })
         .catch((error) => {
-          console.error('Whoops!')
+          // console.error('Whoops!')
           console.error(error)
         })
 
@@ -284,11 +284,11 @@ const CSVSubmitGrade = ({ tsts }) => {
 
     const { ObjectId } = require('bson')
 
-    console.log('UserId:' + ObjectId.createFromHexString(row.userId))
-    console.log('Answers:' + ans)
-    console.log('tstid:' + input.tstId)
-    console.log('index:' + row.index)
-    console.log('is ObjectId:' + ObjectId.isValid(ObjectId.createFromHexString(row.userId)))
+    // console.log('UserId:' + ObjectId.createFromHexString(row.userId))
+    // console.log('Answers:' + ans)
+    // console.log('tstid:' + input.tstId)
+    // console.log('index:' + row.index)
+    // console.log('is ObjectId:' + ObjectId.isValid(ObjectId.createFromHexString(row.userId)))
 
 
     const res = await fetch('/api/tst/submission', {
@@ -305,7 +305,7 @@ const CSVSubmitGrade = ({ tsts }) => {
         // index: row.index
       })
     })
-    console.log('res:' + res)
+    // console.log('res:' + res)
     return res
   }
 
