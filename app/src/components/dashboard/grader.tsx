@@ -7,6 +7,7 @@ import OutlineButton from "../OutlineButton";
 import { useSession } from "../SessionProvider";
 import { Spinner } from "../Spinner";
 import { useToasts } from "../ToastProvider";
+import Papa from 'papaparse'
 
 // GRADER
 const ViewTSTs = ({ tsts }) => {
@@ -227,6 +228,102 @@ const SubmitGrade = ({ tsts, users }) => {
   );
 }
 
+const CSVSubmitGrade = ({ tsts }) => {
+  const { session } = useSession()
+  const { toastDispatch } = useToasts()
+  const [input, setInput] = useState({
+    file: null,
+    tstId: '',
+  })
+
+  const handleFileChange = (event) => {
+    setInput({ ...input, file: event.target.files[0] })
+  }
+
+  // useEffect(() => {
+  //   if (tsts.length > 0) setInput({ ...input, tstId: tsts[0].id })
+  // }, [tsts])
+  
+  const submit = () => {
+    const results = []
+
+    // Read the CSV file
+    const reader = new FileReader()
+    reader.readAsText(input.file)
+    reader.onload = () => {
+      const csvData = reader.result
+      const parsed = Papa.parse(csvData, { header: true })
+    
+      // Create a request for each row in the CSV file
+      parsed.data.forEach(row => {
+        results.push(rowRequest(row))
+      })
+
+      // Wait for all requests to complete
+      Promise.all(results)
+        .then(() => {
+          notify(toastDispatch, "", `Graded ${tsts.filter(t => t.id == input.tstId)[0].name}`)
+          setInput({ ...input, file: null })
+        })
+        .catch((error) => {
+          console.error('Whoops!')
+          console.error(error)
+        })
+
+    }
+  }
+
+  const rowRequest = async (row) => {
+
+    const ans = []
+    for (const key in row) {
+      if (key.startsWith('P')) {
+        ans[parseInt(key[1]) - 1] = row[key]
+      }
+    }
+
+    const { ObjectId } = require('bson')
+
+    console.log('UserId:' + ObjectId.createFromHexString(row.userId))
+    console.log('Answers:' + ans)
+    console.log('tstid:' + input.tstId)
+    console.log('index:' + row.index)
+    console.log('is ObjectId:' + ObjectId.isValid(ObjectId.createFromHexString(row.userId)))
+
+
+    const res = await fetch('/api/tst/submission', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`
+      },
+      body: JSON.stringify({
+        writer: false,
+        answers: ans.map(e => parseInt(e.trim())),
+        tstId: input.tstId,
+        userId: ObjectId.createFromHexString(row.userId),
+        // index: row.index
+      })
+    })
+    console.log('res:' + res)
+    return res
+  }
+
+  return (
+    <div className='mt-2 w-full bg-navy-light bg-opacity-50 p-4'>
+      <h3 className='text-white text-2xl font-bold'>Submit Grade (with CSV upload)</h3>
+      <Dropdown id="tstId" label="TST" options={tsts.filter(tst => tst.name.includes('test') || tst.name.includes('2023')).map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+      
+      {/* Upload csv file */}
+      <label htmlFor='tstUpload' className='text-white text-xl'>TST Upload </label>
+      <input type='file' id='tstUpload' name='tstUpload' className='text-white' onChange={handleFileChange} accept='.csv' />
+
+      <OutlineButton name='Submit' className='mt-4' onClick={submit} />
+    </div>
+  )
+
+} 
+
 export const GraderSection = () => {
   const { session } = useSession();
   const [tsts, setTsts] = useState([])
@@ -274,6 +371,7 @@ export const GraderSection = () => {
           <ViewTSTs tsts={tsts} />
           <ViewSelections selections={selections} />
           <SubmitGrade tsts={tsts} users={users} />
+          <CSVSubmitGrade tsts={tsts}  />
         </div>
         <div className='ml-2 max-w-lg'>
           <CreateTST />

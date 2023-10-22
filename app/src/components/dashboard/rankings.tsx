@@ -64,7 +64,9 @@ export const RankingsSection = ({}) => {
               </tr>
             </thead>
             <tbody>
-              {data.submissions?.map(sub =>
+              {data.submissions
+              .filter(sub => sub.tst.name.includes('2023'))
+              .map(sub =>
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th className='p-4'>{sub.tst.name}</th>
                   <th className='p-4'>{sub.index.toFixed(2)}</th>
@@ -75,8 +77,18 @@ export const RankingsSection = ({}) => {
           </table>
         </div>
 
-        <div className=''>
-          <Dropdown id="selectionId" label="Selection:" options={selections.map(s => ({ label: s.name, value: s.id }))} value={input.selectionId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+        {/* <div className=''>
+          <Dropdown
+            id="selectionId"
+            label="Selection:"
+            options={selections
+              .filter(s => s.name.includes(''))
+              .map(s => ({ label: s.name, value: s.id }))
+            }
+            value={input.selectionId}
+            onChange={(e) => handleInputChange(e, input, setInput)}
+            className='mt-2'
+          />
           {data.cutoff >= 0 ? <p className='mt-2 text-white'>Cutoff: {data.cutoff}</p> : null}
 
           <table className='text-white text-center mt-2 mb-8'>
@@ -97,7 +109,7 @@ export const RankingsSection = ({}) => {
               )}
             </tbody>
           </table>
-        </div>
+        </div> */}
       </div>
     </div>
   );
