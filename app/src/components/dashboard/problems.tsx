@@ -133,10 +133,7 @@ export const ProblemSection = () => {
   const { session, user } = useSession();
   let [problems, setProblems] = useState([])
 
-  let unsolvedProblems = problems.filter(p => !p.solved)
-  let isDone = false
-  if (unsolvedProblems.length == 0) isDone = true
-  console.log(isDone)
+  let isDone = (problems.filter(p => !p.solved).length == 0)
 
   const [input, setInput] = useState({unsolved: !isDone})
   useEffect(() => {
