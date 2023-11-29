@@ -98,15 +98,16 @@ const Resources: NextPage<any> = ({ user }) => {
             <h2 className="mb-6 text-white text-5xl gradient-text text-center">Upcoming Competitions</h2>
             <p>
               <small className="mb-6 text-white text-base gradient-text text-center">
-                Check the competitions guide for more information on VMT sponsored travel competitions.
+                Check the competitions guide for more information on VMT sponsored travel competitions. Click on the title for the link to the competition website.
               </small>
             </p>
             <div className="flex justify-center flex-wrap">
               <Competition name="INTEGIRLS DC" date='Dec 9, 2023' location='Montgomery College' link='https://dc.integirls.org/math' text='Beginner friendly competition for girls.' selection='This contest is self organized, so you can make your own team and register!' />
+              <Competition name="BMT Online" date="Jan 20, 2024" location="Home (Virtual)" link='https://berkeley.mt/events/bmt-2023-online/' text='Online version of BMT 2023 (must not have competed in a prior iteration of BMT 2023).' selection='This contest is self organized, so you can make your own team and register (costs $8)!' />
               <Competition name="HMMT" date="Feb 17, 2024" location="MIT" link='https://www.hmmt.org/' text="The most competitive competition in the nation. Will take at least 1 team of 8 (hopefully 2 teams)." selection='Team selection using a combination of Proof TST, top 3 Subject TSTs, and 2 HMMT General TSTs.' />
               <Competition name="Girls in Math at Yale" date="TBD (probably Feb/March 2024)" location="Yale" link='https://www.mmaths.org/girls-in-math-at-yale.html' text='Open to all girls.' selection='This contest is self organized, so you can make your own team and register!' />
-              <Competition name="CMIMC" date='March 2024' location='CMU' link='https://cmimc.math.cmu.edu/' text='Chillest competiiton of the year. Last year we were able to take 8 teams of 6.' selection='Aside from A team, there are no TSTs! Team sign up form will be released closer to the date. Sign ups will be first come first serve.' />
-              <Competition name="Purple Comet" date='April 2024' location='TJ' link='https://purplecomet.org/' text='Fun team compeition which takes place before an ARML Practice. Allowed to use anything excpet for the internet :o.' selection='No TSTs! We will release a sign up form and all teams who sign up will be able take the contest.' />
+              <Competition name="CMIMC" date='March 30, 2024' location='CMU' link='https://cmimc.math.cmu.edu/' text='Chillest competiiton of the year. Last year we were able to take 8 teams of 6.' selection='Aside from A team, there are no TSTs! Team sign up form will be released closer to the date. Sign ups will be first come first serve.' />
+              <Competition name="Purple Comet" date='April 2024' location='TJ' link='https://purplecomet.org/' text='Fun team competition which takes place before an ARML Practice. Allowed to use anything excpet for the internet :o.' selection='No TSTs! We will release a sign up form and all teams who sign up will be able take the contest.' />
               <Competition name="ARML Power" date='TBD' location='TJ' link='' text='Unrelated to ARML, but we have two teams of 15 take the contest after school one day.' selection='Teams decided using ARML Rankings and possibly the Proof TST.' />
               <Competition name="ARML" date="Jun 1, 2024" location="Penn State" link="https://www.arml.com/" text="ARML is the last and biggest competition of the year! We usually take 3 teams of 15 plus a couple alternates." selection='TSTs taken every Thursday after school, starting around late February. Estimated 2 drops with the rest of the TSTs are weighted equally.' />
             </div>
@@ -115,9 +116,9 @@ const Resources: NextPage<any> = ({ user }) => {
           <section className='mt-6 sm:mx-12 lg:mx-24 flex flex-col items-center justify-center border-solid border-2 border-white'>
             <div className='m-8 items-center justify-center'>
               <h1 className='text-white text-center text-3xl font-bold mb-4'>Internal Resources (Do Not Share)</h1>
-              <InternalResource link="https://docs.google.com/document/d/1y5xmvv1OFQOh21uZ-EA5KX4Od82mfpp0gqyD8J0nCts/edit?usp=sharing" name="AMCs Guide (Isabella Zhu '23)" />
-              <InternalResource link="https://tjvmt.com/u/compguide" name="Competitions Guide (2023-24)" />
-              <InternalResource link="https://tjvmt.com/u/fallrankings23" name="Fall Rankings (2023-24)" />
+              {/* <InternalResource link="https://docs.google.com/document/d/1y5xmvv1OFQOh21uZ-EA5KX4Od82mfpp0gqyD8J0nCts/edit?usp=sharing" name="AMCs Guide (Isabella Zhu '23)" /> */}
+              <InternalResource link="https://tjvmt.com/u/compguide" name="2023-24 Competitions Guide" />
+              <InternalResource link="https://tjvmt.com/u/fallrankings23" name="2023-24 Fall Rankings" />
               <InternalResource link="https://tjvmt.com/u/discord" name="Discord" />
             </div>
           </section>
