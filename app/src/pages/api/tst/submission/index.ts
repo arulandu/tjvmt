@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       const writer = req.body.writer ? req.body.writer === 'true' : false;
-      // const index = req.body.index ? req.body.index : 0;
+      const index = req.body.index ? parseFloat(req.body.index) : 0;
 
       let sub = await db.submission.findFirst({where: {tstId: req.body.tstId, authorId: req.body.userId}})
       if(sub){
@@ -28,7 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             answers: req.body.answers,
             tstId: req.body.tstId,
             authorId: req.body.userId,
-            // index: index
+            index: index
           }
         })
       }

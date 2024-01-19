@@ -44,9 +44,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       })
     }))
     
-    await Promise.all(tst.submissions.filter(s => s.writer).map(async (s) => 
-      await db.submission.update({where: {id: s.id}, data: {index: 2000}})
-    ))
+    // await Promise.all(tst.submissions.filter(s => s.writer).map(async (s) => 
+    //   await db.submission.update({where: {id: s.id}, data: {index: 2000}})
+    // ))
 
     res.status(200).json({
       topAvg

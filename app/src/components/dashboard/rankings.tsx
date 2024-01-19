@@ -43,7 +43,7 @@ export const RankingsSection = ({}) => {
     }
     fetch(`/api/ranking?selectionId=${input.selectionId}`, options).then(res => res.json()).then((data) => {
       setData(data);
-      // notify(toastDispatch, "", `Calculated your ranking for selection ${selections.filter(s => s.id == input.selectionId)[0].name}`);
+      notify(toastDispatch, "", `Calculated your ranking for selection ${selections.filter(s => s.id == input.selectionId)[0].name}`);
     })
 
   }, [session, input.selectionId])
@@ -68,14 +68,14 @@ export const RankingsSection = ({}) => {
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th key={sub.id + 'name'} className='p-4'>{sub.tst.name}</th>
                   <th key={sub.id + 'index'} className='p-4'>{sub.index.toFixed(2)}</th>
-                  <th key={sub.id + 'distib'} className='p-4'>{sub.answers.map((ans, index) => ans == 1 ? <span className = 'text-green-300'>{sub.tst.solves[index]} </span> : <span className = 'text-pink'>{sub.tst.solves[index]} </span>)}</th>
+                  <th key={sub.id + 'distib'} className='p-4'>{sub.answers.map((ans, index) => ans >= 1 ? <span className = 'text-green-300'>{sub.tst.solves[index]} </span> : <span className = 'text-pink'>{sub.tst.solves[index]} </span>)}</th>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
 
-        {/* <div className=''>
+        <div className=''>
           <Dropdown
             id="selectionId"
             label="Selection:"
@@ -107,7 +107,7 @@ export const RankingsSection = ({}) => {
               )}
             </tbody>
           </table>
-        </div> */}
+        </div>
       </div>
     </div>
   );

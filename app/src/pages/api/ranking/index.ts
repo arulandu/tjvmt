@@ -11,8 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const selectionId = req.query.selectionId as string
       const selection = await db.selection.findFirst({where: {id: selectionId}})
 
-      if(!selection) throw Error("selection not found")
-
+      if(!selection){throw Error("selection not found")} 
       const apps = await db.application.findMany({where: {selectionId}, include: {author: { select: { ionUsername : true }}}, orderBy: {index: 'desc'}})
       const ranks = apps.map(app => ({}))
       const submissions = await db.submission.findMany({where: {authorId: user.id}, include: {tst: {select: {name: true, solves: true}}}})
@@ -29,6 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
       
       const cutoff = apps[Math.min(apps.length,selection.size)-1].index
+
       for(let i = 0; i < apps.length; i++){
         ranks[i]['name'] = (i < selection.size || i == userInd) ? apps[i].author.ionUsername : '???';
         if(i >= selection.size && Math.abs(userInd-i) > 1){
