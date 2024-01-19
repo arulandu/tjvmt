@@ -186,7 +186,8 @@ const SubmitGrade = ({ tsts, users }) => {
     answers: '',
     tstId: '',
     userId: '',
-    writer: false
+    writer: false,
+    index: 0
   })
 
   useEffect(() => {
@@ -208,7 +209,8 @@ const SubmitGrade = ({ tsts, users }) => {
         writer: input.writer,
         answers: input.answers.split(' ').map(e => parseInt(e.trim())),
         tstId: input.tstId,
-        userId: input.userId
+        userId: input.userId,
+        index: input.index
       })
     })
     notify(toastDispatch, "", `Graded ${tsts.filter(t => t.id == input.tstId)[0].name} for ${users.filter(u => u.id == input.userId)[0].ionUsername}`)
@@ -223,6 +225,7 @@ const SubmitGrade = ({ tsts, users }) => {
       <Dropdown id="userId" label="ION" options={users.map(user => ({ label: user.ionUsername, value: user.id }))} value={input.userId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
       <Dropdown id="writer" label="Writer?" options={[{ label: 'YES', value: true }, { label: 'NO', value: false }]} value={input.writer} onChange={(e) => handleInputChange(e, input, setInput)} />
       <InputField id='answers' name='Answers' value={input.answers} onChange={(e) => handleInputChange(e, input, setInput)} />
+      <InputField id='index' name='Index' value={input.index} onChange={(e) => handleInputChange(e, input, setInput)} />
       {/* <InputField id='tstId' name='Choices' value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} /> */}
       <OutlineButton name='Submit' className='mt-4' onClick={submit} />
     </div>
