@@ -28,6 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             subs = subs.filter(sub => sub !== minIndexSub);
          } 
       }
+      // console.log(user, subs);
       if(subs.length === 0) return 0;
       let subNames = subs.map(s => tstId2Name[s.tstId])
 
@@ -37,7 +38,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       })
 
       const weightSum = entries.map(s => s[1]).reduce((a, b) => a + b)
-      const normWeights = Object.fromEntries(entries.map(s => [s[0], s[1]/weightSum]))
+      // console.log(weightSum);
+      const normWeights = Object.fromEntries(entries.map(s => [s[0], s[1]/1]))
       const inds = [0].concat(subs.slice(0, subs.length-selection.drops).map(s => normWeights[tstId2Name[s.tstId]] * s.index))
       const ind = inds.reduce((a, b) => a+b)
 
