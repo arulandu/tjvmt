@@ -9,7 +9,7 @@ export const Footer = () => {
             <h3 className="mb-2 text-navy text-2xl font-bold">TJHSST Varsity Math Team</h3>
             <SiteLink href={"mailto:vmtofficers@gmail.com"} txt={"Email: vmtofficers@gmail.com"} className="block"/>
             <SiteLink href={"https://www.facebook.com/groups/198737200195082"} txt={"Facebook: facebook.com/groups/198737200195082"} className="block"/>
-            <p className='mt-4'>Website by <SiteLink href={"https://arulandu.com"} txt="Alvan Caleb Arulandu"/> and Laura Zhang</p>
+            <p className='mt-4'>Website by <SiteLink href={"https://arulandu.com"} txt="Alvan Caleb Arulandu"/>, Laura Zhang, and Avni Garg</p>
             <p>Photo Credits: Laura Zhang, Avni Garg</p>
             
             
