@@ -241,9 +241,9 @@ const CSVSubmitGrade = ({ tsts }) => {
     setInput({ ...input, file: event.target.files[0] })
   }
 
-  // useEffect(() => {
-  //   if (tsts.length > 0) setInput({ ...input, tstId: tsts[0].id })
-  // }, [tsts])
+  useEffect(() => {
+    if (tsts.length > 0) setInput({ ...input, tstId: tsts[0].id })
+  }, [tsts])
 
   const submit = () => {
     const results = []
