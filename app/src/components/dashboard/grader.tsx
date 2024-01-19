@@ -297,7 +297,7 @@ const CSVSubmitGrade = ({ tsts }) => {
         writer: false,
         answers: ans.map(e => parseInt(e.trim())),
         tstId: input.tstId,
-        userId: ObjectId.createFromHexString(row.userId),
+        userId: ObjectId.createFromHexString(row.userId)
         // index: row.index
       })
     })

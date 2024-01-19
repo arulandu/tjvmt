@@ -11,24 +11,36 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const selectionId = req.query.selectionId as string
       const selection = await db.selection.findFirst({where: {id: selectionId}})
 
-      if(!selection) throw Error("selection not found")
-
+      if(!selection){throw Error("selection not found")} 
       const apps = await db.application.findMany({where: {selectionId}, include: {author: { select: { ionUsername : true }}}, orderBy: {index: 'desc'}})
       const ranks = apps.map(app => ({}))
       const submissions = await db.submission.findMany({where: {authorId: user.id}, include: {tst: {select: {name: true, solves: true}}}})
+
+      console.log("hi");
 
       let rank = 1; let starts = []; starts.push(0)
       let userInd = -1
       for(let i = 0; i < apps.length; i++){
         if(i > 0 && apps[i].index != apps[i-1].index) {rank += i-starts[starts.length-1]; starts.push(i);}
         ranks[i]['rank'] = rank
+        if ('index' in apps[i]){}
+        else{
+          console.log(apps[i]);
+        }
         ranks[i]['index'] = apps[i].index
         if(apps[i].authorId === user.id){
           userInd = i;
         }
       }
+
+      console.log("hi");
+      
+      console.log(apps);
       
       const cutoff = apps[Math.min(apps.length,selection.size)-1].index
+
+      console.log("hi");
+
       for(let i = 0; i < apps.length; i++){
         ranks[i]['name'] = (i < selection.size || i == userInd) ? apps[i].author.ionUsername : '???';
         if(i >= selection.size && Math.abs(userInd-i) > 1){
