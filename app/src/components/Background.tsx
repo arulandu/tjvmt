@@ -1,8 +1,7 @@
-import { AnyObject } from "mongoose";
 import Particles from "react-tsparticles";
 
 const Background = ({className}) => {
-  const particleParams: AnyObject = {
+  const particleParams: any = {
     "particles": {
       "number": {
         "value": 70,
