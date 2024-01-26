@@ -31,7 +31,7 @@
     "autoprefixer": "^10.4.7",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
-    "eslint-config-next": "11.1.2",
+    "eslint-config-next": "^11.1.4",
     "js-cookie": "^3.0.1",
     "postcss": "^8.4.14",
     "prisma": "^4.2.1",

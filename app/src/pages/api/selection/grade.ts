@@ -17,19 +17,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const tstId2Name = Object.fromEntries(tsts.map(t => [t.id, t.name]))
     
     let subjTsts = ["6531582f50974206aa817aa0", "65348523fd708a86f6224b66", "65399607914b8a550b0fc28a", "653996c2b5d493a82e95163c"];
+    let dukeTsts = ["653496ee510d1b4af0fd6d80", "65349912efd095c028a95496", "65349e33efd095c028a95522"];
 
     const indexes = users.map(user => {
       let subs = user.submissions.filter(s => selection.weights[tstId2Name[s.tstId]]).sort((a, b) => b.index-a.index)
-      if (req.body.selectionId == '65aa8dd94041e83ab8038c90'){
-        // HMMT 24 Protocol: Remove least subject TST
-         const subjTstSubmissions = subs.filter(sub => subjTsts.includes(sub.tstId));
-         if (subjTstSubmissions.length > 0) {
-            const minIndexSub = subjTstSubmissions.reduce((minSub, currentSub) => currentSub.index < minSub.index ? currentSub : minSub);
-            subs = subs.filter(sub => sub !== minIndexSub);
-         } 
-      }
-      // console.log(user, subs);
-      if(subs.length === 0) return 0;
+
       let subNames = subs.map(s => tstId2Name[s.tstId])
 
       const entries = Object.entries(selection.weights).filter(s => {
@@ -37,9 +29,31 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return is0 === -1 || subs.length-is0 > selection.drops
       })
 
-      const weightSum = entries.map(s => s[1]).reduce((a, b) => a + b)
+      // const weightSum = entries.map(s => s[1]).reduce((a, b) => a + b)
       // console.log(weightSum);
       const normWeights = Object.fromEntries(entries.map(s => [s[0], s[1]/1]))
+
+      if (req.body.selectionId == '65aa8dd94041e83ab8038c90'){
+        // HMMT 24 Protocol: Remove least subject TST
+         const subjTstSubmissions = subs.filter(sub => subjTsts.includes(sub.tstId));
+         if (subjTstSubmissions.length > 0) {
+            const minIndexSub = subjTstSubmissions.reduce((minSub, currentSub) => currentSub.index < minSub.index ? currentSub : minSub);
+            normWeights[tstId2Name[minIndexSub.tstId]] = 0;
+         } 
+      }
+      else if (req.body.selectionId == '65ab0dbb2488d4c3f76c0c72'){
+        // Duke 23 Protocol: Weight least dukeTst 20% instead of 35%
+        const subjTstSubmissions = subs.filter(sub => dukeTsts.includes(sub.tstId));
+        console.log(subs);
+        if (subjTstSubmissions.length > 0) {
+            const minIndexSub = subjTstSubmissions.reduce((minSub, currentSub) => currentSub.index < minSub.index ? currentSub : minSub);
+            normWeights[tstId2Name[minIndexSub.tstId]] = 0.2;
+         } 
+      }
+      // console.log(normWeights);
+      // console.log(user, subs);
+      if(subs.length === 0) return 0;
+
       const inds = [0].concat(subs.slice(0, subs.length-selection.drops).map(s => normWeights[tstId2Name[s.tstId]] * s.index))
       const ind = inds.reduce((a, b) => a+b)
 
