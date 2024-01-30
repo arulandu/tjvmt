@@ -58,7 +58,7 @@ const SponsorSection = () => {
           link="https://www.tjpartnershipfund.org/"
         />
         <Sponsor
-          text="<a href='https://www.citadel.com/careers/' target='_blank' rel='noopener noreferrer' class='text-blue-500 underline'>Citadel</a> is one of the world's leading alternative investment firms, pursuing superior long-term returns for the world's preeminent public and private institutions. <a href='https://www.citadel.com/careers/' target='_blank' rel='noopener noreferrer' class='text-blue-500 underline'>Citadel</a> and <a href='https://www.citadelsecurities.com/careers/' target='_blank' rel='noopener noreferrer' class='text-blue-500 underline'>Citadel Securities</a> are the next-generation capital markets firms, delivering critical liquidity and helping to shape the markets of tomorrow."
+          text="<a href='https://www.citadel.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel</a> is one of the world's leading alternative investment firms, pursuing superior long-term returns for the world's preeminent public and private institutions. <a href='https://www.citadelsecurities.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel Securities</a> are the next-generation capital markets firms, delivering critical liquidity and helping to shape the markets of tomorrow."
           img="/images/sponsors/Citadel_CSEC.png"
           company="Citadel"
           link=""
