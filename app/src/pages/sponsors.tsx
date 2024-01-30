@@ -75,12 +75,6 @@ const SponsorSection = () => {
           company="AoPS Vienna"
           link="https://vienna.aopsacademy.org/"
         />
-        <Sponsor
-          text="Wolfram uniquely unifies algorithms, data, notebooks, linguistics and deployment—enabling powerful workflows across desktop, cloud, server and mobile. Whatever your field, whatever your application, Wolfram technology provides the ultimate computation platform."
-          img="/images/sponsors/wolfram.jpg"
-          company="Wolfram"
-          link="https://www.wolfram.com/"
-        />
       </div>
       <h2 className="mt-8 text-3xl text-neutral-300 font-bold text-center">Silver Sponsors</h2>
       <div className="mt-6 w-full flex flex-wrap justify-center items-start">
@@ -89,6 +83,12 @@ const SponsorSection = () => {
           img="/images/sponsors/RSM.png"
           company="RSM"
           link="https://www.russianschool.com/"
+        />
+        <Sponsor
+          text="Wolfram uniquely unifies algorithms, data, notebooks, linguistics and deployment—enabling powerful workflows across desktop, cloud, server and mobile. Whatever your field, whatever your application, Wolfram technology provides the ultimate computation platform."
+          img="/images/sponsors/wolfram.jpg"
+          company="Wolfram"
+          link="https://www.wolfram.com/"
         />
         {/* <Sponsor
           text="The Summer Program for Applied Rationality and Cognition (SPARC) is a free two-week program for talented high schoolers to develop quantitative skills and apply them to the world."
