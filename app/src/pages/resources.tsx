@@ -122,6 +122,7 @@ const Resources: NextPage<any> = ({ user }) => {
               <InternalResource link="https://tjvmt.com/u/compguide" name="2023-24 Competitions Guide" />
               <InternalResource link="https://tjvmt.com/u/rankings2324" name="2023-24 Rankings" />
               <InternalResource link="https://tjvmt.com/u/discord" name="Discord" />
+              <InternalResource link="https://tjvmt.com/u/peezza" name="ARML Pizza" />
             </div>
           </section>
         </>
