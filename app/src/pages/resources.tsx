@@ -49,11 +49,11 @@ const CalendarSection = () => {
   );
 }
 
-const InternalResource = ({ link, name }) => {
+const InternalResource = ({ link, name, newTab=true }) => {
   return (
     <div className='text-center'>
       <Link href={link} passHref>
-        <a className='text-xl text-pink opacity-80 hover:opacity-100 hover:underline transition-al' target="_blank">{name}</a>
+        <a className='text-xl text-pink opacity-80 hover:opacity-100 hover:underline transition-al' target={newTab ? "_blank" : "_self"}>{name}</a>
       </Link>
     </div>
   );
@@ -118,8 +118,8 @@ const Resources: NextPage<any> = ({ user }) => {
             <div className='m-8 items-center justify-center'>
               <h1 className='text-white text-center text-3xl font-bold mb-4'>Internal Resources (Do Not Share)</h1>
               {/* <InternalResource link="https://docs.google.com/document/d/1y5xmvv1OFQOh21uZ-EA5KX4Od82mfpp0gqyD8J0nCts/edit?usp=sharing" name="AMCs Guide (Isabella Zhu '23)" /> */}
-              <InternalResource link="https://tjvmt.com/u/peezza" name="ARML Pizza" />
-              <InternalResource link="https://tjvmt.com/u/armlteams" name="ARML Practice Teams" />
+              {/* <InternalResource link="https://tjvmt.com/u/peezza" name="ARML Pizza" /> */}
+              <InternalResource link="/arml" name="ARML Information" newTab={false} />
               <InternalResource link="https://tjvmt.com/u/opportunities" name="Summer Programs and Opportunities Guide" />
               <InternalResource link="https://tjvmt.com/u/compguide" name="2023-24 Competitions Guide" />
               <InternalResource link="https://tjvmt.com/u/discord" name="Discord" />
