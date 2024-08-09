@@ -87,7 +87,7 @@ export const RankingsSection = ({}) => {
             onChange={(e) => handleInputChange(e, input, setInput)}
             className='mt-2'
           />
-          {data.cutoff >= 0 ? <p className='mt-2 text-white'>Cutoff: {data.cutoff}</p> : null}
+          {data.cutoff >= 0 ? <p className='mt-2 text-white'>Cutoff: {data.cutoff.toFixed(2)}</p> : null}
 
           <table className='text-white text-center mt-2 mb-8'>
             <thead>
