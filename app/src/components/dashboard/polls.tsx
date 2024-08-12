@@ -164,32 +164,30 @@ export const PollSection = () => {
 
   return (
     <>
-      <div className='w-full mt-4 flex flex-col items-center'>
-        <div className='relative w-full mb-8'>
-          <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={polls.length <= 0} />
-          <h3 className='text-white text-center text-3xl font-bold'>Polls</h3>
-
-          {user.admin ?
+      <div className='relative mt-4 p-2 w-full flex flex-col items-center min-h-fit justify-center text-white'>
+        <h3 className='text-white text-center text-3xl font-black'>Polls</h3>
+        <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={polls.length <= 0} />
+        <TabSelect id='status' options={[{label: 'Open Only', value: 'open'}, {label: 'All', value: 'all'}]} value={input.status} onChange={(x) => setInput({...input, status: x})} className='mt-4'/>
+        <div className='w-full my-8 flex justify-center flex-wrap gap-x-2 gap-y-8'>
+          {polls.map((p) =>
+            input.status === 'all' || !p.closed ? <Poll key={p.id} data={p} edit={user.admin} setView={setView} /> : null
+          )}
+        </div>
+        {user.admin ?
+          <div>
             <div className='p-4 mx-auto'>
               <CreatePoll />
             </div>
-            : null}
-          <TabSelect id='status' options={[{label: 'Open Only', value: 'open'}, {label: 'All', value: 'all'}]} value={input.status} onChange={(x) => setInput({...input, status: x})} className='mx-auto'/>
-          <div className='w-full mt-8 flex justify-center flex-wrap gap-x-2 gap-y-8'>
-            {polls.map((p) =>
-              input.status === 'all' || !p.closed ? <Poll key={p.id} data={p} edit={user.admin} setView={setView} /> : null
-            )}
-          </div>
-        </div>
-        {user.admin ?
-          <div className='w-full p-8 items-center'>
-            <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
-            <div className='w-full h-96 p-2 overflow-y-scroll mt-8 bg-navy-light bg-opacity-50 flex flex-col items-center text-center'>
-              {
-                view ?
-                  view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
-                  : <h1 className='text-white text-center text-xl'>View poll results here.</h1>
-              }
+
+            <div className='w-full p-8 items-center'>
+              <h3 className='text-white mt-16 text-center text-3xl font-bold'>Responses</h3>
+              <div className='w-full h-96 p-2 overflow-y-scroll mt-8 bg-navy-light bg-opacity-50 flex flex-col items-center text-center'>
+                {
+                  view ?
+                    view.map((v, i) => <p key={i} className='text-white m-2 text-md'>{v}</p>)
+                    : <h1 className='text-white text-center text-xl'>View poll results here.</h1>
+                }
+              </div>
             </div>
           </div>
           : null}

@@ -38,16 +38,19 @@ const Dashboard: NextPage<any> = ({ }) => {
     'grader': <GraderSection/>
   }
 
+  console.log(user.profilePicData);
+
   return (
     <Layout dim>
-      <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center'>
-        <div className="h-screen flex flex-col items-center justify-center">
-          <div className='w-32 h-32 rounded-full border-solid border-4 border-white bg-black overflow-hidden'>
+      <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen items-center justify-center'>
+        <div className="flex flex-col items-center justify-center">
+          {/* <div className='w-32 h-32 rounded-full border-solid border-4 border-white bg-black overflow-hidden'>
             <img alt="Profile Picture" src={user.profilePicData} className='w-full h-full object-cover' />
-          </div>
-          <h1 className='mt-4 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
+          </div> */}
+          <br></br><br></br>
+          <h1 className='mt-24 text-white text-center text-4xl'>Dashboard{user.admin ? ' (Admin)' : ''}</h1>
           <p className='text-white text-center text-xl mt-4'>Welcome to the dashboard! Your one stop shop for all things VMT.</p>
-          <TabSelect id="tab" options={tabs} value={input.tab} onChange={(x) => setInput({...input, tab: x})} className='mt-8 flex-col sm:flex-row' />
+          <TabSelect id="tab" options={tabs} value={input.tab} onChange={(x) => setInput({...input, tab: x})} className='mt-8 mb-16 flex-col sm:flex-row' />
         </div>
         {input.tab ? tabMap[input.tab] : null}
       </section>
