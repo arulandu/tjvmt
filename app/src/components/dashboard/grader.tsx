@@ -358,7 +358,7 @@ export const GraderSection = () => {
   }, [session])
 
   return (
-    <div className='relative my-6 p-2 w-full flex flex-col items-center'>
+    <div className='relative mt-4 p-2 w-full flex flex-col items-center'>
       <h3 className='text-white text-center text-3xl font-black'>TST Grading</h3>
       <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={tsts.length <= 0} />
 

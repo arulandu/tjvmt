@@ -147,7 +147,7 @@ export const ProblemSection = () => {
   if(input.unsolved) problems = problems.filter(p => !p.solved)
 
   return (
-    <div className='relative w-full min-h-fit flex flex-col justify-center items-center text-white'>
+    <div className='relative mt-4 p-2 w-full flex flex-col items-center min-h-fit justify-center text-white'>
       <h3 className='text-white text-3xl font-black'>Problems</h3>
       <Spinner className="absolute -top-16 left-1/2 -ml-8 h-16 w-16 mx-auto my-0" show={problems.length <= 0} />
       <TabSelect id="unsolved" options={[{label: 'Unsolved Only', value: true}, {label: 'All', value: false}]} value={input.unsolved} onChange={(x) => setInput({...input, unsolved: x})} className='mt-4'/>
