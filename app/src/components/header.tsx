@@ -79,7 +79,7 @@ const NavBar = () => {
         </Link>
       </div>
       <div className={`block w-full md:w-fit h-screen md:h-full z-10 absolute md:relative top-0 ${isOpen ? 'left-0' : 'left-[-200%] md:left-0'} px-4 sm:px-12 md:px-0 flex flex-col md:flex-row items-start md:items-center justify-center bg-navy bg-opacity-90 md:bg-transparent transition-all`}>
-        <NavLink index={0} href="/dashboard" name="Dashboard" onClick={() => notify(toastDispatch, "", "Loading your dashboard...", ToastType.DEFAULT)} />
+        <NavLink index={0} href="/dashboard" name="Dashboard" />
         <NavLink index={1} href="/about" name="About" />
         <NavLink index={2} href="/tjimo" name="TJIMO" />
         <NavLink index={3} href="/resources" name="Resources" />
