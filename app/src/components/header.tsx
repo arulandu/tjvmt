@@ -57,8 +57,15 @@ const NavBar = () => {
     router.reload();
   }
 
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') setPath(window.location.href)
+  // }, [path])
+
+  
   useEffect(() => {
-    if (typeof window !== 'undefined') setPath(window.location.href)
+    if (typeof window !== 'undefined') {
+      setPath(window.location.href.match(/^https?:\/{2}[\w:\.]*/)[0] + '/dashboard')
+    }
   }, [path])
 
   return (
