@@ -80,6 +80,7 @@ const Resources: NextPage<any> = ({ user }) => {
         <div className="text-center">
           <h2 className="mb-6 text-white text-5xl gradient-text text-center">Archive</h2>
           <div className="flex justify-center flex-wrap">
+            <ArchiveEmbed name="2024-2025" id="1uvDdTfmed3VCunEcDVyW7gsuPlkgN-h6#list" />
             <ArchiveEmbed name="2023-2024" id="1Lpw4cR9vX_H6AZHj6xwofYsGNXAqq4Mw#list" />
             <ArchiveEmbed name="2022-2023" id="1rlZPq5Y5ndRdE1XwOSI4zSiJF0ln6s4L#list" />
             <ArchiveEmbed name="2021-2022" id="19Mt2b4CUkF44IeTVX-2S6Wm5PfXzs7tY#list" />
