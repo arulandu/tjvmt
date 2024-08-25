@@ -11,13 +11,13 @@ const TjimoPage: NextPage<any> = () => {
   return (
     <Layout>
       <div className='fixed w-screen h-screen opacity-40 z-[-1]'>
-        <Image src="/images/TJIMO2022.JPG" layout="fill" objectFit='cover' />
+        <Image src="/images/tjimo23.JPG" layout="fill" objectFit='cover' />
       </div>
       <section className="h-screen flex items-center justify-center">
         <div>
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
-          <p className="text-center text-2xl text-white mb-6">October 14, 2023 @ TJHSST</p>
-          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration23">2023 Registration</a></p>
+          <p className="text-center text-2xl text-white mb-6">October 19, 2024 @ TJHSST</p>
+          <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration24">2024 Registration</a></p>
           <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">TJIMO Guide</a></p>
           
 

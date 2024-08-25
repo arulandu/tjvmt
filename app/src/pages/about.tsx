@@ -17,7 +17,7 @@ const AboutUsSection = () => {
       </p>
       <div className ="mx-auto relative w-11/12 lg:w-9/12 aspect-[4/3]">
       <Image
-        src="/images/arml.png"
+        src="/images/arml24.png"
         alt="ARML Picture"
         layout="fill"
       />
@@ -82,7 +82,7 @@ const LeadershipSection = ({
           would not be possible without the help of our teacher sponsors:
           <span className="text-pink font-medium">
             {" "}
-            Ms. Razzino + Dr. Lampazzi
+            Ms. Razzino + Dr. Lampazzi + Ms. Juster
           </span>
         </p>
       </div>
