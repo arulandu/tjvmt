@@ -24,11 +24,10 @@ const ArchiveEmbed = ({ name, id }) => {
   );
 }
 
-const Competition = ({ name, date, location, link, text, selection }) => {
+const Competition = ({ name, date, location, link, text, selection, withTJ = false }) => {
   return (
     <div
-      className={`m-4 p-4 max-w-lg bg-navy-light bg-opacity-80 rounded-md "opacity-100 translate-x-0" : "-translate-x-12 opacity-0"
-      } flex transition-all duration-300`}
+      className={`m-4 p-4 max-w-lg bg-navy-light bg-opacity-80 rounded-md flex transition-all duration-300 ${withTJ ? 'bg-navy-lightest' : 'bg-navy-light'}`}
     >
       <div className="w-full text-center items-center">
         {link ?
@@ -49,7 +48,7 @@ const CalendarSection = () => {
   );
 }
 
-const InternalResource = ({ link, name, newTab=true }) => {
+const InternalResource = ({ link, name, newTab = true }) => {
   return (
     <div className='text-center'>
       <Link href={link} passHref>
@@ -97,23 +96,33 @@ const Resources: NextPage<any> = ({ user }) => {
         <>
           <section className="flex flex-col items-center justify-center pt-24">
             <h2 className="mb-6 text-white text-5xl gradient-text text-center">Upcoming Competitions</h2>
-            <p>
+            <p className="text-center">
               <small className="mb-6 text-white text-base gradient-text text-center">
-                Check the competitions guide for more information on VMT sponsored travel competitions. Click on the title for the link to the competition website.
+                Check the competitions guide for more information on VMT sponsored travel competitions.
+              </small>
+              <br />
+              <small className="mb-6 text-white text-base gradient-text text-center">
+              Click on the title for the link to the competition website. Brighter boxes are TJ sponsored competitions.
               </small>
             </p>
             <div className="flex justify-center flex-wrap">
-              <Competition name="DMM" date="Nov 6, 2024" location="Duke" link='https://math.duke.edu/duke-math-meet' text="Duke is okay." selection='Team selection using a combination of Proof TST and three general TSTs.' />
-              <Competition name="PUMaC" date="Nov 12, 2024" location="Princeton" link='https://jason-shi-f9dm.squarespace.com/' text="The problems at the competition are... certainly interesting." selection='Team selection using a combination of Proof TST and the top 3 Subject TSTs.' />
+              <Competition name="MMATHS" date="Oct 26, 2024" location="UMD or Yale" link='https://www.mmaths.org/' text="Open to anyone, make teams of 6." selection='This contest is self organized, so you can make your own team and register!' />
+              <Competition name="CMWMC" date="TBD" location="CMU" link='https://cmimc.math.cmu.edu/cmwmc' text="Beginner friendly competition for girls." selection='This contest is self organized, so you can make your own team and register!' />
+              <Competition name="Duke Math Meet" date="Nov 6, 2024?" location="Duke" link='https://math.duke.edu/duke-math-meet' text="Duke is okay. Will take 4 teams of 6." selection='Team selection using a combination of Proof TST and 4 Duke TSTs.' withTJ={true} />
+              <Competition name="PUMaC" date="Nov 12, 2024?" location="Princeton" link='https://jason-shi-f9dm.squarespace.com/' text="The problems at the competition are... certainly interesting. Will take 2 teams of 8." selection='Team selection using a combination of Proof TST and the top 3 Subject TSTs.' withTJ={true} />
+              {/* <Competition name="ARML Power Fall" date='TBD' location='TJ' link='' text='Unrelated to ARML, but we have two teams of 15 take the contest during 8th period or after school one day.' selection='Teams decided using Duke Rankings probably.' /> */}
               {/* <Competition name="INTEGIRLS DC" date='Dec 9, 2023' location='Montgomery College' link='https://dc.integirls.org/math' text='Beginner friendly competition for girls.' selection='This contest is self organized, so you can make your own team and register!' /> */}
-              {/* <Competition name="BMT Online" date="Jan 20, 2024" location="Home (Virtual)" link='https://berkeley.mt/events/bmt-2023-online/' text='Online version of BMT 2023 (must not have competed in a prior iteration of BMT 2023).' selection='This contest is self organized, so you can make your own team and register (costs $8)!' /> */}
+              {/* <Competition name="BMT Online" date="Jan 2025" location="Home (Virtual)" link='https://berkeley.mt/' text='Online version of BMT 2024 (must not have competed in a prior iteration of BMT 2024).' selection='This contest is self organized, so you can make your own team and register (costs $8)!' /> */}
               {/* <Competition name="University of Houston Math Contest" date="Jan 27, 2024" location="Home (Virtual)" link='https://mathcontest.uh.edu/' text='Free online competition with prizes of Amazon gift cards up to $100.' selection='Check the pinned messages in the VMT messenger chat or message an officer for the codes.' /> */}
-              <Competition name="HMMT" date="Feb 17, 2024" location="MIT" link='https://www.hmmt.org/' text="The most competitive competition in the nation. Will take 1 team of 8 and 5 individuals (total 13)." selection='Team selection using a combination of Proof TST, top 3 Subject TSTs, and 2 HMMT General TSTs.' />
-              <Competition name="Girls in Math at Yale" date="Feb 24, 2024" location="Yale" link='https://www.mmaths.org/girls-in-math-at-yale.html' text='Open to all girls.' selection='This contest is self organized, so you can make your own team and register!' />
-              <Competition name="CMIMC" date='April 6, 2024' location='CMU' link='https://cmimc.math.cmu.edu/' text='Chillest competiiton of the year. Last year we were able to take 8 teams of 6.' selection='Aside from A team, there are no TSTs! Choosing people based on club commitment.' />
-              <Competition name="Purple Comet" date='April 4, 2024' location='TJ' link='https://purplecomet.org/' text='Fun team competition which takes place before an ARML Practice. Allowed to use anything excpet for the internet :o.' selection='No TSTs! We will release a sign up form and all teams who sign up will be able take the contest.' />
-              {/* <Competition name="ARML Power" date='TBD' location='TJ' link='' text='Unrelated to ARML, but we have two teams of 15 take the contest after school one day.' selection='Teams decided using ARML Rankings and possibly the Proof TST.' /> */}
-              <Competition name="ARML" date="Jun 1, 2024" location="Penn State" link="https://www.arml.com/" text="ARML is the last and biggest competition of the year! We usually take 3 teams of 15 plus a couple alternates." selection='TSTs taken every Thursday after school, starting around late February. Estimated 2 drops with the rest of the TSTs weighted equally.' />
+              <Competition name="HMMT" date="Feb 15, 2025" location="MIT" link='https://www.hmmt.org/' text="The most competitive competition in the nation. Will take at least 1 team of 8." selection='Team selection using a combination of Proof TST, top 3 Subject TSTs, and 2 HMMT General TSTs.' withTJ={true} />
+              <Competition name="Girls in Math at Yale" date="Feb-March 2025" location="Yale" link='https://www.mmaths.org/girls-in-math-at-yale.html' text='Open to all girls.' selection='This contest is self organized, so you can make your own team and register!' />
+              <Competition name="CMIMC" date='March-April 2025' location='CMU' link='https://cmimc.math.cmu.edu/' text='Chillest competiiton of the year. Last year we were able to take 8 teams of 6.' selection='Aside from A team, there are no TSTs! Choosing people based on club commitment.' withTJ={true} />
+              <Competition name="Purple Comet" date='April 2025' location='TJ' link='https://purplecomet.org/' text='Fun team competition which takes place before an ARML Practice. Allowed to use anything excpet for the internet :o.' selection='No TSTs! We will release a sign up form and all teams who sign up will be able take the contest.' withTJ={true} />
+              <Competition name="SMT" date="Spring 2025" location="Home (Virtual) or Stanford" link='https://www.stanfordmathtournament.com/' text='You can fly to Stanford if you want.' selection='This contest is self organized, so you can make your own team and register!' />
+              <Competition name="JHMT" date='Spring 2025' location="John Hopkins" link='https://math.jhu.edu/~mathclub/jhmt.html' text='idk' selection='This contest is self organized, so you can make your own team and register!' />
+              <Competition name="ARML Local" date='Spring 2025' location="Home (or maybe at TJ)" link='https://www.arml.com/' text='ARML Local is a great way to get a feel for the ARML competition. Requires a parent proctor for each team.' selection='No TSTs! We will release a sign up form and all teams who sign up will be able take the contest.' withTJ={true} />
+              {/* <Competition name="ARML Power Spring" date='TBD' location='TJ' link='' text='Unrelated to ARML, but we have two teams of 15 take the contest after school one day.' selection='Teams decided using ARML Rankings and possibly the Proof TST.' /> */}
+              <Competition name="ARML" date="June 2025" location="Penn State" link="https://www.arml.com/" text="ARML is the last and biggest competition of the year! We usually take 3 teams of 15 plus a couple alternates." selection='TSTs taken every Thursday after school, starting around late February. Estimated 2 drops with the rest of the TSTs weighted equally.' withTJ={true}/>
             </div>
           </section>
           <br />
