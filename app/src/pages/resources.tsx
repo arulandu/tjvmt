@@ -103,6 +103,8 @@ const Resources: NextPage<any> = ({ user }) => {
               </small>
             </p>
             <div className="flex justify-center flex-wrap">
+              <Competition name="DMM" date="Nov 6, 2024" location="Duke" link='https://math.duke.edu/duke-math-meet' text="Duke is okay." selection='Team selection using a combination of Proof TST and three general TSTs.' />
+              <Competition name="PUMaC" date="Nov 12, 2024" location="Princeton" link='https://jason-shi-f9dm.squarespace.com/' text="The problems at the competition are... certainly interesting." selection='Team selection using a combination of Proof TST and the top 3 Subject TSTs.' />
               {/* <Competition name="INTEGIRLS DC" date='Dec 9, 2023' location='Montgomery College' link='https://dc.integirls.org/math' text='Beginner friendly competition for girls.' selection='This contest is self organized, so you can make your own team and register!' /> */}
               {/* <Competition name="BMT Online" date="Jan 20, 2024" location="Home (Virtual)" link='https://berkeley.mt/events/bmt-2023-online/' text='Online version of BMT 2023 (must not have competed in a prior iteration of BMT 2023).' selection='This contest is self organized, so you can make your own team and register (costs $8)!' /> */}
               {/* <Competition name="University of Houston Math Contest" date="Jan 27, 2024" location="Home (Virtual)" link='https://mathcontest.uh.edu/' text='Free online competition with prizes of Amazon gift cards up to $100.' selection='Check the pinned messages in the VMT messenger chat or message an officer for the codes.' /> */}
