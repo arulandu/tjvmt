@@ -3,7 +3,6 @@ import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import Link from 'next/link';
 import { authorize } from '@/lib/api/authorize';
-import 'react-slideshow-image/dist/styles.css';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { user } = await authorize(req, res)
