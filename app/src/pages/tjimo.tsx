@@ -2,30 +2,83 @@ import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import Carousel, { CarouselItem } from "@/components/Carousel";
 
 // TODO: pascal case for acronyms — i have no idea 🤷‍♂️
 
+const images = [
+  "/images/tjimo/img1.jpg",
+  "/images/tjimo/img2.jpg",
+  "/images/tjimo/img3.jpg",
+  "/images/tjimo/img4.jpg",
+  "/images/tjimo/img5.jpg",
+  "/images/tjimo/img6.jpg",
+  "/images/tjimo/img7.jpg",
+  "/images/tjimo/img8.jpg",
+  "/images/tjimo/img9.jpg"
+];
 
+const Slide = ({ number }) => (
+  <div>
+    <img src={`${images[number-1]}`} />
+  </div>
+);
 
 const TjimoPage: NextPage<any> = () => {
   return (
     <Layout>
-      <div className='fixed w-screen h-screen opacity-40 z-[-1]'>
+      {/* <div className='fixed w-screen h-screen opacity-40 z-[-1]'>
         <Image src="/images/tjimo23.JPG" layout="fill" objectFit='cover' />
-      </div>
-      <section className="h-screen flex items-center justify-center">
-        <div>
+      </div> */}
+      <section className="flex items-center justify-center">
+        <div className="mt-24">
           <h1 className="m-auto mb-3 text-6xl text-white text-center">TJIMO</h1>
           <p className="text-center text-2xl text-white mb-6">October 19, 2024 @ TJHSST</p>
           <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration24">2024 Registration</a></p>
           <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">TJIMO Guide</a></p>
-          
-
+          <p className = "mt-6"></p>
         </div>
+
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">
           <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
         </svg>
       </section>
+
+      <section className="flex items-center justify-center">
+        <div className="w-4/6">
+          <div></div>
+          <Carousel>
+            <CarouselItem width="100%">
+              <Slide number={1} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={2} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={3} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={4} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={5} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={6} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={7} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={8} />
+            </CarouselItem>
+            <CarouselItem width="100%">
+              <Slide number={9} />
+            </CarouselItem>
+          </Carousel>
+        </div>
+      </section>
+
       <section className="mx-4 sm:mx-12 lg:mx-24 px-5 py-10 md:max-w-2/3 xl:max-w-1/2 text-white bg-navy bg-opacity-50">
         <h2 className="text-3xl font-bold text-left mb-4">What is TJIMO?</h2>
         <p className="mb-10">

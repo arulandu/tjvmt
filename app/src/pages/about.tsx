@@ -45,7 +45,7 @@ const LeadershipSection = ({
         <div className="flex flex-wrap lg:flex-nowrap justify-center">
           <div className="relative aspect-[13/10] w-11/12 lg:w-8/12 mb-8 lg:mb-0">
             <Image
-              src="/images/officers/officers23.png"
+              src="/images/officers/officers24.png"
               alt="Officer Picture"
               layout="fill"
               className="object-contain"
@@ -97,49 +97,49 @@ const LeadershipSection = ({
       props: {
         officers: [
           {
-            picture: `/images/officers/laura23.png`,
+            picture: `/images/officers/24/abhi.png`,
             position: "Captain",
-            name: "Laura Zhang",
+            name: "Abhi Palikala",
           },
           {
-            picture: `/images/officers/zani23.png`,
+            picture: `/images/officers/24/samarth.png`,
             position: "Co-Captain",
-            name: "Zani Xu",
-          },
-          {
-            picture: `/images/officers/vishal23.png`,
-            position: "Co-Captain",
-            name: "Vishal Nandakumar",
-          },
-          {
-            picture: `/images/officers/avni23.png`,
-            position: "Statistician",
-            name: "Avni Garg",
-          },
-          {
-            picture: `/images/officers/samarth23.png`,
-            position: "Statistician",
             name: "Samarth Bhargav",
           },
           {
-            picture: `/images/officers/marina23.png`,
-            position: "Finance Officer",
-            name: "Marina Lin",
+            picture: `/images/officers/24/avni.png`,
+            position: "Co-Captain",
+            name: "Avni Garg",
           },
           {
-            picture: `/images/officers/olivia23.png`,
-            position: "Finance Officer",
+            picture: `/images/officers/24/calvin.png`,
+            position: "Statistician",
+            name: "Calvin Wang",
+          },
+          {
+            picture: `/images/officers/24/olivia.png`,
+            position: "Statistician",
             name: "Olivia Wu",
           },
           {
-            picture: `/images/officers/michelle23.png`,
-            position: "Secretary",
-            name: "Michelle Kang",
+            picture: `/images/officers/24/anderson.png`,
+            position: "Finance Officer",
+            name: "Anderson Hao",
           },
           {
-            picture: `/images/officers/abhi23.png`,
+            picture: `/images/officers/24/sophia.png`,
+            position: "Finance Officer",
+            name: "Sophia Hou",
+          },
+          {
+            picture: `/images/officers/24/alex.png`,
+            position: "Secretary",
+            name: "Alexander Gu",
+          },
+          {
+            picture: `/images/officers/24/michelle.png`,
             position: "Historian",
-            name: "Abhi Palikala",
+            name: "Michelle Zuo",
           },
         ],
       },
