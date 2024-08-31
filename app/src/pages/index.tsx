@@ -172,33 +172,19 @@ const QuotesSection = () => {
       </h2>
       <div className="w-full flex flex-wrap justify-center items-start">
         <Quote
-          text="“ARML was my very first competition with VMT, so I didn’t know what to expect; however, it
-          turned out to be one of the best experiences I had all year. The memories I made having fun
-          participating in the competition while being in a welcoming and inclusive environment have me
-          constantly excited for our next competition. From group ultimate frisbee to celebrating our
-          placement to taking countless photos, I always remember having a smile on my face.
-          Logistically, it was very well organized, and we always had clear communication and instructions
-          from our sponsors and officers, and that was something I appreciated greatly.”"
-          img="/images/quotes/ryan.png"
-          author="Ryan Singh"
+          text="“Ever since I’ve come to TJ, VMT has been a club that I could call home. Being a froshmore, while making friends was difficult, VMT really made me feel like I was part of something special at TJ. I’ve had several opportunities to work with so many amazingly smart people that have now become my closest friends. While teachers might throw projects and deadlines at me at variable frequency, VMT has been a constant joy that I could hold onto. I wouldn’t trade my time in VMT for anything else in the world.”"
+          img="/images/officers/24/abhi.png"
+          author="Abhinav Palikala"
         />
         <Quote
-          text="“ARML was one of the most memorable experiences of the year! We spent a long time practicing, and it was all worth it in the end. From the bus rides to trekking across the Penn State campus, I enjoyed spending time with all my friends in VMT. I also met incredibly talented people from other schools, and I gained so much insight about math just from talking to them. The opportunity to compete at ARML wasn’t just the culmination of weeks of practice, but also the opportunity to explore new things and bond with members of the community.”"
-          img="/images/officers/olivia23.png"
+          text="“What sets VMT apart from other clubs is the impact we have on our local communities. The attendance at TJIMO was the largest since the pandemic, and we had a blast hosting a day of math for everyone. It was amazing to see familiar faces from TJIMO among the incoming freshmen to TJ. The connections we make through math carry on throughout the years and can only get strengthened at VMT.”"
+          img="/images/officers/24/olivia.png"
           author="Olivia Wu"
         />
         <Quote
-          text="“I had a lot of fun at ARML! Whether it was playing ultimate frisbee with the team or singing
-          karaoke with my friends or complaining about the dorms or cheering for TJ at the awards
-          ceremony, this trip was definitely one of my most memorable moments at TJ. I had so much fun
-          and made a lot of new friends!”"
-          img="/images/quotes/andrew.png"
-          author="Andrew Chen"
-        />
-        <Quote
-          text="“Seeing all the students gathered at TJIMO was heartwarming because it was clear everyone was happy to be there and do math together. As the day progressed, the students in my team grew closer, and that strengthened their teamwork during the multiple rounds. TJIMO brought together an array of bright minds, and each student left with a newfound appreciation for the challenging problems VMT had presented them.”"
-          img="/images/officers/marina23.png"
-          author="Marina Lin"
+          text="“VMT has been a great experience for the past two years of high school. Beyond the exhilarating competitions and rigorous problem-solving sessions, it has helped me build lasting friendships and connected me to many new people. It is an essential part of my life, and I couldn’t imagine high school without it.”"
+          img="/images/quotes/luv.png"
+          author="Luv Udeshi"
         />
       </div>
     </section>
