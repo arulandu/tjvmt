@@ -177,13 +177,13 @@ const QuotesSection = () => {
           author="Abhinav Palikala"
         />
         <Quote
-          text="“What sets VMT apart from other clubs is the impact we have on our local communities. The attendance at TJIMO was the largest since the pandemic, and we had a blast hosting a day of math for everyone. It was amazing to see familiar faces from TJIMO among the incoming freshmen to TJ. The connections we make through math carry on throughout the years and can only get strengthened at VMT.”"
+          text="“What sets VMT apart from other clubs is the impact we have on our local communities. The attendance at TJIMO was the largest since the pandemic, and we had a blast hosting a day of math for everyone. It was amazing to see familiar faces from TJIMO among the incoming freshmen to TJ. The connections we make through math carry on throughout the years and can only be strengthened at VMT.”"
           img="/images/officers/24/olivia.png"
           author="Olivia Wu"
         />
         <Quote
           text="“VMT has been a great experience for the past two years of high school. Beyond the exhilarating competitions and rigorous problem-solving sessions, it has helped me build lasting friendships and connected me to many new people. It is an essential part of my life, and I couldn’t imagine high school without it.”"
-          img="/images/quotes/luv.png"
+          img="/images/quotes/luv.jpg"
           author="Luv Udeshi"
         />
       </div>
