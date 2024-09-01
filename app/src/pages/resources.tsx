@@ -133,8 +133,8 @@ const Resources: NextPage<any> = ({ user }) => {
               {/* <InternalResource link="https://tjvmt.com/u/peezza" name="ARML Pizza" /> */}
               <InternalResource link="/arml" name="ARML Information" newTab={false} />
               <InternalResource link="https://tjvmt.com/u/opportunities" name="Summer Programs and Opportunities Guide" />
-              <InternalResource link="https://tjvmt.com/u/compguide" name="2023-24 Competitions Guide" />
-              <InternalResource link="https://tjvmt.com/u/discord" name="Discord" />
+              <InternalResource link="https://tjvmt.com/u/compguide" name="2024-25 Competitions Guide" />
+              <InternalResource link="https://tjvmt.com/u/discord_" name="Discord" />
             </div>
           </section>
         </>
