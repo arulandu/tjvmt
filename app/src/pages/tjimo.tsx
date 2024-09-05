@@ -116,7 +116,7 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">Q</span>: Who can register?<br />
           <span className="font-bold">A</span>: ONE math teacher or math team coordinator from each school can register students from their school to participate in TJIMO.<br /><br />
           <span className="font-bold">Q</span>: How many students can attend from a school?<br />
-          <span className="font-bold">A</span>: Up to 7.<br /><br />
+          <span className="font-bold">A</span>: Up to 6.<br /><br />
           <span className="font-bold">Q</span>: Can I register as an individual or homeschool student or with an organization outside of my school?<br />
           <span className="font-bold">A</span>: If you are homeschooled, you may register individually and indicate that you are homeschooled on the form. If you attend a public or private school, we ask that you ask your school’s math teacher/math team coordinator to register for you. We do not allow non-school organizations to participate. Please email us at vmtofficers@gmail.com if you have any questions.<br /><br />
           <span className="font-bold">Q</span>: What is the role of the teacher/coordinator?<br />
