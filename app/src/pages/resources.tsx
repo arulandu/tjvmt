@@ -107,13 +107,13 @@ const Resources: NextPage<any> = ({ user }) => {
             </p>
             <div className="flex justify-center flex-wrap">
               <Competition name="MMATHS" date="Oct 26, 2024" location="UMD or Yale" link='https://www.mmaths.org/' text="Open to anyone, make teams of 6." selection='This contest is self organized, so you can make your own team and register!' />
-              <Competition name="CMWMC" date="TBD" location="CMU" link='https://cmimc.math.cmu.edu/cmwmc' text="Beginner friendly competition for girls." selection='This contest is self organized, so you can make your own team and register!' />
+              <Competition name="CMWMC" date="Oct 26, 2024" location="CMU" link='https://cmimc.math.cmu.edu/cmwmc' text="Beginner friendly competition for girls." selection='This contest is self organized, so you can make your own team and register!' />
               <Competition name="Duke Math Meet" date="Nov 6, 2024?" location="Duke" link='https://math.duke.edu/duke-math-meet' text="Duke is okay. Will take 4 teams of 6." selection='Team selection using a combination of Proof TST and 4 Duke TSTs.' withTJ={true} />
               <Competition name="PUMaC" date="Nov 12, 2024?" location="Princeton" link='https://pumac.princeton.edu/' text="The problems at the competition are... certainly interesting. Will take 2 teams of 8." selection='Team selection using a combination of Proof TST and the top 3 Subject TSTs.' withTJ={true} />
               {/* <Competition name="ARML Power Fall" date='TBD' location='TJ' link='' text='Unrelated to ARML, but we have two teams of 15 take the contest during 8th period or after school one day.' selection='Teams decided using Duke Rankings probably.' /> */}
               {/* <Competition name="INTEGIRLS DC" date='Dec 9, 2023' location='Montgomery College' link='https://dc.integirls.org/math' text='Beginner friendly competition for girls.' selection='This contest is self organized, so you can make your own team and register!' /> */}
               {/* <Competition name="BMT Online" date="Jan 2025" location="Home (Virtual)" link='https://berkeley.mt/' text='Online version of BMT 2024 (must not have competed in a prior iteration of BMT 2024).' selection='This contest is self organized, so you can make your own team and register (costs $8)!' /> */}
-              {/* <Competition name="University of Houston Math Contest" date="Jan 27, 2024" location="Home (Virtual)" link='https://mathcontest.uh.edu/' text='Free online competition with prizes of Amazon gift cards up to $100.' selection='Check the pinned messages in the VMT messenger chat or message an officer for the codes.' /> */}
+              <Competition name="University of Houston Math Contest" date="February 8, 2025" location="Home (Virtual)" link='https://mathcontest.uh.edu/' text='Free online competition with prizes of Amazon gift cards up to $100.' selection='Check the pinned messages in the VMT messenger chat or message an officer for the codes.' />
               <Competition name="HMMT" date="Feb 15, 2025" location="MIT" link='https://www.hmmt.org/' text="The most competitive competition in the nation. Will take at least 1 team of 8." selection='Team selection using a combination of Proof TST, top 3 Subject TSTs, and 2 HMMT General TSTs.' withTJ={true} />
               <Competition name="Girls in Math at Yale" date="Feb-March 2025" location="Yale" link='https://www.mmaths.org/girls-in-math-at-yale.html' text='Open to all girls.' selection='This contest is self organized, so you can make your own team and register!' />
               <Competition name="CMIMC" date='March-April 2025' location='CMU' link='https://cmimc.math.cmu.edu/' text='Chillest competiiton of the year. Last year we were able to take 8 teams of 6.' selection='Aside from A team, there are no TSTs! Choosing people based on club commitment.' withTJ={true} />
@@ -122,7 +122,7 @@ const Resources: NextPage<any> = ({ user }) => {
               <Competition name="JHMT" date='Spring 2025' location="John Hopkins" link='https://math.jhu.edu/~mathclub/jhmt.html' text='Divisions are grades 9-10 and 11-12. Teams of 4.' selection='This contest is self organized, so you can make your own team and register!' />
               <Competition name="ARML Local" date='Spring 2025' location="Home (or maybe at TJ)" link='https://www.arml.com/' text='ARML Local is a great way to get a feel for the ARML competition. Requires a parent proctor for each team.' selection='No TSTs! We will release a sign up form and all teams who sign up will be able take the contest.' withTJ={true} />
               {/* <Competition name="ARML Power Spring" date='TBD' location='TJ' link='' text='Unrelated to ARML, but we have two teams of 15 take the contest after school one day.' selection='Teams decided using ARML Rankings and possibly the Proof TST.' /> */}
-              <Competition name="ARML" date="June 2025" location="Penn State" link="https://www.arml.com/" text="ARML is the last and biggest competition of the year! We usually take 3 teams of 15 plus a couple alternates." selection='TSTs taken every Thursday after school, starting around late February. Estimated 2 drops with the rest of the TSTs weighted equally.' withTJ={true}/>
+              <Competition name="ARML" date="May 31, 2025" location="Penn State" link="https://www.arml.com/" text="ARML is the last and biggest competition of the year! We usually take 3 teams of 15 plus a couple alternates." selection='TSTs taken every Thursday after school, starting around late February. Estimated 2 drops with the rest of the TSTs weighted equally.' withTJ={true}/>
             </div>
           </section>
           <br />
@@ -131,9 +131,9 @@ const Resources: NextPage<any> = ({ user }) => {
               <h1 className='text-white text-center text-3xl font-bold mb-4'>Internal Resources (Do Not Share)</h1>
               {/* <InternalResource link="https://docs.google.com/document/d/1y5xmvv1OFQOh21uZ-EA5KX4Od82mfpp0gqyD8J0nCts/edit?usp=sharing" name="AMCs Guide (Isabella Zhu '23)" /> */}
               {/* <InternalResource link="https://tjvmt.com/u/peezza" name="ARML Pizza" /> */}
-              <InternalResource link="/arml" name="ARML Information" newTab={false} />
-              <InternalResource link="https://tjvmt.com/u/opportunities" name="Summer Programs and Opportunities Guide" />
+              {/* <InternalResource link="/arml" name="ARML Information" newTab={false} /> */}
               <InternalResource link="https://tjvmt.com/u/compguide" name="2024-25 Competitions Guide" />
+              <InternalResource link="https://tjvmt.com/u/opportunities" name="Summer Programs and Opportunities Guide" />
               <InternalResource link="https://tjvmt.com/u/discord_" name="Discord" />
             </div>
           </section>
