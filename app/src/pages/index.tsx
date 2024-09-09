@@ -173,12 +173,12 @@ const QuotesSection = () => {
       <div className="w-full flex flex-wrap justify-center items-start">
         <Quote
           text="“Ever since I’ve come to TJ, VMT has been a club that I could call home. Being a froshmore, while making friends was difficult, VMT really made me feel like I was part of something special at TJ. I’ve had several opportunities to work with so many amazingly smart people that have now become my closest friends. While teachers might throw projects and deadlines at me at variable frequency, VMT has been a constant joy that I could hold onto. I wouldn’t trade my time in VMT for anything else in the world.”"
-          img="/images/officers/24/abhi.png"
+          img="/images/officers/24/abhi.jpg"
           author="Abhinav Palikala"
         />
         <Quote
           text="“What sets VMT apart from other clubs is the impact we have on our local communities. The attendance at TJIMO was the largest since the pandemic, and we had a blast hosting a day of math for everyone. It was amazing to see familiar faces from TJIMO among the incoming freshmen to TJ. The connections we make through math carry on throughout the years and can only be strengthened at VMT.”"
-          img="/images/officers/24/olivia.png"
+          img="/images/officers/24/olivia.jpg"
           author="Olivia Wu"
         />
         <Quote
