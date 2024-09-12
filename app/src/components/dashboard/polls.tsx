@@ -45,7 +45,7 @@ const Poll = ({ data, edit, setView }) => {
       },
       body: JSON.stringify({
         responseId: choice ? choice.response.id : undefined,
-        password: input.password.length > 0 ? input.password : undefined,
+        password: input.password.length > 0 ? input.password.trim() : undefined,
         pollId: data.id,
         optionIndex: ind
       })
