@@ -45,7 +45,7 @@ const LeadershipSection = ({
         <div className="flex flex-wrap lg:flex-nowrap justify-center">
           <div className="relative aspect-[13/10] w-11/12 lg:w-8/12 mb-8 lg:mb-0">
             <Image
-              src="/images/officers/officers24.png"
+              src="/images/officers/officers24.jpg"
               alt="Officer Picture"
               layout="fill"
               className="object-contain"
@@ -97,47 +97,47 @@ const LeadershipSection = ({
       props: {
         officers: [
           {
-            picture: `/images/officers/24/abhi.png`,
+            picture: `/images/officers/24/abhi.jpg`,
             position: "Captain",
             name: "Abhi Palikala",
           },
           {
-            picture: `/images/officers/24/samarth.png`,
+            picture: `/images/officers/24/samarth.jpg`,
             position: "Co-Captain",
             name: "Samarth Bhargav",
           },
           {
-            picture: `/images/officers/24/avni.png`,
+            picture: `/images/officers/24/avni.jpg`,
             position: "Co-Captain",
             name: "Avni Garg",
           },
           {
-            picture: `/images/officers/24/calvin.png`,
+            picture: `/images/officers/24/calvin.jpg`,
             position: "Statistician",
             name: "Calvin Wang",
           },
           {
-            picture: `/images/officers/24/olivia.png`,
+            picture: `/images/officers/24/olivia.jpg`,
             position: "Statistician",
             name: "Olivia Wu",
           },
           {
-            picture: `/images/officers/24/anderson.png`,
+            picture: `/images/officers/24/anderson.jpg`,
             position: "Finance Officer",
             name: "Anderson Hao",
           },
           {
-            picture: `/images/officers/24/sophia.png`,
+            picture: `/images/officers/24/sophia.jpg`,
             position: "Finance Officer",
             name: "Sophia Hou",
           },
           {
-            picture: `/images/officers/24/alex.png`,
+            picture: `/images/officers/24/alex.jpg`,
             position: "Secretary",
             name: "Alexander Gu",
           },
           {
-            picture: `/images/officers/24/michelle.png`,
+            picture: `/images/officers/24/michelle.jpg`,
             position: "Historian",
             name: "Michelle Zuo",
           },

@@ -36,6 +36,7 @@ const TjimoPage: NextPage<any> = () => {
           <p className="text-center text-2xl text-white mb-6">October 19, 2024 @ TJHSST</p>
           <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/registration24">2024 Registration</a></p>
           <p className = "text-center mt-3"><a className = "text-2xl font-bold text-pink" href = "https://tjvmt.com/u/tjimo/guide">TJIMO Guide</a></p>
+          <p className = "mt-6"></p>
         </div>
 
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="white" className="absolute bottom-4 animate-bounce">
@@ -115,11 +116,11 @@ const TjimoPage: NextPage<any> = () => {
           <span className="font-bold">Q</span>: Who can register?<br />
           <span className="font-bold">A</span>: ONE math teacher or math team coordinator from each school can register students from their school to participate in TJIMO.<br /><br />
           <span className="font-bold">Q</span>: How many students can attend from a school?<br />
-          <span className="font-bold">A</span>: Up to 7.<br /><br />
+          <span className="font-bold">A</span>: Up to 6.<br /><br />
           <span className="font-bold">Q</span>: Can I register as an individual or homeschool student or with an organization outside of my school?<br />
           <span className="font-bold">A</span>: If you are homeschooled, you may register individually and indicate that you are homeschooled on the form. If you attend a public or private school, we ask that you ask your school’s math teacher/math team coordinator to register for you. We do not allow non-school organizations to participate. Please email us at vmtofficers@gmail.com if you have any questions.<br /><br />
           <span className="font-bold">Q</span>: What is the role of the teacher/coordinator?<br />
-          <span className="font-bold">A</span>: The role of the teacher/coordinator is simply being the link between us, the organizers, and the students - an essential role at TJIMO. In other words, they will be responsible for making sure the students are at the right place at the right time and relaying information to students.<br /><br />
+          <span className="font-bold">A</span>: The role of the teacher/coordinator is simply being the link between us, the organizers, and the students - an essential role at TJIMO. In other words, they will stay at TJ during the event and be responsible for making sure the students are at the right place at the right time and relaying information to students. The teacher/coordinator can be any math teacher or even a parent willing to be the team coordinator.<br /><br />
           <span className="font-bold">Q</span>: Will students from the same school compete as a team?<br />
           <span className="font-bold">A</span>: No, students will be assigned to teams balanced by math level during the individual round.<br /><br />
           <span className="font-bold">Q</span>: What will students need for the competition? <br />
