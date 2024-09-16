@@ -180,7 +180,7 @@ const Header = () => {
           <Link href="https://mathdash.com/contest/contest36-open" passHref>
             <a className='underline text-white hover:text-pink'>MathDash Mondays</a>
           </Link>
-          ! See our Messenger group for more detail.
+          ! See our Messenger groupchat for more details.
           </p>
       </div>
       : null}
