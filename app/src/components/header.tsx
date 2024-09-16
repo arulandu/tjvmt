@@ -167,19 +167,23 @@ const Toaster = () => {
 }
 
 const Header = () => {
+  const { session, setSession } = useSession()
+  
   return (
     <header className='fixed z-50 w-full h-16 sm:h-24'>
       <Toaster />
-      {/*<div className='bg-navy py-2'>
-      <p className='text-white text-center text-base font-bold'>Announcement</p>
-        <p className='text-white text-center text-sm md:text-base'>
-        Competing in TJIMO? Check out the {' '}
-        <Link href="https://tjvmt.com/u/tjimo/guide" passHref>
-          <a className='underline text-white hover:text-pink'>survival guide</a>
-        </Link>
-        !
-        </p>
-    </div> */}
+      { session ?
+      <div className='bg-navy py-2'>
+        <p className='text-white text-center text-base font-bold'>Announcement</p>
+          <p className='text-white text-center text-sm md:text-base'>
+          Support our math team by competing in the {' '}
+          <Link href="https://mathdash.com/contest/contest36-open" passHref>
+            <a className='underline text-white hover:text-pink'>MathDash Mondays</a>
+          </Link>
+          ! See our Messenger group for more detail.
+          </p>
+      </div>
+      : null}
       <NavBar />
     </header>
   );
