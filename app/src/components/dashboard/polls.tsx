@@ -102,13 +102,20 @@ const Poll = ({ data, edit, setView }) => {
 }
 
 const CreatePoll = () => {
+  const getInput = (block) => {
+    let pass = "";
+    let s = "qwertyupadfghjkxcvbnm346789";
+    for (let i = 0; i < 6; i++) pass += s[Math.floor(Math.random()*s.length)];
+    const d = new Date();
+    let day = d.getDay();
+    d.setDate(d.getDate() + (10-day)%7);
+
+    return {"text": `${d.getMonth()/d.getDate()}`, "choices": `{block} Block`, "password": pass};
+  }
+
   const { toastDispatch } = useToasts();
   const { session } = useSession()
-  const [input, setInput] = useState({
-    text: '',
-    choices: '',
-    password: ""
-  })
+  const [input, setInput] = useState(getInput("A"));
   const router = useRouter()
 
   const create = async () => {
@@ -127,7 +134,7 @@ const CreatePoll = () => {
 
     notify(toastDispatch, "", `Created poll: ${input.text}`, ToastType.SUCCESS)
 
-    setInput({ text: '', choices: '', password: '' })
+    setInput(getInput("B"))
     router.reload()
   }
 
