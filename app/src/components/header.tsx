@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 import { useSession } from './SessionProvider';
 import { ToastAction, useToasts } from './ToastProvider';
-import mitt from 'next/dist/shared/lib/mitt';
 
 const NavLink = ({ index, href, name, onClick = () => { } }) => {
   return (
@@ -149,8 +148,8 @@ const Toast = ({ toast }) => {
   })
 
   return (
-    <div key={toast.id} onClick={close} className='relative m-2 p-2 w-64 bg-navy-light rounded-md'>
-      <CloseButton open={true} className='absolute top-0 right-2' />
+    <div key={toast.id} className='relative m-2 p-2 w-64 bg-navy-light rounded-md'>
+      <CloseButton open={true} onClick={close} className='absolute top-0 right-2' />
       {toast.content}
     </div>
   );
@@ -168,23 +167,19 @@ const Toaster = () => {
 }
 
 const Header = () => {
-  const { session, setSession } = useSession()
-  
   return (
     <header className='fixed z-50 w-full h-16 sm:h-24'>
       <Toaster />
-      { session ? null
-      // <div className='bg-navy py-2'>
-      //   <p className='text-white text-center text-base font-bold'>Announcement</p>
-      //     <p className='text-white text-center text-sm md:text-base'>
-      //     Support our math team by competing in the {' '}
-      //     <Link href="https://mathdash.com/contest/contest36-open" passHref>
-      //       <a className='underline text-white hover:text-pink'>MathDash Mondays</a>
-      //     </Link>
-      //     ! See our Messenger groupchat for more details.
-      //     </p>
-      // </div>
-      : null}
+      {/*<div className='bg-navy py-2'>
+      <p className='text-white text-center text-base font-bold'>Announcement</p>
+        <p className='text-white text-center text-sm md:text-base'>
+        Competing in TJIMO? Check out the {' '}
+        <Link href="https://tjvmt.com/u/tjimo/guide" passHref>
+          <a className='underline text-white hover:text-pink'>survival guide</a>
+        </Link>
+        !
+        </p>
+    </div> */}
       <NavBar />
     </header>
   );
