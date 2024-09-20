@@ -110,12 +110,16 @@ const CreatePoll = () => {
     let day = d.getDay();
     d.setDate(d.getDate() + (10-day)%7);
 
-    return {"text": `${d.getMonth()/d.getDate()}`, "choices": `{block} Block`, "password": pass};
+    let month = "January, February, March, April, May, June, July, August, September, October, November, December".split(", ")[d.getMonth()]
+
+    return {"text": `${month} ${d.getDate()}`, "choices": `${block} Block`, "password": pass};
   }
+
+  const emptyInput = {"text": "", "choices": "", "password": ""};
 
   const { toastDispatch } = useToasts();
   const { session } = useSession()
-  const [input, setInput] = useState(getInput("A"));
+  const [input, setInput] = useState(emptyInput);
   const router = useRouter()
 
   const create = async () => {
@@ -134,13 +138,15 @@ const CreatePoll = () => {
 
     notify(toastDispatch, "", `Created poll: ${input.text}`, ToastType.SUCCESS)
 
-    setInput(getInput("B"))
+    setInput(emptyInput);
     router.reload()
   }
 
   return (
     <div className='mt-6 sm:w-60 md:w-96 bg-navy-light bg-opacity-50 p-4 mx-auto'>
       <h3 className='text-white text-2xl font-bold'>Create a Poll</h3>
+      <OutlineButton name='A Block' className='mt-4' onClick={() => setInput(getInput("A"))} />
+      <OutlineButton name='B Block' className='mt-4' onClick={() => setInput(getInput("B"))} />
       <p className='text-white mt-2 text-md'>Provide some description your poll and list the choices using ; to separate. Password field is optional.</p>
       <InputField id='text' name='Description' value={input.text} onChange={(e) => handleInputChange(e, input, setInput)} />
       <InputField id='choices' name='Choices' value={input.choices} onChange={(e) => handleInputChange(e, input, setInput)} />
