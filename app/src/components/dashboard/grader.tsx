@@ -312,7 +312,7 @@ const CSVSubmitGrade = ({ tsts }) => {
     <div className='mt-2 w-full bg-navy-light bg-opacity-50 p-4'>
       <h3 className='text-white text-2xl font-bold'>Submit Grade (with CSV)</h3>
       <p className='text-white mt-2 text-md'>Include user hash values under header 'userId'. <br />Headers for each problem should be labelled 'P#'. <br />Only for non-writers scores.</p>
-      <Dropdown id="tstId" label="TST" options={tsts.filter(tst => tst.name.includes('test') || tst.name.includes('2023')).map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
+      <Dropdown id="tstId" label="TST" options={tsts.filter(tst => tst.name.includes('')).map(tst => ({ label: tst.name, value: tst.id }))} value={input.tstId} onChange={(e) => handleInputChange(e, input, setInput)} className='mt-2' />
       <Upload id='tstUpload' label='Upload CSV' onChange={handleFileChange} accept='.csv' className='mt-2' />
       <OutlineButton name='Submit' className='mt-4' onClick={submit} />
     </div>
