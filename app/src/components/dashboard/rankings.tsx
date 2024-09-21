@@ -64,7 +64,7 @@ export const RankingsSection = ({}) => {
               </tr>
             </thead>
             <tbody>
-              {data.submissions?.filter(sub => sub.tst.name.includes('2023')).map(sub =>
+              {data.submissions?.filter(sub => sub.tst.name.includes('2024')).map(sub =>
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th key={sub.id + 'name'} className='p-4'>{sub.tst.name}</th>
                   <th key={sub.id + 'index'} className='p-4'>{sub.index.toFixed(2)}</th>
