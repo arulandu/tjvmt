@@ -41,7 +41,7 @@ const Dashboard: NextPage<any> = ({ }) => {
   console.log(user.profilePicData);
 
   return (
-    <Layout dim>
+    <Layout dim user={user}>
       <section className='mx-4 sm:mx-12 lg:mx-24 min-h-screen items-center justify-center'>
         <div className="flex flex-col items-center justify-center">
           {/* <div className='w-32 h-32 rounded-full border-solid border-4 border-white bg-black overflow-hidden'>

@@ -2,6 +2,17 @@ import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import Link from 'next/link';
+import { authorize } from '@/lib/api/authorize';
+
+export const getServerSideProps = async ({ req, res }) => {
+  const { user } = await authorize(req, res)
+
+  return {
+    props: {
+      user
+    }
+  }
+}
 
 const Sponsor = ({ text, img, company, link }) => {
   return (
@@ -151,9 +162,9 @@ const SponsorSection = () => {
   )
 }
 
-const Sponsors: NextPage<any> = () => {
+const Sponsors: NextPage<any> = ({ user }) => {
   return (
-    <Layout>
+    <Layout user={user}>
       <SponsorSection />
     </Layout >
   );

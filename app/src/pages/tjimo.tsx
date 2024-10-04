@@ -3,6 +3,17 @@ import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Carousel, { CarouselItem } from "@/components/Carousel";
+import { authorize } from '@/lib/api/authorize';
+
+export const getServerSideProps = async ({ req, res }) => {
+  const { user } = await authorize(req, res)
+
+  return {
+    props: {
+      user
+    }
+  }
+}
 
 // TODO: pascal case for acronyms — i have no idea 🤷‍♂️
 
@@ -24,9 +35,9 @@ const Slide = ({ number }) => (
   </div>
 );
 
-const TjimoPage: NextPage<any> = () => {
+const TjimoPage: NextPage<any> = ({ user }) => {
   return (
-    <Layout>
+    <Layout user={user}>
       {/* <div className='fixed w-screen h-screen opacity-40 z-[-1]'>
         <Image src="/images/tjimo23.JPG" layout="fill" objectFit='cover' />
       </div> */}
