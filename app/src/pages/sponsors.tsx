@@ -57,7 +57,7 @@ const SponsorSection = () => {
           company="TJ Partnership Fund"
           link="https://www.tjpartnershipfund.org/"
         />
-        <Sponsor
+        {/* <Sponsor
           text="<a href='https://www.citadel.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel</a> is one of the world's leading alternative investment firms, pursuing superior long-term returns for the world's preeminent public and private institutions. <a href='https://www.citadelsecurities.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel Securities</a> are the next-generation capital markets firms, delivering critical liquidity and helping to shape the markets of tomorrow."
           img="/images/sponsors/Citadel_CSEC.png"
           company="Citadel"
@@ -68,13 +68,7 @@ const SponsorSection = () => {
           img="/images/sponsors/cake_shop_capital.jpg"
           company="The Cake Shop Capital"
           link="https://www.thecakeshopcapital.com/"
-        />
-        <Sponsor
-          text="We are the Vienna branch of Art of Problem Solving.  We offer afterschool and weekend math and language arts classes for advanced students who need more stimulating material than what they receive at school. Almost all of TJ's VMT are current or former AoPS students!"
-          img="/images/sponsors/vienna.png"
-          company="AoPS Vienna"
-          link="https://vienna.aopsacademy.org/"
-        />
+        /> */}
       </div>
       <h2 className="mt-8 text-3xl text-neutral-300 font-bold text-center">Silver Sponsors</h2>
       <div className="mt-6 w-full flex flex-wrap justify-center items-start">
@@ -90,6 +84,18 @@ const SponsorSection = () => {
           company="Wolfram"
           link="https://www.wolfram.com/"
         />
+        <Sponsor
+          text="<a href='https://www.hudsonrivertrading.com/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Hudson River Trading</a> (HRT) is a multi-asset class quantitative trading firm based in New York City. Founded in 2002, HRT develops automated trading algorithms that provide liquidity and facilitate price discovery on exchanges and alternative trading systems. With offices around the world, HRT trades equities, futures, options, currencies and fixed income on over 200 markets worldwide."
+          img="/images/sponsors/HRT.png"
+          company="Hudson River Trading"
+          link="https://www.hudsonrivertrading.com/"
+        />
+        <Sponsor
+          text="We are the Vienna branch of Art of Problem Solving.  We offer afterschool and weekend math and language arts classes for advanced students who need more stimulating material than what they receive at school. Almost all of TJ's VMT are current or former AoPS students!"
+          img="/images/sponsors/vienna.png"
+          company="AoPS Vienna"
+          link="https://vienna.aopsacademy.org/"
+        />
         {/* <Sponsor
           text="The Summer Program for Applied Rationality and Cognition (SPARC) is a free two-week program for talented high schoolers to develop quantitative skills and apply them to the world."
           img="/images/sponsors/SPARC.png"
@@ -99,18 +105,13 @@ const SponsorSection = () => {
       </div>
       <h2 className="mt-8 text-3xl font-bold text-[#916b1a] text-center">Bronze Sponsors</h2>
       <div className="mt-6 w-full flex flex-wrap justify-center items-start">
-        <SmallerSponsor
-          // text="The Daily Challenge is the first and only online math course that captivates. It was invented by world famous math professor Po-Shen Loh. Lessons are taught live by instructors who are not only brilliant at math, but also skilled in improvisational comedy and performance."
-          img="/images/sponsors/daily_challenge.png"
-          company="The Daily Challenge"
-          link="https://daily.poshenloh.com/"
-        />
+        {/*
         <SmallerSponsor
           // text="Jane Street is a quantitative trading firm with offices worldwide. We hire smart, humble people who love to solve problems, build systems, and test theories. Our success is driven by our people and we never stop improving."
           img="/images/sponsors/jane_street.png"
           company="Jane Street"
           link="https://janestreet.com"
-        />
+        />*/}
         <SmallerSponsor
           img="images/sponsors/awesomemath.png"
           company="AwesomeMath"
@@ -120,6 +121,17 @@ const SponsorSection = () => {
       <h2 className="mt-8 text-3xl font-bold text-[#3896e8] text-center">Prize Sponsors</h2>
       <div className="mt-6 w-full flex flex-wrap justify-center items-start">
         <SmallerSponsor
+          // text="The Daily Challenge is the first and only online math course that captivates. It was invented by world famous math professor Po-Shen Loh. Lessons are taught live by instructors who are not only brilliant at math, but also skilled in improvisational comedy and performance."
+          img="/images/sponsors/daily_challenge.png"
+          company="The Daily Challenge"
+          link="https://daily.poshenloh.com/"
+        />
+        <SmallerSponsor
+          img="/images/sponsors/desmos.png"
+          company="Desmos"
+          link="https://www.desmos.com/"
+        />
+        {/* <SmallerSponsor
           img="/images/sponsors/aops.png"
           company="AoPS"
           link="https://artofproblemsolving.com"
@@ -128,7 +140,7 @@ const SponsorSection = () => {
           img="/images/sponsors/geogebra.png"
           company="GeoGebra"
           link="https://geogebra.org"
-        />
+        /> */}
       </div>
       <section className="relative w-11/12 lg:w-9/12 my-8 mx-auto text-center text-2xl text-white mb-6 font-light">
         <p> Interested in sponsoring with us for TJIMO or supporting us in our many travel competitions? </p>
