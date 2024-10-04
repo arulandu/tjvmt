@@ -6,6 +6,17 @@ import Header from "@/components/header";
 import { Footer } from "@/components/footer";
 import Background from "@/components/Background";
 import React from "react";
+import { authorize } from '@/lib/api/authorize';
+
+export const getServerSideProps = async ({ req, res }) => {
+  const { user } = await authorize(req, res)
+
+  return {
+    props: {
+      user
+    }
+  }
+}
 
 const HeroSection = () => {
   return (
@@ -191,9 +202,9 @@ const QuotesSection = () => {
   );
 };
 
-const Home: NextPage<any> = ({ officers }) => {
+const Home: NextPage<any> = ({ officers, user }) => {
   return (
-    <Layout>
+    <Layout user={user}>
       <HeroSection />
       <ExperienceSection />
       <QuotesSection />

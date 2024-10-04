@@ -10,8 +10,19 @@ import { InputField } from '@/components/InputField';
 import { handleInputChange } from '@/lib/handleInputChange';
 import { useToasts } from '@/components/ToastProvider';
 import { notify, ToastType } from '@/components/header';
+import { authorize } from '@/lib/api/authorize';
 
-const SignUp: NextPage<any> = () => {
+export const getServerSideProps = async ({ req, res }) => {
+  const { user } = await authorize(req, res)
+
+  return {
+    props: {
+      user
+    }
+  }
+}
+
+const SignUp: NextPage<any> = (user) => {
   const { session } = useSession()
   const { toastDispatch } = useToasts();
   const [input, setInput] = useState({
@@ -45,7 +56,7 @@ const SignUp: NextPage<any> = () => {
   }
 
   return (
-    <Layout>
+    <Layout user={user}>
       <section className="mx-4 sm:mx-12 lg:mx-24 min-h-screen flex flex-col items-center justify-center">
         <div className='bg-white bg-opacity-5 p-4'>
           <div className='w-full'>
