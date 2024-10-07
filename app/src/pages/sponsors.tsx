@@ -68,7 +68,13 @@ const SponsorSection = () => {
           company="TJ Partnership Fund"
           link="https://www.tjpartnershipfund.org/"
         />
-        {/* <Sponsor
+        <Sponsor
+          text="TJ Academic Boosters (TJAB) constitutes a devoted organization of parent volunteers who are committed to supporting students and their academic team activities at Thomas Jefferson High School for Science and Technology (TJHSST)."
+          img="/images/sponsors/tjab.png"
+          company="TJ Academic Boosters"
+          link="https://www.tjacademic.org/home"
+        />
+        <Sponsor
           text="<a href='https://www.citadel.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel</a> is one of the world's leading alternative investment firms, pursuing superior long-term returns for the world's preeminent public and private institutions. <a href='https://www.citadelsecurities.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel Securities</a> are the next-generation capital markets firms, delivering critical liquidity and helping to shape the markets of tomorrow."
           img="/images/sponsors/Citadel_CSEC.png"
           company="Citadel"
@@ -79,7 +85,7 @@ const SponsorSection = () => {
           img="/images/sponsors/cake_shop_capital.jpg"
           company="The Cake Shop Capital"
           link="https://www.thecakeshopcapital.com/"
-        /> */}
+        />
       </div>
       <h2 className="mt-8 text-3xl text-neutral-300 font-bold text-center">Silver Sponsors</h2>
       <div className="mt-6 w-full flex flex-wrap justify-center items-start">
@@ -96,7 +102,7 @@ const SponsorSection = () => {
           link="https://www.wolfram.com/"
         />
         <Sponsor
-          text="<a href='https://www.hudsonrivertrading.com/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Hudson River Trading</a> (HRT) is a multi-asset class quantitative trading firm based in New York City. Founded in 2002, HRT develops automated trading algorithms that provide liquidity and facilitate price discovery on exchanges and alternative trading systems. With offices around the world, HRT trades equities, futures, options, currencies and fixed income on over 200 markets worldwide."
+          text="Hudson River Trading (HRT) is a multi-asset class quantitative trading firm based in New York City. Founded in 2002, HRT develops automated trading algorithms that provide liquidity and facilitate price discovery on exchanges and alternative trading systems. With offices around the world, HRT trades equities, futures, options, currencies and fixed income on over 200 markets worldwide."
           img="/images/sponsors/HRT.png"
           company="Hudson River Trading"
           link="https://www.hudsonrivertrading.com/"
