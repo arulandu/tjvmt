@@ -2,6 +2,72 @@ import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import Link from 'next/link';
+import { authorize } from '@/lib/api/authorize';
+
+export const getServerSideProps = async ({ req, res }) => {
+  const { user } = await authorize(req, res)
+
+  return {
+    props: {
+      user,
+
+      officers: [
+        {
+          picture: `/images/officers/24/abhi.jpg`,
+          position: "Captain",
+          name: "Abhi Palikala",
+        },
+        {
+          picture: `/images/officers/24/samarth.jpg`,
+          position: "Co-Captain",
+          name: "Samarth Bhargav",
+        },
+        {
+          picture: `/images/officers/24/avni.jpg`,
+          position: "Co-Captain",
+          name: "Avni Garg",
+        },
+        {
+          picture: `/images/officers/24/calvin.jpg`,
+          position: "Statistician",
+          name: "Calvin Wang",
+        },
+        {
+          picture: `/images/officers/24/olivia.jpg`,
+          position: "Statistician",
+          name: "Olivia Wu",
+        },
+        {
+          picture: `/images/officers/24/anderson.jpg`,
+          position: "Finance Officer",
+          name: "Anderson Hao",
+        },
+        {
+          picture: `/images/officers/24/sophia.jpg`,
+          position: "Finance Officer",
+          name: "Sophia Hou",
+        },
+        {
+          picture: `/images/officers/24/alex.jpg`,
+          position: "Secretary",
+          name: "Alexander Gu",
+        },
+        {
+          picture: `/images/officers/24/michelle.jpg`,
+          position: "Historian",
+          name: "Michelle Zuo",
+        },
+      ]
+    }
+  }
+}
+
+// export async function getStaticProps() {
+//   return {
+//     props: {,
+//     },
+//   };
+// }
 
 const AboutUsSection = () => {
   return (
@@ -91,60 +157,6 @@ const LeadershipSection = ({
     </section>
   );
 };
-
-  export async function getStaticProps() {
-    return {
-      props: {
-        officers: [
-          {
-            picture: `/images/officers/24/abhi.jpg`,
-            position: "Captain",
-            name: "Abhi Palikala",
-          },
-          {
-            picture: `/images/officers/24/samarth.jpg`,
-            position: "Co-Captain",
-            name: "Samarth Bhargav",
-          },
-          {
-            picture: `/images/officers/24/avni.jpg`,
-            position: "Co-Captain",
-            name: "Avni Garg",
-          },
-          {
-            picture: `/images/officers/24/calvin.jpg`,
-            position: "Statistician",
-            name: "Calvin Wang",
-          },
-          {
-            picture: `/images/officers/24/olivia.jpg`,
-            position: "Statistician",
-            name: "Olivia Wu",
-          },
-          {
-            picture: `/images/officers/24/anderson.jpg`,
-            position: "Finance Officer",
-            name: "Anderson Hao",
-          },
-          {
-            picture: `/images/officers/24/sophia.jpg`,
-            position: "Finance Officer",
-            name: "Sophia Hou",
-          },
-          {
-            picture: `/images/officers/24/alex.jpg`,
-            position: "Secretary",
-            name: "Alexander Gu",
-          },
-          {
-            picture: `/images/officers/24/michelle.jpg`,
-            position: "Historian",
-            name: "Michelle Zuo",
-          },
-        ],
-      },
-    };
-  }
 
   const Sponsor = ({ text, img, company, link }) => {
     return (
@@ -248,9 +260,9 @@ const SponsorSection = () => {
     )
 }
 
-const Home: NextPage<any> = ({ officers }) => {
+const Home: NextPage<any> = ({ officers, user }) => {
   return (
-    <Layout>
+    <Layout user={user}>
       <AboutUsSection/>
       <LeadershipSection officers={officers}/>
       {/* <SponsorSection/> */}

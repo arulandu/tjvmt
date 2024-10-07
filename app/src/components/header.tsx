@@ -1,3 +1,4 @@
+import type { NextPage } from 'next'
 import Image from 'next/image';
 import OutlineButton from "./OutlineButton";
 import Link from "next/link";
@@ -35,7 +36,7 @@ const CloseButton = ({ open, className = '', onClick = () => { } }) => {
   );
 }
 
-const NavBar = () => {
+const NavBar = (user) => {
   const [isOpen, setOpen] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const router = useRouter()
@@ -92,7 +93,7 @@ const NavBar = () => {
           </a>
         </Link>
         {
-          session ?
+          user["user"] ?
             <OutlineButton className='mt-4 md:ml-4 md:mt-0' name="Log Out" onClick={logOut} />
             :
             <a href={`/api/auth/ion?path=${path}`}>
@@ -167,13 +168,13 @@ const Toaster = () => {
   );
 }
 
-const Header = () => {
+const Header: NextPage<any> = ({ user }) => {
   const { session, setSession } = useSession()
   
   return (
     <header className='fixed z-50 w-full h-16 sm:h-24'>
       <Toaster />
-      { session ? null
+      { user ? null
       // <div className='bg-navy py-2'>
       //   <p className='text-white text-center text-base font-bold'>Announcement</p>
       //     <p className='text-white text-center text-sm md:text-base'>
@@ -185,7 +186,7 @@ const Header = () => {
       //     </p>
       // </div>
       : null}
-      <NavBar />
+      <NavBar user={user} />
     </header>
   );
 }

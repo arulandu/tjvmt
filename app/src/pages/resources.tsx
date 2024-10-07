@@ -60,7 +60,7 @@ const InternalResource = ({ link, name, newTab = true }) => {
 
 const Resources: NextPage<any> = ({ user }) => {
   return (
-    <Layout dim>
+    <Layout dim user={user}>
       {/* <div className = "mx-4 sm:mx-8 lg:mx-8 pt-24 items-center">
         <h1 className="mb-6 text-center text-white text-5xl"> Resources</h1>
       </div> */}

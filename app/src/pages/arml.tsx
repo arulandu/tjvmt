@@ -32,9 +32,9 @@ const Resource = ({ link, name }) => {
     );
 }
 
-const ARML: NextPage<any> = () => {
+const ARML: NextPage<any> = ({ authorized }) => {
     return (
-        <Layout>
+        <Layout user={authorized}>
             <div className="mx-4 sm:mx-8 lg:mx-8 pt-24 items-center">
                 <h2 className="mb-6 text-center text-white text-5xl">ARML!</h2>
                 <p className="relative w-11/12 lg:w-9/12 my-8 mx-auto text-center text-white text-lg lg:text-2xl font-light">

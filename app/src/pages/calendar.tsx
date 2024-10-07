@@ -2,10 +2,21 @@ import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import Link from 'next/link';
+import { authorize } from '@/lib/api/authorize';
 
-const News: NextPage<any> = () => {
+export const getServerSideProps = async ({ req, res }) => {
+  const { user } = await authorize(req, res)
+
+  return {
+    props: {
+      user
+    }
+  }
+}
+
+const News: NextPage<any> = ({ user }) => {
     return (
-        <Layout dim>
+        <Layout dim user={user}>
 
             <section className="flex flex-col items-center justify-center pt-24">
                 <h2 className="mb-6 text-white text-5xl gradient-text text-center">Calendar</h2>
