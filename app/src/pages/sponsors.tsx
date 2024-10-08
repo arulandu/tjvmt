@@ -148,12 +148,12 @@ const SponsorSection = () => {
           company="Desmos"
           link="https://www.desmos.com/"
         />
-        {/* <SmallerSponsor
+        <SmallerSponsor
           img="/images/sponsors/aops.png"
           company="AoPS"
           link="https://artofproblemsolving.com"
         />
-        <SmallerSponsor
+        {/* <SmallerSponsor
           img="/images/sponsors/geogebra.png"
           company="GeoGebra"
           link="https://geogebra.org"
