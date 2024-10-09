@@ -38,7 +38,7 @@ const Dashboard: NextPage<any> = ({ }) => {
     'grader': <GraderSection/>
   }
 
-  console.log(user.profilePicData);
+  // console.log(user.profilePicData);
 
   return (
     <Layout dim user={user}>

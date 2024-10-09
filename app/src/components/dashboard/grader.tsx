@@ -35,7 +35,7 @@ const ViewTSTs = ({ tsts }) => {
         {tsts.map(tst =>
           <div key={tst.id} className='m-2 p-2 md:p-4 bg-navy-light bg-opacity-50'>
             <h4 className='text-white text-xl'>{tst.name}</h4>
-            <p className='text-white text-md'>Grading Type: {tst.weighted ? "Weighted" : "Un-Weighted"}</p>
+            <p className='text-white text-md'>{tst.weighted ? "Weighted" : "Un-Weighted"}</p>
             <OutlineButton name='Grade' onClick={() => grade(tst.id)} className='mt-2' />
           </div>
         )}
