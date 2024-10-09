@@ -41,6 +41,7 @@ export const RankingsSection = ({}) => {
         'Authorization': `Bearer ${session.access_token}`
       },
     }
+    
     fetch(`/api/ranking?selectionId=${input.selectionId}`, options).then(res => res.json()).then((data) => {
       setData(data);
       // notify(toastDispatch, "", `Calculated your ranking for selection ${selections.filter(s => s.id == input.selectionId)[0].name}`);
@@ -68,7 +69,9 @@ export const RankingsSection = ({}) => {
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th key={sub.id + 'name'} className='p-4'>{sub.tst.name}</th>
                   <th key={sub.id + 'index'} className='p-4'>{sub.index.toFixed(2)}</th>
-                  <th key={sub.id + 'distib'} className='p-4'>{sub.answers.map((ans, index) => ans >= 1 ? <span className = 'text-green-300'>{sub.tst.solves[index]} </span> : <span className = 'text-pink'>{sub.tst.solves[index]} </span>)}</th>
+                  <th key={sub.id + 'distib'} className='p-4'>{sub.answers.map((ans, index) => <span className = {'text-' +
+                    (sub.tst.name.includes("Proof") ? (ans >= 5 ? 'green-300' : (ans >= 3 ? 'yellow-500' : 'pink')) : (ans >= 1 ? 'green-300' : 'pink'))
+                  } title = {ans}>{sub.tst.solves[index]} </span>)}</th>
                 </tr>
               )}
             </tbody>
@@ -80,7 +83,7 @@ export const RankingsSection = ({}) => {
             id="selectionId"
             label="Selection:"
             options={selections
-              .filter(s => s.name.includes(''))
+              .filter(s => s.name.includes('Duke'))
               .map(s => ({ label: s.name, value: s.id }))
             }
             value={input.selectionId}
