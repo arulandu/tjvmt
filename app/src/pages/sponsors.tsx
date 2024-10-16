@@ -113,6 +113,12 @@ const SponsorSection = () => {
           company="AoPS Vienna"
           link="https://vienna.aopsacademy.org/"
         />
+        <Sponsor
+          text="We offer quality math enrichment for gifted upper elementary and middle school students in the metropolitan Washington DC area. We’re here to help students appreciate the beauty and power of serious and challenging mathematics through our summer camps and small group enrichment sessions."
+          img="/images/sponsors/math_reasoning.png"
+          company="Math Reasoning"
+          link="https://mathreasoning.com/"
+        />
         {/* <Sponsor
           text="The Summer Program for Applied Rationality and Cognition (SPARC) is a free two-week program for talented high schoolers to develop quantitative skills and apply them to the world."
           img="/images/sponsors/SPARC.png"
