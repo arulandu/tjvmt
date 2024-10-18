@@ -74,6 +74,7 @@ const SponsorSection = () => {
           company="TJ Academic Boosters"
           link="https://www.tjacademic.org/home"
         />
+        {/*
         <Sponsor
           text="<a href='https://www.citadel.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel</a> is one of the world's leading alternative investment firms, pursuing superior long-term returns for the world's preeminent public and private institutions. <a href='https://www.citadelsecurities.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel Securities</a> are the next-generation capital markets firms, delivering critical liquidity and helping to shape the markets of tomorrow."
           img="/images/sponsors/Citadel_CSEC.png"
@@ -86,6 +87,7 @@ const SponsorSection = () => {
           company="The Cake Shop Capital"
           link="https://www.thecakeshopcapital.com/"
         />
+        */}
       </div>
       <h2 className="mt-8 text-3xl text-neutral-300 font-bold text-center">Silver Sponsors</h2>
       <div className="mt-6 w-full flex flex-wrap justify-center items-start">
@@ -112,6 +114,12 @@ const SponsorSection = () => {
           img="/images/sponsors/vienna.png"
           company="AoPS Vienna"
           link="https://vienna.aopsacademy.org/"
+        />
+        <Sponsor
+          text="We offer quality math enrichment for gifted upper elementary and middle school students in the metropolitan Washington DC area. We’re here to help students appreciate the beauty and power of serious and challenging mathematics through our summer camps and small group enrichment sessions."
+          img="/images/sponsors/math_reasoning.png"
+          company="Math Reasoning"
+          link="https://mathreasoning.com/"
         />
         {/* <Sponsor
           text="The Summer Program for Applied Rationality and Cognition (SPARC) is a free two-week program for talented high schoolers to develop quantitative skills and apply them to the world."
