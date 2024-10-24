@@ -104,12 +104,17 @@ const Resources: NextPage<any> = ({ user }) => {
               <small className="mb-6 text-white text-base gradient-text text-center">
               Click on the title for the link to the competition website. Brighter boxes are TJ sponsored competitions.
               </small>
+              <br />
+              <small className="mb-6 text-white text-base gradient-text text-center">
+              If you want to go to a self organized team competition, please fill out this <a className="text-pink hover:underline" href="https://tjvmt.com/u/selfcomp">form</a>.
+              </small>
             </p>
             <div className="flex justify-center flex-wrap">
               <Competition name="MMATHS" date="Oct 26, 2024" location="UMD or Yale" link='https://www.mmaths.org/' text="Open to anyone, make teams of 6." selection='This contest is self organized, so you can make your own team and register!' />
               <Competition name="CMWMC" date="Oct 26, 2024" location="CMU" link='https://cmimc.math.cmu.edu/cmwmc' text="Beginner friendly competition for girls." selection='This contest is self organized, so you can make your own team and register!' />
               <Competition name="Duke Math Meet" date="Nov 9, 2024" location="Duke" link='https://math.duke.edu/duke-math-meet' text="Duke is okay. Will take 4 teams of 6." selection='Team selection using a combination of Proof TST and 4 Duke TSTs.' withTJ={true} />
               <Competition name="PUMaC" date="Nov 23, 2024" location="Princeton" link='https://pumac.princeton.edu/' text="The problems at the competition are... certainly interesting. Will take 2 teams of 8." selection='Team selection using a combination of Proof TST and the top 3 Subject TSTs.' withTJ={true} />
+              <Competition name="Penn Girls Math Contest" date="Nov 23, 2024" location="Home (Virtual) or UPenn" link='https://sites.google.com/view/pennmathcontest/pgmc' text="Beginner friendly competition for girls." selection='This is an individual contest, so you can register on your own!' />
               {/* <Competition name="ARML Power Fall" date='TBD' location='TJ' link='' text='Unrelated to ARML, but we have two teams of 15 take the contest during 8th period or after school one day.' selection='Teams decided using Duke Rankings probably.' /> */}
               {/* <Competition name="INTEGIRLS DC" date='Dec 9, 2023' location='Montgomery College' link='https://dc.integirls.org/math' text='Beginner friendly competition for girls.' selection='This contest is self organized, so you can make your own team and register!' /> */}
               {/* <Competition name="BMT Online" date="Jan 2025" location="Home (Virtual)" link='https://berkeley.mt/' text='Online version of BMT 2024 (must not have competed in a prior iteration of BMT 2024).' selection='This contest is self organized, so you can make your own team and register (costs $8)!' /> */}
