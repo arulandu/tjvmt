@@ -68,6 +68,10 @@ export const getServerSideProps = async ({ req, res }) => {
           picture: `/images/awards/mmaths24.png`,
           name: "MMATHS 2024",
         },
+        {
+          picture: `/images/awards/pumac24.jpg`,
+          name: "PUMaC 2024",
+        },
       ]
     }
   }
