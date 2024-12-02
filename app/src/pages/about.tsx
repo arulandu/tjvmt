@@ -61,11 +61,11 @@ export const getServerSideProps = async ({ req, res }) => {
 
       awards: [
         {
-          picture: `/images/awards/duke24_all.png`,
+          picture: `/images/awards/duke24_all.jpg`,
           name: "Duke 2024",
         },
         {
-          picture: `/images/awards/mmaths24.png`,
+          picture: `/images/awards/mmaths24.jpg`,
           name: "MMATHS 2024",
         },
         {
