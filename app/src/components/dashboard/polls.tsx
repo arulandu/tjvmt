@@ -108,11 +108,11 @@ const CreatePoll = () => {
     for (let i = 0; i < 6; i++) pass += s[Math.floor(Math.random()*s.length)];
     const d = new Date();
     let day = d.getDay();
-    d.setDate(d.getDate() + (10-day)%7);
+    d.setDate(d.getDate() + ((block == "T" ? 11 : 10)-day)%7);
 
     let month = "January, February, March, April, May, June, July, August, September, October, November, December".split(", ")[d.getMonth()]
 
-    return {"text": `${month} ${d.getDate()}`, "choices": `${block} Block`, "password": pass};
+    return {"text": `${month} ${d.getDate()}`, "choices": (block == "T" ? "Thursday" : `${block} Block`), "password": pass};
   }
 
   const emptyInput = {"text": "", "choices": "", "password": ""};
@@ -147,6 +147,7 @@ const CreatePoll = () => {
       <h3 className='text-white text-2xl font-bold'>Create a Poll</h3>
       <OutlineButton name='A Block' className='mt-4' onClick={() => setInput(getInput("A"))} />
       <OutlineButton name='B Block' className='mt-4' onClick={() => setInput(getInput("B"))} />
+      <OutlineButton name='Thursday' className='mt-4' onClick={() => setInput(getInput("T"))} />
       <p className='text-white mt-2 text-md'>Provide some description your poll and list the choices using ; to separate. Password field is optional.</p>
       <InputField id='text' name='Description' value={input.text} onChange={(e) => handleInputChange(e, input, setInput)} />
       <InputField id='choices' name='Choices' value={input.choices} onChange={(e) => handleInputChange(e, input, setInput)} />

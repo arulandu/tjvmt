@@ -57,6 +57,21 @@ export const getServerSideProps = async ({ req, res }) => {
           position: "Historian",
           name: "Michelle Zuo",
         },
+      ],
+
+      awards: [
+        {
+          picture: `/images/awards/duke24_all.jpg`,
+          name: "Duke 2024",
+        },
+        {
+          picture: `/images/awards/mmaths24.jpg`,
+          name: "MMATHS 2024",
+        },
+        {
+          picture: `/images/awards/pumac24.jpg`,
+          name: "PUMaC 2024",
+        },
       ]
     }
   }
@@ -260,11 +275,49 @@ const SponsorSection = () => {
     )
 }
 
-const Home: NextPage<any> = ({ officers, user }) => {
+const AwardsSection = ({
+  awards,
+}: {
+  awards: { picture: string; position: string; name: string }[];
+}) => {
+  return (
+    <section
+      id="awards"
+      className="mx-4 sm:mx-8 lg:mx-8 pt-24 flex flex-wrap xl:flex-nowrap items-start"
+    >
+      <div>
+        <h2 className="mb-12 text-center text-white text-5xl w-screen">
+          Awards
+        </h2>
+        
+        <div className="flex flex-wrap lg:flex-nowrap justify-center m-2 group">
+          {awards.map((award) => { return (
+            <div className="relative w-1/4 aspect-[1/1] ">
+              <div className="absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
+                <p className="text-navy text-base font-bold text-center">
+                  {award.name}
+                </p>
+              </div>
+              <Image
+                src={award.picture}
+                alt={award.name}
+                layout="fill"
+                className="object-contain"
+              />
+            </div>
+          )})}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Home: NextPage<any> = ({ officers, awards, user }) => {
   return (
     <Layout user={user}>
       <AboutUsSection/>
       <LeadershipSection officers={officers}/>
+      <AwardsSection awards={awards}/>
       {/* <SponsorSection/> */}
     </Layout>
   );
