@@ -190,7 +190,7 @@ const AwardsSection = ({
         
         <div className="flex flex-wrap lg:flex-nowrap justify-center m-2">
           {awards.map((award) => { return (
-            <div className="relative w-1/4 aspect-[1/1] group">
+            <div className="relative w-1/4 aspect-[1/1] group m-2">
               <div className="absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
                 <p className="text-navy text-base font-bold text-center">
                   {award.name}
