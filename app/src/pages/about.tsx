@@ -3,6 +3,7 @@ import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import Link from 'next/link';
 import { authorize } from '@/lib/api/authorize';
+import { useState } from 'react';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { user } = await authorize(req, res)
@@ -63,14 +64,23 @@ export const getServerSideProps = async ({ req, res }) => {
         {
           picture: `/images/awards/duke24_all.jpg`,
           name: "Duke 2024",
+          team: ["TJ A: 1st Place","TJ B: 2nd Place", "TJ C: 4th Place"],
+          indiv: ["Shunyao Yan: 1st Place", "Sophia Hou: 3rd Place", "Alexander Gu: 4th Place", "Avnith Vijayram: 5th Place"]
         },
         {
           picture: `/images/awards/mmaths24.jpg`,
           name: "MMATHS 2024",
+          team: ["The Snorlaxes: 1st Place"],
+          indiv: ["Alexander Gu: 1st Place", "Alexander Liu: 4th Place", "Patrick Du: 5th Place", "Shunyao Yan: 8th Place, 2nd in Lightning Finals"]
         },
         {
           picture: `/images/awards/pumac24.jpg`,
           name: "PUMaC 2024",
+          team: ["TJ A: 2nd Overall, 5th in Team, 10th in Power"],
+          indiv : ["Calvin Wang: 3rd Overall, 5th in Algebra, 5th in Number Theory", "Sophia Hou: 3rd in Geometry",
+            "Anderson Hao: 3rd in Geometry", "Patrick Du: 4th in Combinatorics", "Alexander Liu: 4th in Combinatorics",
+            "Arjun Pagidi: 8th in Combinatorics", "Max Zhao: 10th in Algebra"
+          ]
         },
       ]
     }
@@ -176,22 +186,31 @@ const LeadershipSection = ({
 const AwardsSection = ({
   awards,
 }: {
-  awards: { picture: string; position: string; name: string }[];
+  awards: { picture: string; name: string; team: string[]; indiv: string[]}[];
 }) => {
+
+  const [openAward, setOpenAward] = useState<string | null>(null);
+  const toggleDropdown = (awardName: string) => {
+    setOpenAward(openAward === awardName ? null : awardName);
+  };
   return (
     <section
       id="awards"
       className="mx-4 sm:mx-8 lg:mx-8 pt-24 flex flex-wrap xl:flex-nowrap items-start"
     >
       <div>
-        <h2 className="mb-12 text-center text-white text-5xl w-screen">
+        <h2 className="mb-4 text-center text-white text-5xl w-screen">
           Awards
         </h2>
-        
-        <div className="flex flex-wrap lg:flex-nowrap justify-center m-2">
+        <p className = "text-center">
+          <small className="mb-6 text-white text-base gradient-text text-center">
+            Click image for detailed results.
+          </small>
+        </p>
+        <div className="flex flex-wrap justify-center m-2">
           {awards.map((award) => { return (
-            <div className="relative w-1/4 aspect-[1/1] group m-2">
-              <div className="absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
+            /*<div className="relative w-1/4 aspect-[1/1] group m-2">
+              {/*<div className="absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
                 <p className="text-navy text-base font-bold text-center">
                   {award.name}
                 </p>
@@ -202,6 +221,41 @@ const AwardsSection = ({
                 layout="fill"
                 className="object-contain"
               />
+            </div>*/
+            <div key={award.name} className = "relative w-1/4 aspect-[13/11] group m-2">
+              <div
+                className="relative w-full aspect-[13/10] cursor-pointer"
+                onClick={() => toggleDropdown(award.name)}
+              >
+              <Image
+                src={award.picture}
+                alt={award.name}
+                layout="fill"
+                className="object-contain"
+              />
+              </div>
+              <div className="relative z-10 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
+                <p className="text-navy text-base font-bold text-center">
+                  {award.name}
+                </p>
+              </div>
+              {openAward === award.name && (award.team || award.indiv) && (
+                <div className="absolute z-30 left-0 w-full mt-2 p-2 bg-gray-300 rounded-md shadow-md transition-all ease-in-out duration-300">
+                <h4 className="text-center font-bold mb-1">Team Results</h4>
+                <ul className="list-disc pl-4 text-sm">
+                  {award.team.map((detail, index) => (
+                    <li key={index}>{detail}</li>
+                  ))}
+                  <br /> 
+                </ul>
+                <h4 className="text-center font-bold mb-1">Individual Results</h4>
+                <ul className="list-disc pl-4 text-sm">
+                  {award.indiv.map((detail, index) => (
+                    <li key={index}>{detail}</li>
+                  ))}
+                </ul>
+              </div>
+              )}
             </div>
           )})}
         </div>
