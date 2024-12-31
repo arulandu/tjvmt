@@ -3,6 +3,7 @@ import { Layout } from '@/components/layout'
 import Image from 'next/image'
 import Link from 'next/link';
 import { authorize } from '@/lib/api/authorize';
+import { useState } from 'react';
 
 export const getServerSideProps = async ({ req, res }) => {
   const { user } = await authorize(req, res)
@@ -63,14 +64,23 @@ export const getServerSideProps = async ({ req, res }) => {
         {
           picture: `/images/awards/duke24_all.jpg`,
           name: "Duke 2024",
+          team: ["TJ A: 1st Place","TJ B: 2nd Place", "TJ C: 4th Place"],
+          indiv: ["Shunyao Yan: 1st Place", "Sophia Hou: 3rd Place", "Alexander Gu: 4th Place", "Avnith Vijayram: 5th Place"]
         },
         {
           picture: `/images/awards/mmaths24.jpg`,
           name: "MMATHS 2024",
+          team: ["The Snorlaxes: 1st Place"],
+          indiv: ["Alexander Gu: 1st Place", "Alexander Liu: 4th Place", "Patrick Du: 5th Place", "Shunyao Yan: 8th Place, 2nd in Lightning Finals"]
         },
         {
           picture: `/images/awards/pumac24.jpg`,
           name: "PUMaC 2024",
+          team: ["TJ A: 2nd Overall, 5th in Team, 10th in Power"],
+          indiv : ["Calvin Wang: 3rd Overall, 5th in Algebra, 5th in Number Theory", "Sophia Hou: 3rd in Geometry",
+            "Anderson Hao: 3rd in Geometry", "Patrick Du: 4th in Combinatorics", "Alexander Liu: 4th in Combinatorics",
+            "Arjun Pagidi: 8th in Combinatorics", "Max Zhao: 10th in Algebra"
+          ]
         },
       ]
     }
@@ -173,127 +183,34 @@ const LeadershipSection = ({
   );
 };
 
-  const Sponsor = ({ text, img, company, link }) => {
-    return (
-      <div
-        className={`m-4 p-4 sm:w-6/8 lg:w-2/5 bg-navy-light bg-opacity-80 rounded-md "opacity-100 translate-x-0" : "-translate-x-12 opacity-0"
-        } flex transition-all duration-300`}
-      >
-        <div className="w-full text-center items-center">
-          <a href={link}>
-            <img
-            src={img}
-            alt={company}
-            className="max-h-40 mx-auto my-2"
-            />
-          </a> 
-          <p className="text-white text-lg p-2">{text}</p>
-        </div>
-      </div>
-    );
-  };
-
-  const BronzeSponsor = ({ img, company, link }) => {
-    return (
-      <div
-        className={`m-4 p-4 sm:w-6/8 lg:w-2/5 bg-navy-light bg-opacity-80 rounded-md "opacity-100 translate-x-0" : "-translate-x-12 opacity-0"
-        } flex transition-all duration-300`}
-      >
-        <div className="w-full text-center items-center">
-          <a href={link}>
-            <img
-            src={img}
-            alt={company}
-            className="max-h-40 mx-auto my-2"
-            />
-          </a> 
-        </div>
-      </div>
-    );
-  };
-
-const SponsorSection = () => {
-    return (
-        <section className="pt-24 md:max-w-2/3 xl:max-w-1/2 text-white bg-navy bg-opacity-50">
-        <h1 className="text-5xl text-white text-center">Sponsors</h1>
-        <h2 className="mt-12 text-3xl font-bold text-yellow-500 text-center">Gold Sponsors</h2>
-        <div className = "mt-6 w-full flex flex-wrap justify-center items-start">
-            <Sponsor
-                text = "The TJ Partnership Fund (TJPF) is a nonprofit foundation dedicated to supporting Thomas Jefferson High School for Science and Technology (TJHSST) and works closely with the school administration to help further its unique mission."
-                img = "/images/sponsors/TJPF.JPG"
-                company = "TJ Partnership Fund"
-                link = "https://www.tjpartnershipfund.org/"
-            />
-            <Sponsor
-                text = "Wolfram uniquely unifies algorithms, data, notebooks, linguistics and deployment—enabling powerful workflows across desktop, cloud, server and mobile. Whatever your field, whatever your application, Wolfram technology provides the ultimate computation platform."
-                img = "/images/sponsors/wolfram.jpg"
-                company = "Wolfram"
-                link = "https://www.wolfram.com/"
-            />
-            <Sponsor
-                text = "The Russian School of Mathematics (RSM) is an award winning K-12 after-school math program that has empowered students to achieve excellence for over twenty years."
-                img = "/images/sponsors/RSM.png"
-                company = "RSM"
-                link = "https://www.russianschool.com/"
-            />
-        </div>
-        <h2 className="mt-8 text-3xl text-neutral-300 font-bold text-center">Silver Sponsors</h2>
-        <div className = "mt-6 w-full flex flex-wrap justify-center items-start">
-            <Sponsor
-                text = "The Summer Program for Applied Rationality and Cognition (SPARC) is a free two-week program for talented high schoolers to develop quantitative skills and apply them to the world."
-                img = "/images/sponsors/SPARC.png"
-                company = "SPARC"
-                link = "https://www.sparc-camp.com/"
-            />
-            <Sponsor
-                text="Jane Street is a quantitative trading firm with offices worldwide. We hire smart, humble people who love to solve problems, build systems, and test theories. Our success is driven by our people and we never stop improving."
-                img="/images/sponsors/jane_street.png"
-                company="Jane Street"
-                link = "https://janestreet.com"
-            />
-            <Sponsor
-                text="The Daily Challenge is the first and only online math course that captivates. It was invented by world famous math professor Po-Shen Loh. Lessons are taught live by instructors who are not only brilliant at math, but also skilled in improvisational comedy and performance."
-                img="/images/sponsors/daily_challenge.png"
-                company="The Daily Challenge"
-                link = "https://daily.poshenloh.com/"
-            />
-        </div>
-        <h2 className="mt-8 text-3xl font-bold text-[#916b1a] text-center">Bronze Sponsors</h2>
-        <div className = "mt-6 w-full flex flex-wrap justify-center items-start">
-          <BronzeSponsor
-            img = "/images/sponsors/aops.png"
-            company = "AoPS"
-            link = "https://artofproblemsolving.com"
-          />
-          <BronzeSponsor
-            img = "/images/sponsors/vienna.png"
-            company = "AoPS Vienna"
-            link = "https://vienna.aopsacademy.org/"
-          />
-        </div>
-      </section>
-    )
-}
-
 const AwardsSection = ({
   awards,
 }: {
-  awards: { picture: string; position: string; name: string }[];
+  awards: { picture: string; name: string; team: string[]; indiv: string[]}[];
 }) => {
+
+  const [openAward, setOpenAward] = useState<string | null>(null);
+  const toggleDropdown = (awardName: string) => {
+    setOpenAward(openAward === awardName ? null : awardName);
+  };
   return (
     <section
       id="awards"
       className="mx-4 sm:mx-8 lg:mx-8 pt-24 flex flex-wrap xl:flex-nowrap items-start"
     >
       <div>
-        <h2 className="mb-12 text-center text-white text-5xl w-screen">
+        <h2 className="mb-4 text-center text-white text-5xl w-screen">
           Awards
         </h2>
-        
-        <div className="flex flex-wrap lg:flex-nowrap justify-center m-2 group">
+        <p className = "text-center">
+          <small className="mb-6 text-white text-base gradient-text text-center">
+            Click image for detailed results.
+          </small>
+        </p>
+        <div className="flex flex-wrap justify-center m-2">
           {awards.map((award) => { return (
-            <div className="relative w-1/4 aspect-[1/1] ">
-              <div className="absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
+            /*<div className="relative w-1/4 aspect-[1/1] group m-2">
+              {/*<div className="absolute z-20 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
                 <p className="text-navy text-base font-bold text-center">
                   {award.name}
                 </p>
@@ -304,6 +221,41 @@ const AwardsSection = ({
                 layout="fill"
                 className="object-contain"
               />
+            </div>*/
+            <div key={award.name} className = "relative w-1/4 aspect-[13/11] group m-2">
+              <div
+                className="relative w-full aspect-[13/10] cursor-pointer"
+                onClick={() => toggleDropdown(award.name)}
+              >
+              <Image
+                src={award.picture}
+                alt={award.name}
+                layout="fill"
+                className="object-contain"
+              />
+              </div>
+              <div className="relative z-10 w-full bg-white opacity-0 -bottom-4 group-hover:bottom-0 group-hover:opacity-50 transition-all ease-in-out duration-200">
+                <p className="text-navy text-base font-bold text-center">
+                  {award.name}
+                </p>
+              </div>
+              {openAward === award.name && (award.team || award.indiv) && (
+                <div className="absolute z-30 left-0 w-full mt-2 p-2 bg-gray-300 rounded-md shadow-md transition-all ease-in-out duration-300">
+                <h4 className="text-center font-bold mb-1">Team Results</h4>
+                <ul className="list-disc pl-4 text-sm">
+                  {award.team.map((detail, index) => (
+                    <li key={index}>{detail}</li>
+                  ))}
+                  <br /> 
+                </ul>
+                <h4 className="text-center font-bold mb-1">Individual Results</h4>
+                <ul className="list-disc pl-4 text-sm">
+                  {award.indiv.map((detail, index) => (
+                    <li key={index}>{detail}</li>
+                  ))}
+                </ul>
+              </div>
+              )}
             </div>
           )})}
         </div>
