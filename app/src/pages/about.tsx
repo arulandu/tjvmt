@@ -222,7 +222,7 @@ const AwardsSection = ({
                 className="object-contain"
               />
             </div>*/
-            <div key={award.name} className = "relative w-1/4 aspect-[13/11] group m-2">
+            <div key={award.name} className = "relative w-64 lg:w-1/4 aspect-[13/11] group m-2">
               <div
                 className="relative w-full aspect-[13/10] cursor-pointer"
                 onClick={() => toggleDropdown(award.name)}
