@@ -83,7 +83,7 @@ export const RankingsSection = ({}) => {
             id="selectionId"
             label="Selection:"
             options={selections
-              .filter(s => s.name.includes('Duke'))
+              .filter(s => s.name.includes('2024') || s.name.includes('HMMT 2025'))
               .map(s => ({ label: s.name, value: s.id }))
             }
             value={input.selectionId}
