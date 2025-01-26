@@ -16,12 +16,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const tsts = await db.tST.findMany({});
     const tstId2Name = Object.fromEntries(tsts.map(t => [t.id, t.name]))
     
-    let subjTsts = ["6531582f50974206aa817aa0", "65348523fd708a86f6224b66", "65399607914b8a550b0fc28a", "653996c2b5d493a82e95163c"];
+    let subjTsts = ["6719b8835b8dce1d28ba919f", "67045adab3516003ead1b095", "6719ae7d69ff42069ba5bb3b", "6719b922f1dec559b732c4ac"]; // for hmmt/pumac 2024-25
     let dukeTsts = ["66edc62837cb8a2b31a88b0e", "66ee2fd7c2e99d23291f293f", "66f18a43453b99e07318f6cb", "66f18a5d9685467b58f161a9"]; // for duke 2024
     
     let dukeSelectionId = '66f19e01190b2a6b9aac7c5a' // for duke 2024
-    let pumacSelectionId = ''
-    let hmmtSelectionId = '65aa8dd94041e83ab8038c90' // for hmmt 24
+    let pumacSelectionId = '671adf3a637f154b6c7029e0' // for pumac 2024
+    let hmmtSelectionId = '6792bc1ba464cd2d35d19cc7' // for hmmt 2025
 
     const indexes = users.map(user => {
       let subs = user.submissions.filter(s => selection.weights[tstId2Name[s.tstId]]).sort((a, b) => b.index-a.index)
@@ -38,11 +38,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const normWeights = Object.fromEntries(entries.map(s => [s[0], s[1]/1]))
 
       if (req.body.selectionId == hmmtSelectionId){
-        // HMMT 25 Protocol: 22.5 22.5 22.5 7.5
+        // HMMT 25 Protocol: 15 15 15 0
          const subjTstSubmissions = subs.filter(sub => subjTsts.includes(sub.tstId));
-         if (subjTstSubmissions.length > 0) {
+         if (subjTstSubmissions.length == 4) {
             const minIndexSub = subjTstSubmissions.reduce((minSub, currentSub) => currentSub.index < minSub.index ? currentSub : minSub);
             normWeights[tstId2Name[minIndexSub.tstId]] = 0;
+         } 
+      }
+      else if (req.body.selectionId == pumacSelectionId){
+        // pumac 24 Protocol: 30 30 10 0
+         const subjTstSubmissions = subs.filter(sub => subjTsts.includes(sub.tstId));
+         if (subjTstSubmissions.length == 4) {
+            const minIndexSub = subjTstSubmissions.reduce((minSub, currentSub) => currentSub.index < minSub.index ? currentSub : minSub);
+            const secIndexSub = subjTstSubmissions.reduce((secSub, currentSub) => currentSub.tstId != minIndexSub.tstId && currentSub.index < secSub.index ? currentSub : secSub);
+            normWeights[tstId2Name[minIndexSub.tstId]] = 0;
+            normWeights[tstId2Name[secIndexSub.tstId]] = 0.1;
          } 
       }
       else if (req.body.selectionId == dukeSelectionId){
