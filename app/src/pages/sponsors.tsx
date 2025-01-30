@@ -74,13 +74,13 @@ const SponsorSection = () => {
           company="TJ Academic Boosters"
           link="https://www.tjacademic.org/home"
         />
-        {/*
         <Sponsor
           text="<a href='https://www.citadel.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel</a> is one of the world's leading alternative investment firms, pursuing superior long-term returns for the world's preeminent public and private institutions. <a href='https://www.citadelsecurities.com/careers/' target='_blank' rel='noopener noreferrer' class='text-pink underline'>Citadel Securities</a> are the next-generation capital markets firms, delivering critical liquidity and helping to shape the markets of tomorrow."
           img="/images/sponsors/Citadel_CSEC.png"
           company="Citadel"
           link=""
         />
+        {/*
         <Sponsor
           text="The Cake Shop Capital is led by its three founders: Dr. Lauren Cohen, Dr. William Powley and David Kim. In their more than decade working together, they have pioneered numerous techniques and ideas in Behavioral Finance that have been used throughout the field of asset management. This award winning work has been cited throughout academic and practitioner journals, and is widely cited in the popular press."
           img="/images/sponsors/cake_shop_capital.jpg"
