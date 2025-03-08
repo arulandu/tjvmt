@@ -82,6 +82,18 @@ export const getServerSideProps = async ({ req, res }) => {
             "Arjun Pagidi: 8th in Combinatorics", "Max Zhao: 10th in Algebra"
           ]
         },
+        {
+          picture: `/images/awards/hmmt25.jpg`,
+          name: "HMMT 2025",
+          team: ["TJ A: 3rd Overall, 3rd in Team, 5th in Guts"],
+          indiv: ["Calvin Wang: 7th Overall, 8th in Geometry"]
+        },
+        {
+          picture: `/images/awards/gim25.jpg`,
+          name: "GiM 2025",
+          team: ["TMVJT: 1st Overall, 3rd in Guts"],
+          indiv: ["Melody Wu: 8th Place", "Adya Grag: Honorable Mention", "Avni Garg: Honorable Mention"]
+        },
       ]
     }
   }
