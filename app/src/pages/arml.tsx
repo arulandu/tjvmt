@@ -26,8 +26,8 @@ const AnnoucementsSection = () => {
                 <h1 className='text-white text-center text-3xl font-bold mb-4 mt-4'>Reminders</h1>
                 <ul className="text-white text-left text-lg list-disc pl-8 space-y-3 mb-4">
                     <li>Everyone (unless you have indicated you play a sport on the form) must check in with a teacher in math commons before 4:30pm</li>
-                    <li>Extra pizza is typically not ordered, so if you want to buy pizza make sure to fill out the form by 4:30pm as well ($2 per slice)</li>
-                    <li>If you do not collect your pizza by 5:50pm, your pizza will be sold as extra slices</li>
+                    <li>Extra pizza is typically not ordered, so if you want to buy pizza make sure to fill out the form by 4:15pm ($2 per slice)</li>
+                    <li>If you do not collect your pizza by 5:50pm without telling an officer why, your pizza will be sold as extra slices</li>
                     <li><b>Attendance on website is due by 5:30pm</b>. If you do not fill out attendance in time or if you fill out attendance but don't show up, you will be penalized 1% on your overall TST score (if you need to show up late due to a sport/other reason, please inform an officer)</li>
                     <li>Lectures are required unless you have sports practice</li>
                 </ul>
@@ -66,7 +66,7 @@ const ARML: NextPage<any> = ({  }) => {
                             <h1 className='text-white text-center text-3xl font-bold mb-4'>Links</h1>
                             <Resource link="https://tjvmt.com/u/teams" name="Teams" />
                             <Resource link="https://tjvmt.com/u/armlrankings" name="Rankings" />
-                            <Resource link="https://tjvmt.com/u/pizza" name="Pizza Order (due 4:30)" />
+                            <Resource link="https://tjvmt.com/u/pizza" name="Pizza Order (due 4:15)" />
                             <Resource link="https://tjvmt.com/u/armlperms" name="Permission Form" />
                         </div>
                     </section>
