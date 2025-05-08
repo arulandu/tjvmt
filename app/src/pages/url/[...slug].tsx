@@ -8,7 +8,7 @@ export const getServerSideProps = async (ctx) => {
   const route = ctx.query.slug.join('/')
   const row = data.values.filter(row => row[0] == route)[0]
   
-  if(row && !row[1].includes("27qIVQPj6l")){
+  if(row && !row[1].includes("d0hL57t")){
     return {
       redirect: {
         destination: row[1],
