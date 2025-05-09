@@ -80,6 +80,12 @@ const SponsorSection = () => {
           company="Citadel"
           link=""
         />
+        <Sponsor
+          text="Susquehanna is a global quantitative trading firm founded by a group of friends who share a passion for game theory and probabilistic thinking. Our rigorous and analytical approach to decision making has led Susquehanna to become one of the largest and most successful proprietary trading firms in the world. Our employees are relentless problem solvers who collaborate to make optimal decisions."
+          img="/images/sponsors/susquehanna.png"
+          company="Susquehanna"
+          link="https://sig.com/"
+        />
         {/*
         <Sponsor
           text="The Cake Shop Capital is led by its three founders: Dr. Lauren Cohen, Dr. William Powley and David Kim. In their more than decade working together, they have pioneered numerous techniques and ideas in Behavioral Finance that have been used throughout the field of asset management. This award winning work has been cited throughout academic and practitioner journals, and is widely cited in the popular press."
