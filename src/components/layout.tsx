@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Footer } from "./footer";
 import Head from 'next/head';
+import Script from 'next/script';
 import Header from "./header";
 import Background from "./Background";
 
@@ -26,20 +27,23 @@ export const Layout: FC<any> = ({ dim=false, children, user }) => {
                 <meta name="background-color" content="#0a192f"/>
 
                 {/* Global Site Tag (gtag.js) - Google Analytics */}
-                <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+                <Script
+                    strategy="afterInteractive"
+                    src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
                 />
-                <script
-                dangerouslySetInnerHTML={{
+                <Script
+                    id="gtag-init"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
                     __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
                         page_path: window.location.pathname,
-                    });`,
-                }}
+                        });
+                    `,
+                    }}
                 />
             </Head>
             <Header user={user}/>

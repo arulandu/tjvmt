@@ -39,8 +39,12 @@ const AnnoucementsSection = () => {
 const Resource = ({ link, name }) => {
     return (
         <div className='text-center'>
-            <Link href={link} passHref>
-                <a className='text-xl text-pink opacity-80 hover:opacity-100 hover:underline transition-al' target="_blank">{name}</a>
+            <Link
+                href={link}
+                passHref
+                className='text-xl text-pink opacity-80 hover:opacity-100 hover:underline transition-al'
+                target="_blank">
+                {name}
             </Link>
         </div>
     );

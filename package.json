@@ -8,7 +8,8 @@
     "db": "npm run prisma -- generate && npm run prisma -- db push",
     "build": "npm run prisma -- generate && next build",
     "start": "next start",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
@@ -32,12 +33,12 @@
     "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
-    "eslint": "^9.27.0",
-    "eslint-config-next": "^15.4.0-canary.51",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.3.2",
     "js-cookie": "^3.0.5",
-    "postcss": "^8.5.3",
+    "postcss": "^8.4.14",
     "prisma": "^6.8.2",
-    "tailwindcss": "^4.1.7",
+    "tailwindcss": "^3.0.24",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }

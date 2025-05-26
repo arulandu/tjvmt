@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link';
 import { authorize } from '@/lib/api/authorize';
 import { useState } from 'react';
@@ -269,7 +269,7 @@ const AwardsSection = ({
               </div>
               )}
             </div>
-          )})}
+          );})}
         </div>
       </div>
     </section>

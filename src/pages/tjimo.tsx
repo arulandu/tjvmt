@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Carousel, { CarouselItem } from "@/components/Carousel";
 import { authorize } from '@/lib/api/authorize';

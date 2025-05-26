@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link';
 import { authorize } from '@/lib/api/authorize';
 
@@ -17,8 +17,12 @@ export const getServerSideProps = async ({ req, res }) => {
 const ArchiveEmbed = ({ name, id }) => {
   return (
     <div className='mx-6 my-2 bg-opacity-90'>
-      <Link href={`https://drive.google.com/drive/folders/${id}`} passHref>
-        <a className='text-xl text-white opacity-50 hover:opacity-100 transition-all' target="_blank">{name}</a>
+      <Link
+        href={`https://drive.google.com/drive/folders/${id}`}
+        passHref
+        className='text-xl text-white opacity-50 hover:opacity-100 transition-all'
+        target="_blank">
+        {name}
       </Link>
     </div>
   );
@@ -51,8 +55,12 @@ const CalendarSection = () => {
 const InternalResource = ({ link, name, newTab = true }) => {
   return (
     <div className='text-center'>
-      <Link href={link} passHref>
-        <a className='text-xl text-pink opacity-80 hover:opacity-100 hover:underline transition-al' target={newTab ? "_blank" : "_self"}>{name}</a>
+      <Link
+        href={link}
+        passHref
+        className='text-xl text-pink opacity-80 hover:opacity-100 hover:underline transition-al'
+        target={newTab ? "_blank" : "_self"}>
+        {name}
       </Link>
     </div>
   );

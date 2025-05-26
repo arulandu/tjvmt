@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import OutlineButton from "./OutlineButton";
 import Link from "next/link";
 import { useEffect, useState } from 'react';
@@ -10,8 +10,12 @@ import mitt from 'next/dist/shared/lib/mitt';
 
 const NavLink = ({ index, href, name, onClick = () => { } }) => {
   return (
-    <Link href={href} passHref>
-      <a className='mb-2 md:mx-4 md:mb-0 text-white hover:text-pink text-md transition-all' onClick={onClick}><span className='text-pink'>#{index}. </span>{name}</a>
+    <Link
+      href={href}
+      passHref
+      className='mb-2 md:mx-4 md:mb-0 text-white hover:text-pink text-md transition-all'
+      onClick={onClick}>
+      <span className='text-pink'>#{index}. </span>{name}
     </Link>
   );
 }
@@ -74,10 +78,13 @@ const NavBar = (user) => {
     <nav className={`relative h-ful ${atTop ? 'bg-transparent' : 'bg-navy'} flex items-center justify-between z-10 py-2 px-4 sm:px-12 lg:px-24 transition-all ease-in-out duration-500`}>
       <div className='flex relative z-20'>
         <HamburgerButton open={isOpen} onClick={() => setOpen(!isOpen)} />
-        <Link href="/" passHref>
-          <a className="relative ml-4 w-12 md:w-24 aspect-[5/3] opacity-90 hover:opacity-100 transition-all ease-in-out">
-            <Image src="/images/logo.png" alt="Logo" layout="fill" />
-          </a>
+        <Link
+          href="/"
+          passHref
+          className="relative ml-4 w-12 md:w-24 aspect-[5/3] opacity-90 hover:opacity-100 transition-all ease-in-out">
+
+          <Image src="/images/logo.png" alt="Logo" layout="fill" />
+
         </Link>
       </div>
       <div className={`block w-full md:w-fit h-screen md:h-full z-10 absolute md:relative top-0 ${isOpen ? 'left-0' : 'left-[-200%] md:left-0'} px-4 sm:px-12 md:px-0 flex flex-col md:flex-row items-start md:items-center justify-center bg-navy bg-opacity-90 md:bg-transparent transition-all`}>
@@ -93,10 +100,13 @@ const NavBar = (user) => {
         : null
         }
         
-        <Link href="mailto:vmtofficers@gmail.com" passHref>
-          <a className='mt-4 md:ml-4 md:mt-0'>
-            <OutlineButton name="Contact" />
-          </a>
+        <Link
+          href="mailto:vmtofficers@gmail.com"
+          passHref
+          className='mt-4 md:ml-4 md:mt-0'>
+
+          <OutlineButton name="Contact" />
+
         </Link>
         {
           user["user"] ?
