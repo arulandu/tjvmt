@@ -21,7 +21,8 @@ build
 
 # debug
 npm-debug.log*
-yarn-debug.log*
+# probable deletion
+yarn-debug.log* 
 yarn-error.log*
 
 # local env files
