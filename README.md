@@ -2,20 +2,24 @@
 A dynamic website for TJVMT. 
 
 ## Development
-Local development does NOT work on FCPS wifi. Use a hotspot if you want to work in school.
+Local development probably does NOT work on FCPS wifi. Use a hotspot if you want to work in school.
+The package manager used is npm, but you probably won't need to interact with it (docker does it for you).
 
 ## Default
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Getting Started with Docker
+First, install [Docker Desktop](https://docs.docker.com/desktop/).
 
-First, run the development server:
+For Ion OAuth to work, register your own [Ion OAuth Application](https://ion.tjhsst.edu/oauth/applications). Create a .env.development.local file, and fill it with the data from .env.example (obviously change the OAuth stuff).
+
+Then, start docker from the root directory.
 
 ```bash
-npm run dev
-# or
-yarn dev
+docker compose build
+docker compose up
 ```
+Docker takes care of installing packages, setting up the database, etc. for you (see the Dockerfile and the docker-compose.yml).
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

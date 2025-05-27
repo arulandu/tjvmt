@@ -26,7 +26,7 @@ const Post: NextPage<any> = () => {
   return (
     <Layout>
       <div className="h-screen flex justify-center items-center">
-        <h1 className="text-white font-bold text-2xl xl:text-4xl">Oops! Looks like this doesn't exist. Time to yell at an officer <s>or maybe yourself</s>!</h1>
+        <h1 className="text-white font-bold text-2xl xl:text-4xl">Oops! Looks like this doesn&apos;t exist. Time to yell at an officer <s>or maybe yourself</s>!</h1>
       </div>
     </Layout>
   );

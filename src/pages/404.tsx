@@ -19,7 +19,7 @@ const Custom404 = () => {
     <Layout>
       <section className='h-screen flex flex-col justify-center items-center'>
         {/* <div> */}
-          <p className=' text-white text-xl md:text-3xl text-center mx-4'>Hmm... this page doesn't exist.</p>
+          <p className=' text-white text-xl md:text-3xl text-center mx-4'>Hmm... this page doesn&apos;t exist.</p>
           {session ? null :
             <div className='mt-4 flex items-center'>
               <p className='text-white text-lg md:text-xl font-light text-center'>Maybe try logging in...?</p>
