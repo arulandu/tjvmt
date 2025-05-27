@@ -25,8 +25,8 @@ export const Layout: FC<any> = ({ dim=false, children, user }) => {
                 <meta name="msapplication-TileColor" content="#0a192f"/>
                 <meta name="theme-color" content="#64A2FF"/>
                 <meta name="background-color" content="#0a192f"/>
-
-                {/* Global Site Tag (gtag.js) - Google Analytics */}
+            </Head>
+            {/* Global Site Tag (gtag.js) - Google Analytics */}
                 <Script
                     strategy="afterInteractive"
                     src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -45,7 +45,6 @@ export const Layout: FC<any> = ({ dim=false, children, user }) => {
                     `,
                     }}
                 />
-            </Head>
             <Header user={user}/>
             <div className='relative w-full m-0 h-screen'>
                 <Background className={dim ? "opacity-25" : 'opacity-100'}/>

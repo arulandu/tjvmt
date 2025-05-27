@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { Layout } from '@/components/layout'
 import Image from "next/legacy/image"
+import Link from "next/link"
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Carousel, { CarouselItem } from "@/components/Carousel";
 import { authorize } from '@/lib/api/authorize';
@@ -100,7 +101,7 @@ const TjimoPage: NextPage<any> = ({ user }) => {
         <p className = "mb-4">
         Sponsors allow us to provide the best experience possible for TJIMO participants by helping 
         us host a competition full of learning, collaboration, fulfillment, and fun. Our full list of sponsors can be found on 
-        the <a className = "font-bold text-pink" href = "/sponsors">sponsors</a> page.
+        the <Link href="/sponsors" className="font-bold text-pink">sponsors</Link> page.
         </p>
         <p className = "mb-10">
         Interested in sponsoring or partnering with us for TJIMO? 
@@ -108,10 +109,10 @@ const TjimoPage: NextPage<any> = ({ user }) => {
         You can also get in touch with us anytime at <a className = "font-bold text-pink" href = "mailto:vmtofficers@gmail.com">vmtofficers@gmail.com</a>.
         </p>
         <h2 className="text-3xl font-bold text-left mb-4">How Does the Contest Work?</h2>
-        <p className="mb-4">TJIMO consists of four rounds of tests that challenge students' mathematical problem solving skills. A large block of the event is dedicated to coaching,
+        <p className="mb-4">TJIMO consists of four rounds of tests that challenge students&apos; mathematical problem solving skills. A large block of the event is dedicated to coaching,
           in which students are assigned to small groups and learn strategies from VMT student coaches. See below for more details on each round.</p>
         <ul className="mb-10 px-5 list-disc">
-          <li><span className="font-bold">Individual Round</span>: The individual round is a one hour 30 problem round modeled after MATHCOUNTS' sprint round. Top scorers in the individual round
+          <li><span className="font-bold">Individual Round</span>: The individual round is a one hour 30 problem round modeled after MATHCOUNTS&apos; sprint round. Top scorers in the individual round
             will recieve awards at the end of the event. Scores from this round is also used to create balanced teams for the later rounds.</li>
           <li><span className="font-bold">Coaching</span>: After the individual round, students will be assigned to small groups and be coached by VMT members.
             They will be able to go over problems from the individual round and learn new strategies that will help in the team rounds later.</li>

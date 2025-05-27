@@ -50,7 +50,7 @@ const ExperienceCard = ({
   img,
 }: {
   title: string;
-  content: JSX.Element[];
+  content: React.ReactNode[];
   img: string;
 }) => {
   return (

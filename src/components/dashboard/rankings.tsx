@@ -69,7 +69,7 @@ export const RankingsSection = ({}) => {
                 <tr key={sub.id} className='border-t-2 border-solid'>
                   <th key={sub.id + 'name'} className='p-4'>{sub.tst.name}</th>
                   <th key={sub.id + 'index'} className='p-4'>{sub.index.toFixed(2)}</th>
-                  <th key={sub.id + 'distib'} className='p-4'>{sub.answers.map((ans, index) => <span className = {'text-' +
+                  <th key={sub.id + 'distib'} className='p-4'>{sub.answers.map((ans, index) => <span key={index} className = {'text-' +
                     (sub.tst.name.includes("Proof") ? (ans >= 5 ? 'green-300' : (ans >= 3 ? 'yellow-500' : 'pink')) : (ans >= 1 ? 'green-300' : 'pink'))
                   } title = {ans}>{sub.tst.solves[index]} </span>)}</th>
                 </tr>
