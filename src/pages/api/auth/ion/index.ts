@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  return res.redirect(301, "https://www.google.com")
   const path = req.query.path as string;
   const { baseUrl } = parsePath(req.query.path as string)
 

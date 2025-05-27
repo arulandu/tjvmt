@@ -12,6 +12,7 @@ services:
       - .env.development.local
     environment:
       NODE_ENV: development
+      ION_CLIENT_ID: ynSR4SB2kT9R0KrfkN1Bt9DFVEFnrRQfbeASW9mL
     depends_on:
       - mongo
     networks:
@@ -19,6 +20,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    command: npm run dev
 
   mongo:
     image: mongo:6.0
@@ -29,6 +31,33 @@ services:
       - mongo-data:/data/db
     networks:
       - app-network
+    command: ["--replSet", "rs0"]
+    healthcheck:
+      test: mongosh --eval "db.adminCommand('ping')" --quiet || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  mongo-init:
+    image: mongo:6
+    depends_on:
+      mongo:
+        condition: service_healthy
+    command: |
+      /bin/sh -c '
+        until mongosh --host mongo --eval "db.adminCommand(\"ping\")" --quiet | grep -q "\"ok\" : 1"; do
+          echo "Waiting for MongoDB...";
+          sleep 2;
+        done;
+        echo "Checking if replica set is initialized...";
+        INIT=$(mongosh --host mongo --quiet --eval "try { rs.status().ok } catch(e) { 0 }");
+        if [ "$INIT" = "1" ]; then
+          echo "Replica set already initialized.";
+        else
+          echo "Initializing replica set...";
+          mongosh --host mongo --eval "rs.initiate({_id: \"rs0\", members: [{_id: 0, host: \"mongo:27017\"}]})";
+        fi
+      '
+    restart: "no"
 
 volumes:
   mongo-data:
